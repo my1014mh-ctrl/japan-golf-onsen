@@ -1,7 +1,8 @@
 {
   "meta": {
     "description": "인천(ICN) 출발 일본 직항 취항 공항 메타데이터. blockMinutes는 정기편 표준 운항시간(block time) 추정치이며 한일 시차가 없으므로 도착시각 = 출발시각 + blockMinutes.",
-    "updated": "2026-10-30"
+    "updated": "2026-10-30",
+    "blockNote": "blockMinutes 출처: verified=공개 시간표 확인, model=인천 대권거리 기반 추정 (지상·상승강하 45분 + 거리/770km/h, 검증 7개 노선으로 보정, RMSE 5.9분). 5분 단위로 반올림."
   },
   "airports": [
     {
@@ -9,7 +10,7 @@
       "city": "후쿠오카",
       "name": "후쿠오카공항",
       "region": "규슈",
-      "blockMinutes": 80,
+      "blockMinutes": 85,
       "golfMarch": {
         "rating": 3,
         "note": "3월 최적. 시내 30분 내 코스 다수",
@@ -47,14 +48,20 @@
         "note": "공항 지하철 5분"
       },
       "jaName": "福岡空港",
-      "cityCenterJa": "博多駅"
+      "cityCenterJa": "博多駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 33.5859,
+        "lon": 130.451
+      },
+      "greatCircleKm": 563
     },
     {
       "iata": "KKJ",
       "city": "기타큐슈",
       "name": "기타큐슈공항",
       "region": "규슈",
-      "blockMinutes": 85,
+      "blockMinutes": 90,
       "golfMarch": {
         "rating": 2,
         "note": "3월 라운딩 가능. 코스 밀집도는 후쿠오카보다 낮음",
@@ -87,7 +94,13 @@
         "note": "공항→고쿠라 35분"
       },
       "jaName": "北九州空港",
-      "cityCenterJa": "小倉駅"
+      "cityCenterJa": "小倉駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 33.8459,
+        "lon": 131.035
+      },
+      "greatCircleKm": 578
     },
     {
       "iata": "OIT",
@@ -128,7 +141,13 @@
         "note": "공항→오이타시 60분"
       },
       "jaName": "大分空港",
-      "cityCenterJa": "大分駅"
+      "cityCenterJa": "大分駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 33.4794,
+        "lon": 131.7372
+      },
+      "greatCircleKm": 653
     },
     {
       "iata": "KMJ",
@@ -173,7 +192,13 @@
         "note": "공항→시내 45분"
       },
       "jaName": "阿蘇くまもと空港",
-      "cityCenterJa": "熊本駅"
+      "cityCenterJa": "熊本駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 32.8373,
+        "lon": 130.855
+      },
+      "greatCircleKm": 652
     },
     {
       "iata": "NGS",
@@ -213,7 +238,13 @@
         "note": "공항→시내 45분"
       },
       "jaName": "長崎空港",
-      "cityCenterJa": "長崎駅"
+      "cityCenterJa": "長崎駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 32.9169,
+        "lon": 129.9137
+      },
+      "greatCircleKm": 596
     },
     {
       "iata": "HSG",
@@ -253,14 +284,20 @@
         "note": "우레시노 온천가 중심"
       },
       "jaName": "佐賀空港",
-      "cityCenterJa": "佐賀駅"
+      "cityCenterJa": "佐賀駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 33.1497,
+        "lon": 130.3022
+      },
+      "greatCircleKm": 594
     },
     {
       "iata": "KMI",
       "city": "미야자키",
       "name": "미야자키공항",
       "region": "규슈",
-      "blockMinutes": 105,
+      "blockMinutes": 100,
       "golfMarch": {
         "rating": 3,
         "note": "일본 골프 성지. 3월 최적, 토너먼트 코스 다수",
@@ -295,7 +332,13 @@
         "note": "공항→시내 15분"
       },
       "jaName": "宮崎空港",
-      "cityCenterJa": "宮崎駅"
+      "cityCenterJa": "宮崎駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 31.8772,
+        "lon": 131.4487
+      },
+      "greatCircleKm": 771
     },
     {
       "iata": "KOJ",
@@ -340,7 +383,13 @@
         "note": "공항→시내 40분"
       },
       "jaName": "鹿児島空港",
-      "cityCenterJa": "鹿児島中央駅"
+      "cityCenterJa": "鹿児島中央駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 31.8034,
+        "lon": 130.7194
+      },
+      "greatCircleKm": 741
     },
     {
       "iata": "MYJ",
@@ -376,7 +425,13 @@
         "note": "공항→시내 20분"
       },
       "jaName": "松山空港",
-      "cityCenterJa": "松山市駅"
+      "cityCenterJa": "松山市駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 33.8272,
+        "lon": 132.6997
+      },
+      "greatCircleKm": 695
     },
     {
       "iata": "TAK",
@@ -416,7 +471,13 @@
         "note": "공항→시내 40분"
       },
       "jaName": "高松空港",
-      "cityCenterJa": "高松駅"
+      "cityCenterJa": "高松駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.2142,
+        "lon": 134.0156
+      },
+      "greatCircleKm": 772
     },
     {
       "iata": "TKS",
@@ -456,14 +517,20 @@
         "note": "—"
       },
       "jaName": "徳島空港",
-      "cityCenterJa": "徳島駅"
+      "cityCenterJa": "徳島駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.1328,
+        "lon": 134.6064
+      },
+      "greatCircleKm": 824
     },
     {
       "iata": "HIJ",
       "city": "히로시마",
       "name": "히로시마공항",
       "region": "주고쿠",
-      "blockMinutes": 100,
+      "blockMinutes": 105,
       "golfMarch": {
         "rating": 2,
         "note": "3월 양호. 공항 인접 코스 다수",
@@ -497,14 +564,20 @@
         "note": "공항→시내 50분"
       },
       "jaName": "広島空港",
-      "cityCenterJa": "広島駅"
+      "cityCenterJa": "広島駅",
+      "blockSource": "verified",
+      "coord": {
+        "lat": 34.4361,
+        "lon": 132.9195
+      },
+      "greatCircleKm": 673
     },
     {
       "iata": "OKJ",
       "city": "오카야마",
       "name": "오카야마공항",
       "region": "주고쿠",
-      "blockMinutes": 105,
+      "blockMinutes": 100,
       "golfMarch": {
         "rating": 2,
         "note": "일본 내 강수량 최저 지역. 3월 라운딩 안정적",
@@ -537,14 +610,20 @@
         "note": "공항→시내 30분"
       },
       "jaName": "岡山空港",
-      "cityCenterJa": "岡山駅"
+      "cityCenterJa": "岡山駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.7569,
+        "lon": 133.8553
+      },
+      "greatCircleKm": 731
     },
     {
       "iata": "YGJ",
       "city": "요나고",
       "name": "요나고공항",
       "region": "주고쿠",
-      "blockMinutes": 110,
+      "blockMinutes": 95,
       "golfMarch": {
         "rating": 1,
         "note": "3월 초 잔설·저온 가능. 중순 이후 권장",
@@ -577,14 +656,20 @@
         "note": "—"
       },
       "jaName": "米子鬼太郎空港",
-      "cityCenterJa": "米子駅"
+      "cityCenterJa": "米子駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 35.4922,
+        "lon": 133.2364
+      },
+      "greatCircleKm": 646
     },
     {
       "iata": "UBJ",
       "city": "야마구치 우베",
       "name": "야마구치우베공항",
       "region": "주고쿠",
-      "blockMinutes": 95,
+      "blockMinutes": 90,
       "golfMarch": {
         "rating": 2,
         "note": "3월 양호",
@@ -617,7 +702,13 @@
         "note": "—"
       },
       "jaName": "山口宇部空港",
-      "cityCenterJa": "新山口駅"
+      "cityCenterJa": "新山口駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 33.93,
+        "lon": 131.2786
+      },
+      "greatCircleKm": 587
     },
     {
       "iata": "KIX",
@@ -662,14 +753,20 @@
         "note": "린쿠 아웃렛은 공항 5분"
       },
       "jaName": "関西国際空港",
-      "cityCenterJa": "大阪難波駅"
+      "cityCenterJa": "大阪難波駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.4347,
+        "lon": 135.2328
+      },
+      "greatCircleKm": 860
     },
     {
       "iata": "UKB",
       "city": "고베",
       "name": "고베공항",
       "region": "간사이",
-      "blockMinutes": 115,
+      "blockMinutes": 110,
       "golfMarch": {
         "rating": 2,
         "note": "롯코산 주변 코스. 3월 양호",
@@ -699,14 +796,20 @@
         "note": "—"
       },
       "jaName": "神戸空港",
-      "cityCenterJa": "三宮駅"
+      "cityCenterJa": "三宮駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.6328,
+        "lon": 135.2239
+      },
+      "greatCircleKm": 850
     },
     {
       "iata": "NGO",
       "city": "나고야",
       "name": "주부국제공항",
       "region": "주부",
-      "blockMinutes": 115,
+      "blockMinutes": 120,
       "golfMarch": {
         "rating": 2,
         "note": "3월 양호",
@@ -744,14 +847,20 @@
         "note": "재즈드림 공항 30분"
       },
       "jaName": "中部国際空港",
-      "cityCenterJa": "名古屋駅"
+      "cityCenterJa": "名古屋駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.8584,
+        "lon": 136.8054
+      },
+      "greatCircleKm": 974
     },
     {
       "iata": "KMQ",
       "city": "고마쓰",
       "name": "고마쓰공항",
       "region": "호쿠리쿠",
-      "blockMinutes": 120,
+      "blockMinutes": 115,
       "golfMarch": {
         "rating": 1,
         "note": "3월 초 저온·잔설 가능. 중하순 권장",
@@ -784,14 +893,20 @@
         "note": "공항→가나자와 50분"
       },
       "jaName": "小松空港",
-      "cityCenterJa": "金沢駅"
+      "cityCenterJa": "金沢駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 36.3946,
+        "lon": 136.4075
+      },
+      "greatCircleKm": 893
     },
     {
       "iata": "FSZ",
       "city": "시즈오카",
       "name": "시즈오카공항",
       "region": "주부",
-      "blockMinutes": 135,
+      "blockMinutes": 130,
       "golfMarch": {
         "rating": 3,
         "note": "이즈·하코네 명문 코스권. 3월 최적",
@@ -829,14 +944,20 @@
         "note": "고텐바 아웃렛 2시간"
       },
       "jaName": "静岡空港",
-      "cityCenterJa": "静岡駅"
+      "cityCenterJa": "静岡駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 34.7961,
+        "lon": 138.1894
+      },
+      "greatCircleKm": 1095
     },
     {
       "iata": "TOY",
       "city": "도야마",
       "name": "도야마공항",
       "region": "호쿠리쿠",
-      "blockMinutes": 125,
+      "blockMinutes": 120,
       "golfMarch": {
         "rating": 1,
         "note": "3월 상순 적설 가능성",
@@ -869,7 +990,13 @@
         "note": "—"
       },
       "jaName": "富山空港",
-      "cityCenterJa": "富山駅"
+      "cityCenterJa": "富山駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 36.6483,
+        "lon": 137.1875
+      },
+      "greatCircleKm": 957
     },
     {
       "iata": "KIJ",
@@ -909,7 +1036,13 @@
         "note": "—"
       },
       "jaName": "新潟空港",
-      "cityCenterJa": "新潟駅"
+      "cityCenterJa": "新潟駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 37.9559,
+        "lon": 139.1211
+      },
+      "greatCircleKm": 1116
     },
     {
       "iata": "NRT",
@@ -955,7 +1088,13 @@
         "note": "시스이 아웃렛 공항 15분"
       },
       "jaName": "成田国際空港",
-      "cityCenterJa": "東京駅"
+      "cityCenterJa": "東京駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 35.7647,
+        "lon": 140.3864
+      },
+      "greatCircleKm": 1258
     },
     {
       "iata": "HND",
@@ -1000,14 +1139,20 @@
         "note": "모노레일 25분"
       },
       "jaName": "東京国際空港",
-      "cityCenterJa": "東京駅"
+      "cityCenterJa": "東京駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 35.5494,
+        "lon": 139.7798
+      },
+      "greatCircleKm": 1210
     },
     {
       "iata": "SDJ",
       "city": "센다이",
       "name": "센다이공항",
       "region": "도호쿠",
-      "blockMinutes": 150,
+      "blockMinutes": 145,
       "golfMarch": {
         "rating": 1,
         "note": "3월 상순 휴장/동결 그린 가능. 하순 조건부",
@@ -1044,7 +1189,13 @@
         "note": "공항 액세스선 25분"
       },
       "jaName": "仙台空港",
-      "cityCenterJa": "仙台駅"
+      "cityCenterJa": "仙台駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 38.1397,
+        "lon": 140.9169
+      },
+      "greatCircleKm": 1273
     },
     {
       "iata": "AOJ",
@@ -1081,14 +1232,20 @@
         "note": "—"
       },
       "jaName": "青森空港",
-      "cityCenterJa": "青森駅"
+      "cityCenterJa": "青森駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 40.7347,
+        "lon": 140.6908
+      },
+      "greatCircleKm": 1281
     },
     {
       "iata": "CTS",
       "city": "삿포로",
       "name": "신치토세공항",
       "region": "홋카이도",
-      "blockMinutes": 170,
+      "blockMinutes": 155,
       "golfMarch": {
         "rating": 0,
         "note": "3월 전 코스 적설 휴장(개장 4월 말~5월)",
@@ -1122,14 +1279,20 @@
         "note": "라라포트 공항 10분"
       },
       "jaName": "新千歳空港",
-      "cityCenterJa": "札幌駅"
+      "cityCenterJa": "札幌駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 42.7752,
+        "lon": 141.6923
+      },
+      "greatCircleKm": 1422
     },
     {
       "iata": "HKD",
       "city": "하코다테",
       "name": "하코다테공항",
       "region": "홋카이도",
-      "blockMinutes": 160,
+      "blockMinutes": 150,
       "golfMarch": {
         "rating": 0,
         "note": "3월 적설 휴장",
@@ -1155,14 +1318,20 @@
         "note": "—"
       },
       "jaName": "函館空港",
-      "cityCenterJa": "函館駅"
+      "cityCenterJa": "函館駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 41.77,
+        "lon": 140.8219
+      },
+      "greatCircleKm": 1320
     },
     {
       "iata": "AKJ",
       "city": "아사히카와",
       "name": "아사히카와공항",
       "region": "홋카이도",
-      "blockMinutes": 180,
+      "blockMinutes": 165,
       "golfMarch": {
         "rating": 0,
         "note": "3월 적설 휴장",
@@ -1192,14 +1361,20 @@
         "note": "—"
       },
       "jaName": "旭川空港",
-      "cityCenterJa": "旭川駅"
+      "cityCenterJa": "旭川駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 43.6708,
+        "lon": 142.4475
+      },
+      "greatCircleKm": 1515
     },
     {
       "iata": "OKA",
       "city": "오키나와 나하",
       "name": "나하공항",
       "region": "오키나와",
-      "blockMinutes": 140,
+      "blockMinutes": 145,
       "golfMarch": {
         "rating": 3,
         "note": "3월 기온 20도대. 일본 내 최상 조건",
@@ -1234,7 +1409,13 @@
         "note": "아시비나 아웃렛 공항 15분"
       },
       "jaName": "那覇空港",
-      "cityCenterJa": "県庁前駅"
+      "cityCenterJa": "県庁前駅",
+      "blockSource": "model",
+      "coord": {
+        "lat": 26.1958,
+        "lon": 127.6458
+      },
+      "greatCircleKm": 1258
     },
     {
       "iata": "MMY",
@@ -1265,14 +1446,20 @@
         "note": "—"
       },
       "jaName": "宮古空港",
-      "cityCenterJa": "平良"
+      "cityCenterJa": "平良",
+      "blockSource": "model",
+      "coord": {
+        "lat": 24.7828,
+        "lon": 125.295
+      },
+      "greatCircleKm": 1414
     },
     {
       "iata": "ISG",
       "city": "이시가키",
       "name": "이시가키공항",
       "region": "오키나와",
-      "blockMinutes": 165,
+      "blockMinutes": 160,
       "golfMarch": {
         "rating": 2,
         "note": "코스 수 적음",
@@ -1300,7 +1487,13 @@
         "note": "—"
       },
       "jaName": "新石垣空港",
-      "cityCenterJa": "石垣港"
+      "cityCenterJa": "石垣港",
+      "blockSource": "model",
+      "coord": {
+        "lat": 24.3964,
+        "lon": 124.245
+      },
+      "greatCircleKm": 1468
     }
   ]
 }

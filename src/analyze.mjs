@@ -204,11 +204,13 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
     const latestDepForEarly = toHHMM(earlyMin - block);
 
     const flights = (route.flights ?? []).map((f) => {
-      const arrTime = addMinutes(f.depTime, block);
+      // 검증편은 편별 실제 운항시간(f.block)을 쓰고, 없으면 노선 표준값을 쓴다
+      const arrTime = addMinutes(f.depTime, f.block ?? block);
       return {
         ...f,
         arrTime,
         arrMinutes: toMinutes(arrTime),
+        blockUsed: f.block ?? block,
         daysText: daysLabel(f.days),
         beforeCutoff: toMinutes(arrTime) <= cutoffMin,
         beforeEarly: toMinutes(arrTime) <= earlyMin,

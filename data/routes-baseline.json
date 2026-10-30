@@ -26,17 +26,33 @@
         "JAL"
       ],
       "dailyFlights": 10,
-      "earliestDep": "06:50",
-      "morningDepWindow": [
-        "06:50",
-        "11:00"
+      "earliestDep": "06:30",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "아시아나",
+          "flightNo": "OZ132",
+          "depTime": "06:30",
+          "block": 85,
+          "days": null,
+          "source": "공개 시간표 확인 2026-10-30"
+        },
+        {
+          "airline": "대한항공",
+          "flightNo": "KE787",
+          "depTime": "08:00",
+          "block": 80,
+          "days": null,
+          "source": "공개 시간표 확인 2026-10-30"
+        }
       ],
-      "confidence": "high",
-      "flights": [],
       "weeklyFrequency": "daily",
       "returnPattern": "all-day",
       "lastReturnDep": "20:30",
-      "verified": false
+      "verified": true,
+      "sourceNote": "공개 시간표 확인 2026-10-30",
+      "returnNote": "간선 노선 — 저녁 귀국편 다수 (마지막편 시각 추정)"
     },
     {
       "iata": "KIX",
@@ -305,17 +321,41 @@
         "에어서울"
       ],
       "dailyFlights": 1,
-      "earliestDep": "09:00",
-      "morningDepWindow": [
-        "09:00",
-        "10:30"
+      "earliestDep": "09:20",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "아시아나",
+          "flightNo": null,
+          "depTime": "09:20",
+          "block": 100,
+          "days": null,
+          "source": "공개 시간표 확인 2026-10-30"
+        },
+        {
+          "airline": "아시아나",
+          "flightNo": null,
+          "depTime": "12:10",
+          "block": 105,
+          "days": null,
+          "source": "공개 시간표 확인 2026-10-30"
+        },
+        {
+          "airline": "아시아나",
+          "flightNo": null,
+          "depTime": "16:20",
+          "block": 110,
+          "days": null,
+          "source": "공개 시간표 확인 2026-10-30"
+        }
       ],
-      "confidence": "medium",
-      "flights": [],
       "weeklyFrequency": "daily",
       "returnPattern": "single-rotation",
       "lastReturnDep": null,
-      "verified": false
+      "verified": true,
+      "sourceNote": "공개 시간표 확인 2026-10-30",
+      "returnNote": "귀국편 시각 미확인 — 역산값 사용"
     },
     {
       "iata": "KOJ",
@@ -431,17 +471,33 @@
         "제주항공"
       ],
       "dailyFlights": 2,
-      "earliestDep": "09:20",
-      "morningDepWindow": [
-        "09:20",
-        "10:30"
+      "earliestDep": "07:45",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "제주항공",
+          "flightNo": "7C1615",
+          "depTime": "07:45",
+          "block": 105,
+          "days": "1234567",
+          "source": "히로시마공항 공식 국제선 시간표 (2026-10-25~2027-01-31)"
+        },
+        {
+          "airline": "제주항공",
+          "flightNo": "7C1617",
+          "depTime": "13:30",
+          "block": 105,
+          "days": "1234567",
+          "source": "히로시마공항 공식 국제선 시간표 (2026-10-25~2027-01-31)"
+        }
       ],
-      "confidence": "medium",
-      "flights": [],
       "weeklyFrequency": "daily",
       "returnPattern": "all-day",
-      "lastReturnDep": "15:30",
-      "verified": false
+      "lastReturnDep": "16:15",
+      "verified": true,
+      "sourceNote": "히로시마공항 공식 국제선 시간표 (2026-10-25~2027-01-31)",
+      "returnNote": "7C1616 히로시마 10:30→인천 12:20 / 7C1618 16:15→18:00 (매일)"
     },
     {
       "iata": "OKJ",
