@@ -137,9 +137,7 @@ export function renderHtml(analysis, opts = {}) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <title>일본 골프·온천 플래너</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap">
+<!-- 외부 요청 없음: 네트워크 지연이 첫 페인트를 막지 않도록 시스템 서체만 사용 -->
 <style>
 :root{
   --bg:#f6f5f2; --panel:#ffffff; --ink:#15171c; --ink2:#5b6270; --line:#e2e0da;
@@ -159,7 +157,7 @@ export function renderHtml(analysis, opts = {}) {
 *{box-sizing:border-box}
 :root{
   --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",Segoe UI,Roboto,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
 }
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
 .cut,.arrivalbox strong,.day .dv,.roundsline strong,.stat b,.wdates,.tripstrip strong,
