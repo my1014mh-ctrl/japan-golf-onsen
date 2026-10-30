@@ -123,6 +123,59 @@ function card(a, early) {
 </article>`;
 }
 
+function courseModal(analysis) {
+  const groups = analysis.airports
+    .filter((a) => a.courses?.counts.inRadius > 0)
+    .map((a) => {
+      const rows = a.courses.inRadius.map((c) => {
+        const t = TWOSOME[c.twosome] ?? TWOSOME.unknown;
+        const remarks = [c.pedigree, c.greenFee, c.noSurcharge ? '2사무 할증 없음' : null]
+          .filter(Boolean).join(' · ');
+        return `<tr class="${c.twosomeUsable ? 'usable' : 'nope'}" data-usable="${c.twosomeUsable ? 1 : 0}">
+          <td class="cname"><strong>${esc(c.ko)}</strong><span class="ja">${esc(c.ja)}</span></td>
+          <td class="cdist">${c.distanceKm}km<span class="muted"> / ${c.driveMin}분</span></td>
+          <td class="cts"><span class="tsome ${t.cls}">${esc(t.label)}</span>${c.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}</td>
+          <td class="crem">${esc(remarks || '—')}</td>
+        </tr>`;
+      }).join('\n');
+
+      return `<tbody class="apgroup" data-usable="${a.courses.counts.twosomeUsable > 0 ? 1 : 0}">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">${esc(a.iata)}</span>
+            <span class="apcity">${esc(a.city)}</span>
+            <span class="apmeta">도착 ${esc(a.earliestArrival ?? '—')} · 목 티업 ${esc(a.arrivalRound.teeOff ?? '—')} · 온천 ${esc(a.onsen.nearest ? `${a.onsen.nearest.name} ${a.onsen.nearest.transitMin}분` : '—')}</span>
+            <span class="apcount${a.courses.counts.twosomeUsable ? ' on' : ''}">2인 ${a.courses.counts.twosomeUsable}/${a.courses.counts.inRadius}곳</span>
+          </th>
+        </tr>
+        ${rows}
+      </tbody>`;
+    }).join('\n');
+
+  const usableTotal = analysis.airports.reduce((n, a) => n + (a.courses?.counts.twosomeUsable ?? 0), 0);
+  const inTotal = analysis.airports.reduce((n, a) => n + (a.courses?.counts.inRadius ?? 0), 0);
+
+  return `<dialog id="coursemodal" aria-labelledby="cmtitle">
+  <div class="mhead">
+    <div>
+      <h2 id="cmtitle">2인 플레이 가능 골프장</h2>
+      <p>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 · 전체 ${inTotal}곳 중 <strong>${usableTotal}곳</strong>에서 2인 플레이 확인</p>
+    </div>
+    <div class="mactions">
+      <label class="toggle"><input type="checkbox" id="mfilter" checked>2인 가능만</label>
+      <button type="button" class="mclose" aria-label="닫기">닫기</button>
+    </div>
+  </div>
+  <div class="mbody">
+    <table class="mtable">
+      <thead><tr><th>골프장</th><th>거리</th><th>2인 플레이</th><th>비고</th></tr></thead>
+      ${groups}
+    </table>
+    <p class="mnote">목·금 플레이 기준이라 <strong>평일 2사무 보증</strong> 플랜이 모두 유효합니다. 2사무 할증은 1인당 500~2,200엔 수준이고 할증 없는 플랜은 평일 한정이 많습니다. 플랜은 날짜 단위로 바뀌니 예약 시점에 각 공항 카드의 GDO 링크로 확인하세요.</p>
+  </div>
+</dialog>`;
+}
+
 export function renderHtml(analysis, opts = {}) {
   const tripLabel = opts.tripLabel ?? '2027년 3월';
   const feasible = analysis.airports.filter((a) => a.feasible);
@@ -316,6 +369,52 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
   .tsome,.nosur,.fee{display:inline-block;margin-right:6px}
   .flights{font-size:12px}
 }
+.cta{font:inherit;font-size:13px;font-weight:600;color:var(--bg);background:var(--accent);border:0;border-radius:999px;padding:7px 14px;cursor:pointer}
+.cta:hover{filter:brightness(1.08)}
+dialog#coursemodal{width:min(860px,94vw);max-height:88vh;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink);box-shadow:0 24px 64px rgba(0,0,0,.28);overflow:hidden}
+dialog#coursemodal::backdrop{background:rgba(10,12,16,.55);backdrop-filter:blur(2px)}
+dialog#coursemodal[open]{display:flex;flex-direction:column}
+.mhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mhead h2{margin:0;font-size:17px;letter-spacing:-.01em}
+.mhead p{margin:3px 0 0;font-size:12.5px;color:var(--ink2)}
+.mhead p strong{color:var(--accent)}
+.mactions{display:flex;align-items:center;gap:8px}
+.mclose{font:inherit;font-size:12.5px;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.mclose:hover{color:var(--ink);border-color:var(--ink2)}
+.mbody{overflow-y:auto;padding:4px 18px 18px}
+table.mtable{width:100%;border-collapse:collapse;font-size:13px}
+table.mtable thead th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:11px;font-weight:600;color:var(--ink2);padding:9px 10px 7px 0;border-bottom:1px solid var(--line);z-index:1}
+tr.aphead th{text-align:left;padding:16px 0 6px;font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.apcode{font-family:var(--mono);font-size:11px;color:var(--bg);background:var(--ink2);border-radius:4px;padding:2px 5px;margin-right:6px}
+.apcity{font-size:14.5px;letter-spacing:-.01em}
+.apmeta{font-size:11.5px;color:var(--ink2);font-weight:400;margin-left:8px}
+.apcount{float:right;font-size:11px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-weight:500}
+.apcount.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+table.mtable td{padding:8px 10px 8px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 45%,transparent);vertical-align:top}
+table.mtable tr.usable .cname{border-left:2px solid var(--accent);padding-left:9px}
+table.mtable tr.nope{opacity:.62}
+.cname strong{font-weight:600}
+.cdist{white-space:nowrap;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink2);font-size:12px}
+.cts{white-space:nowrap}
+.crem{font-size:12px;color:var(--ink2)}
+.mnote{margin:16px 0 0;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--accent2) 8%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 28%,var(--line));font-size:12px;color:var(--ink2)}
+tbody.apgroup.off,table.mtable tr.off{display:none}
+@media (max-width:680px){
+  dialog#coursemodal{width:100vw;max-width:100vw;max-height:92vh;margin:auto 0 0;border-radius:16px 16px 0 0;border-bottom:0}
+  .mhead{padding:14px}
+  .mbody{padding:0 14px 20px}
+  table.mtable thead{display:none}
+  table.mtable tr{display:block}
+  table.mtable td{display:block;border:0;padding:1px 0}
+  table.mtable tbody tr.usable,table.mtable tbody tr.nope{padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 45%,transparent)}
+  table.mtable tr.usable .cname{padding-left:9px}
+  table.mtable tr.usable{border-left:2px solid var(--accent);padding-left:9px}
+  table.mtable tr.usable .cname{border-left:0;padding-left:0}
+  .cdist,.cts{display:inline-block;margin:3px 10px 2px 0}
+  tr.aphead th{padding:14px 0 4px}
+  .apmeta{display:block;margin:2px 0 0}
+  .apcount{float:none;display:inline-block;margin-top:4px}
+}
 footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink2)}
 footer code{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px}
 footer ul{padding-left:18px}
@@ -372,6 +471,10 @@ ${(analysis.trip.windows ?? []).map((w) => {
     <div class="row" id="regions">${regions.map((r) => `<label class="toggle"><input type="checkbox" value="${esc(r)}" checked>${esc(r)}</label>`).join('')}</div>
   </div>
   <div class="row">
+    <label class="k">골프장</label>
+    <button type="button" id="openmodal" class="cta">2인 플레이 골프장 한눈에 보기 →</button>
+  </div>
+  <div class="row">
     <label class="k">조건</label>
     <label class="toggle"><input type="checkbox" id="earlyonly">${esc(analysis.early)} 전 도착만</label>
     <label class="toggle"><input type="checkbox" id="golfonly">3월 골프 가능만</label>
@@ -401,6 +504,8 @@ ${infeasible.length ? `<h2 class="sec">오전 도착 불가 (${infeasible.length
 <div class="grid">
 ${infeasible.map((a) => `<article class="card tier-X"><div class="titleline"><h3>${esc(a.city)} <span class="iata">${esc(a.iata)}</span></h3><span class="badge tX">${esc(a.verdict.label)}</span></div><p class="sub">${esc(a.region)} · 비행 ${esc(a.blockLabel)} · 가장 빠른 도착 ${esc(a.earliestArrival ?? '—')}</p><p class="note">${esc(a.verdict.reason)} — ${esc(analysis.cutoff)} 도착은 인천 ${esc(a.latestDepForCutoff)} 이전, ${esc(analysis.early)} 도착은 ${esc(a.latestDepForEarly)} 이전 출발편이 필요합니다.</p>${a.sourceNote ? `<p class="note src">※ ${esc(a.sourceNote)}</p>` : ''}</article>`).join('\n')}
 </div>` : ''}
+
+${courseModal(analysis)}
 
 <footer>
   <p><strong>판정 방식</strong> — 한국·일본은 시차가 없으므로 <em>현지 도착시각 = 인천 출발시각 + 운항시간</em>으로 계산했습니다. 운항시간은 노선별 표준 block time 추정치입니다.</p>
@@ -480,6 +585,24 @@ ${infeasible.map((a) => `<article class="card tier-X"><div class="titleline"><h3
     };
     [...cards].sort((a,b)=>val(a)-val(b)).forEach(el=>grid.appendChild(el));
   }
+
+  // 2인 플레이 골프장 팝업
+  const modal = document.getElementById('coursemodal');
+  const openBtn = document.getElementById('openmodal');
+  const mfilter = document.getElementById('mfilter');
+  function applyModalFilter(){
+    const only = mfilter.checked;
+    modal.querySelectorAll('tbody.apgroup').forEach(g=>{
+      g.querySelectorAll('tr[data-usable]').forEach(tr=>{
+        tr.classList.toggle('off', only && tr.dataset.usable !== '1');
+      });
+      g.classList.toggle('off', only && g.dataset.usable !== '1');
+    });
+  }
+  openBtn.addEventListener('click', ()=>{ applyModalFilter(); modal.showModal(); });
+  mfilter.addEventListener('change', applyModalFilter);
+  modal.querySelector('.mclose').addEventListener('click', ()=>modal.close());
+  modal.addEventListener('click', (e)=>{ if (e.target === modal) modal.close(); });
 
   cut.addEventListener('input', apply);
   golfonly.addEventListener('change', apply);

@@ -184,6 +184,52 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
   .tsome,.nosur,.fee{display:inline-block;margin-right:6px}
   .flights{font-size:12px}
 }
+.cta{font:inherit;font-size:13px;font-weight:600;color:var(--bg);background:var(--accent);border:0;border-radius:999px;padding:7px 14px;cursor:pointer}
+.cta:hover{filter:brightness(1.08)}
+dialog#coursemodal{width:min(860px,94vw);max-height:88vh;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink);box-shadow:0 24px 64px rgba(0,0,0,.28);overflow:hidden}
+dialog#coursemodal::backdrop{background:rgba(10,12,16,.55);backdrop-filter:blur(2px)}
+dialog#coursemodal[open]{display:flex;flex-direction:column}
+.mhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mhead h2{margin:0;font-size:17px;letter-spacing:-.01em}
+.mhead p{margin:3px 0 0;font-size:12.5px;color:var(--ink2)}
+.mhead p strong{color:var(--accent)}
+.mactions{display:flex;align-items:center;gap:8px}
+.mclose{font:inherit;font-size:12.5px;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.mclose:hover{color:var(--ink);border-color:var(--ink2)}
+.mbody{overflow-y:auto;padding:4px 18px 18px}
+table.mtable{width:100%;border-collapse:collapse;font-size:13px}
+table.mtable thead th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:11px;font-weight:600;color:var(--ink2);padding:9px 10px 7px 0;border-bottom:1px solid var(--line);z-index:1}
+tr.aphead th{text-align:left;padding:16px 0 6px;font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.apcode{font-family:var(--mono);font-size:11px;color:var(--bg);background:var(--ink2);border-radius:4px;padding:2px 5px;margin-right:6px}
+.apcity{font-size:14.5px;letter-spacing:-.01em}
+.apmeta{font-size:11.5px;color:var(--ink2);font-weight:400;margin-left:8px}
+.apcount{float:right;font-size:11px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-weight:500}
+.apcount.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+table.mtable td{padding:8px 10px 8px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 45%,transparent);vertical-align:top}
+table.mtable tr.usable .cname{border-left:2px solid var(--accent);padding-left:9px}
+table.mtable tr.nope{opacity:.62}
+.cname strong{font-weight:600}
+.cdist{white-space:nowrap;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink2);font-size:12px}
+.cts{white-space:nowrap}
+.crem{font-size:12px;color:var(--ink2)}
+.mnote{margin:16px 0 0;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--accent2) 8%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 28%,var(--line));font-size:12px;color:var(--ink2)}
+tbody.apgroup.off,table.mtable tr.off{display:none}
+@media (max-width:680px){
+  dialog#coursemodal{width:100vw;max-width:100vw;max-height:92vh;margin:auto 0 0;border-radius:16px 16px 0 0;border-bottom:0}
+  .mhead{padding:14px}
+  .mbody{padding:0 14px 20px}
+  table.mtable thead{display:none}
+  table.mtable tr{display:block}
+  table.mtable td{display:block;border:0;padding:1px 0}
+  table.mtable tbody tr.usable,table.mtable tbody tr.nope{padding:10px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 45%,transparent)}
+  table.mtable tr.usable .cname{padding-left:9px}
+  table.mtable tr.usable{border-left:2px solid var(--accent);padding-left:9px}
+  table.mtable tr.usable .cname{border-left:0;padding-left:0}
+  .cdist,.cts{display:inline-block;margin:3px 10px 2px 0}
+  tr.aphead th{padding:14px 0 4px}
+  .apmeta{display:block;margin:2px 0 0}
+  .apcount{float:none;display:inline-block;margin-top:4px}
+}
 footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink2)}
 footer code{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px}
 footer ul{padding-left:18px}
@@ -196,7 +242,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>목 출발 · 일 귀국 (3박 4일) · 목·금 골프 / 토·일 쇼핑·온천</strong> 기준. 인천공항 출발 <strong>직항</strong>으로 현지 <strong>12:00 이전 도착</strong>이 가능한 공항. 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸고, <strong>2인 플레이(2사무) 가능 여부</strong>를 코스별로 표기했습니다. 목·금 플레이라 <em>평일 2사무 보증</em> 플랜이 모두 유효합니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 10. 30. 오후 2:20</span>
+    <span>갱신 2026. 10. 30. 오후 2:32</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>검토 노선 32개</span>
@@ -250,6 +296,10 @@ footer ul{padding-left:18px}
   <div class="row">
     <label class="k">지역</label>
     <div class="row" id="regions"><label class="toggle"><input type="checkbox" value="규슈" checked>규슈</label><label class="toggle"><input type="checkbox" value="간토" checked>간토</label><label class="toggle"><input type="checkbox" value="간사이" checked>간사이</label><label class="toggle"><input type="checkbox" value="오키나와" checked>오키나와</label><label class="toggle"><input type="checkbox" value="주부" checked>주부</label><label class="toggle"><input type="checkbox" value="시코쿠" checked>시코쿠</label><label class="toggle"><input type="checkbox" value="주고쿠" checked>주고쿠</label><label class="toggle"><input type="checkbox" value="도호쿠" checked>도호쿠</label><label class="toggle"><input type="checkbox" value="홋카이도" checked>홋카이도</label><label class="toggle"><input type="checkbox" value="호쿠리쿠" checked>호쿠리쿠</label></div>
+  </div>
+  <div class="row">
+    <label class="k">골프장</label>
+    <button type="button" id="openmodal" class="cta">2인 플레이 골프장 한눈에 보기 →</button>
   </div>
   <div class="row">
     <label class="k">조건</label>
@@ -2126,6 +2176,399 @@ footer ul{padding-left:18px}
 <article class="card tier-X"><div class="titleline"><h3>도쿠시마 <span class="iata">TKS</span></h3><span class="badge tX">오전 도착 불가</span></div><p class="sub">시코쿠 · 비행 1시간 50분 · 가장 빠른 도착 15:35</p><p class="note">12시 전 도착 가능한 직항편 없음 — 12:00 도착은 인천 10:10 이전, 10:00 도착은 08:10 이전 출발편이 필요합니다.</p><p class="note src">※ 공개 스케줄상 인천 13:45 출발(오후편 단독)</p></article>
 </div>
 
+<dialog id="coursemodal" aria-labelledby="cmtitle">
+  <div class="mhead">
+    <div>
+      <h2 id="cmtitle">2인 플레이 가능 골프장</h2>
+      <p>공항 반경 50km 이내 · 전체 39곳 중 <strong>16곳</strong>에서 2인 플레이 확인</p>
+    </div>
+    <div class="mactions">
+      <label class="toggle"><input type="checkbox" id="mfilter" checked>2인 가능만</label>
+      <button type="button" class="mclose" aria-label="닫기">닫기</button>
+    </div>
+  </div>
+  <div class="mbody">
+    <table class="mtable">
+      <thead><tr><th>골프장</th><th>거리</th><th>2인 플레이</th><th>비고</th></tr></thead>
+      <tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">FUK</span>
+            <span class="apcity">후쿠오카</span>
+            <span class="apmeta">도착 08:10 · 목 티업 10:10 · 온천 하라타키/후타고 50분</span>
+            <span class="apcount on">2인 2/6곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>히사야마 CC</strong><span class="ja">久山カントリー倶楽部</span></td>
+          <td class="cdist">20km<span class="muted"> / 25분</span></td>
+          <td class="cts"><span class="tsome ok">평일 2인</span><span class="nosur">할증 없음</span></td>
+          <td class="crem">공항 최근접 · 평일 셀프 2사무 8,980엔(총액) · 2사무 할증 없음</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>후쿠오카 국제 CC</strong><span class="ja">福岡国際カントリークラブ</span></td>
+          <td class="cdist">33km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">명문 · 토너먼트 개최</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>더 퀸즈힐 GC</strong><span class="ja">ザ・クイーンズヒルゴルフクラブ</span></td>
+          <td class="cdist">28km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">토너먼트 개최 코스</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>세븐밀리온 CC</strong><span class="ja">セブンミリオンカントリークラブ</span></td>
+          <td class="cdist">30km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">인기 코스</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>후쿠오카 센추리 GC</strong><span class="ja">福岡センチュリーゴルフ倶楽部</span></td>
+          <td class="cdist">38km<span class="muted"> / 45분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">토너먼트 개최 코스</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>후쿠오카 라이잔 GC</strong><span class="ja">福岡雷山ゴルフ倶楽部</span></td>
+          <td class="cdist">45km<span class="muted"> / 60분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">프로 토너먼트(스텝업투어) 개최</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="0">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">HND</span>
+            <span class="apcity">도쿄 하네다</span>
+            <span class="apmeta">도착 10:00 · 목 티업 12:00 · 온천 하네다 이즈미텐쿠노유 5분</span>
+            <span class="apcount">2인 0/2곳</span>
+          </th>
+        </tr>
+        <tr class="nope" data-usable="0">
+          <td class="cname"><strong>요코하마 CC</strong><span class="ja">横浜カントリークラブ</span></td>
+          <td class="cdist">35km<span class="muted"> / 50분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">일본 명문</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>소데가우라 CC</strong><span class="ja">袖ヶ浦カンツリークラブ</span></td>
+          <td class="cdist">35km<span class="muted"> / 45분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">아쿠아라인 경유</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">KIX</span>
+            <span class="apcity">오사카</span>
+            <span class="apmeta">도착 08:30 · 목 티업 10:30 · 온천 아리마 온천 100분</span>
+            <span class="apcount on">2인 1/1곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>간사이공항 GC (PGM)</strong><span class="ja">関西空港ゴルフ倶楽部【PGM】</span></td>
+          <td class="cdist">25km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">공항 전용 입지</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="0">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">NRT</span>
+            <span class="apcity">도쿄 나리타</span>
+            <span class="apmeta">도착 09:55 · 목 티업 11:55 · 온천 나리타 야마토노유 20분</span>
+            <span class="apcount">2인 0/3곳</span>
+          </th>
+        </tr>
+        <tr class="nope" data-usable="0">
+          <td class="cname"><strong>나리타 GC</strong><span class="ja">成田ゴルフ倶楽部</span></td>
+          <td class="cdist">15km<span class="muted"> / 25분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">공항 최근접</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>오크 빌리지 GC</strong><span class="ja">オークビレッヂゴルフクラブ</span></td>
+          <td class="cdist">25km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">—</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>소부 CC</strong><span class="ja">総武カントリークラブ</span></td>
+          <td class="cdist">40km<span class="muted"> / 50분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">일본 명문 · 투어 개최</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">KOJ</span>
+            <span class="apcity">가고시마</span>
+            <span class="apmeta">도착 10:30 · 목 티업 12:30 · 온천 공항 무료 足湯 0분</span>
+            <span class="apcount on">2인 2/4곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>가고시마공항 36 CC</strong><span class="ja">かごしま空港36カントリークラブ</span></td>
+          <td class="cdist">10km<span class="muted"> / 15분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">남규슈 굴지의 명문 · 36홀 · 평일 6,680엔~</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>기리시마 GC</strong><span class="ja">霧島ゴルフクラブ</span></td>
+          <td class="cdist">18km<span class="muted"> / 25분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">1957년 개장 · 남규슈 최고(最古) 명문, 야스다 요텐 설계</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>미조베 CC</strong><span class="ja">溝辺カントリークラブ</span></td>
+          <td class="cdist">7km<span class="muted"> / 11분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">챔피언십 코스 P72 · 평일 7,380엔~</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>게도인 GC</strong><span class="ja">祁答院ゴルフ倶楽部</span></td>
+          <td class="cdist">32km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">명문</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">OKA</span>
+            <span class="apcity">오키나와 나하</span>
+            <span class="apmeta">도착 10:10 · 목 티업 12:10 · 온천 류진노유(세나가지마) 20분</span>
+            <span class="apcount on">2인 3/4곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>더 서던링크스 GC</strong><span class="ja">ザ・サザンリンクスゴルフクラブ</span></td>
+          <td class="cdist">25km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome ok2">전일 2인</span></td>
+          <td class="crem">오키나와 대표 시사이드 링크스</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>팜힐스 GC 리조트</strong><span class="ja">パームヒルズゴルフリゾートクラブ</span></td>
+          <td class="cdist">20km<span class="muted"> / 30분</span></td>
+          <td class="cts"><span class="tsome ok">평일 2인</span></td>
+          <td class="crem">나하공항 최근접 리조트 코스</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>PGM 골프리조트 오키나와</strong><span class="ja">PGMゴルフリゾート沖縄</span></td>
+          <td class="cdist">45km<span class="muted"> / 60분</span></td>
+          <td class="cts"><span class="tsome ok">평일 2인</span></td>
+          <td class="crem">리조트 코스</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>나하 GC</strong><span class="ja">那覇ゴルフ倶楽部</span></td>
+          <td class="cdist">18km<span class="muted"> / 30분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">시내 접근 양호</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="0">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">NGO</span>
+            <span class="apcity">나고야</span>
+            <span class="apmeta">도착 09:15 · 목 티업 11:15 · 온천 가이즈카 60분</span>
+            <span class="apcount">2인 0/2곳</span>
+          </th>
+        </tr>
+        <tr class="nope" data-usable="0">
+          <td class="cname"><strong>미카와 CC</strong><span class="ja">三河カントリークラブ</span></td>
+          <td class="cdist">38km<span class="muted"> / 50분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">—</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>나고야 GC 와고 코스</strong><span class="ja">名古屋ゴルフ倶楽部 和合コース</span></td>
+          <td class="cdist">42km<span class="muted"> / 60분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">일본 명문 · 중부오픈 개최</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">KMJ</span>
+            <span class="apcity">구마모토</span>
+            <span class="apmeta">도착 10:10 · 목 티업 12:10 · 온천 아소 우치노마키 55분</span>
+            <span class="apcount on">2인 1/2곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>구마모토공항 CC</strong><span class="ja">熊本空港カントリークラブ</span></td>
+          <td class="cdist">3km<span class="muted"> / 5분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">1974년 개장 명문 · 공항 인접</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>아소 GC</strong><span class="ja">阿蘇ゴルフクラブ</span></td>
+          <td class="cdist">30km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">아소 고원 코스</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">OIT</span>
+            <span class="apcity">오이타</span>
+            <span class="apmeta">도착 10:05 · 목 티업 12:05 · 온천 벳푸 45분</span>
+            <span class="apcount on">2인 4/4곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>오이타 중앙 GC</strong><span class="ja">大分中央ゴルフクラブ</span></td>
+          <td class="cdist">26km<span class="muted"> / 30분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">공항 접근성 양호</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>벳푸 GC</strong><span class="ja">別府ゴルフ倶楽部</span></td>
+          <td class="cdist">30km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">1930년 개장 · 규슈 최고(最古) 명문</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>벳푸노모리 GC</strong><span class="ja">別府の森ゴルフ倶楽部</span></td>
+          <td class="cdist">38km<span class="muted"> / 45분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">가성비</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>벳푸 오기야마 GC</strong><span class="ja">別府扇山ゴルフ倶楽部</span></td>
+          <td class="cdist">40km<span class="muted"> / 45분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">벳푸 온천가 인접</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">MYJ</span>
+            <span class="apcity">마쓰야마</span>
+            <span class="apmeta">도착 10:40 · 목 티업 12:40 · 온천 도고 온천 30분</span>
+            <span class="apcount on">2인 2/3곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>오쿠도고 GC</strong><span class="ja">奥道後ゴルフクラブ</span></td>
+          <td class="cdist">22km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome ok2">전일 2인</span></td>
+          <td class="crem">오쿠도고 온천 권역 · 평일 2사무 13,800엔 / 토·일 캐디 24,500엔</td>
+        </tr>
+<tr class="usable" data-usable="1">
+          <td class="cname"><strong>도고 GC</strong><span class="ja">道後ゴルフ倶楽部</span></td>
+          <td class="cdist">15km<span class="muted"> / 30분</span></td>
+          <td class="cts"><span class="tsome ok">평일 2인</span></td>
+          <td class="crem">도고 온천 인접 · 평일 2사무 13,500엔(점심 포함)</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>마쓰야마 국제 GC (PGM)</strong><span class="ja">松山国際ゴルフ倶楽部【PGM】</span></td>
+          <td class="cdist">12km<span class="muted"> / 20분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">공항 최근접 · 페어웨이 승입 가능</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="0">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">FSZ</span>
+            <span class="apcity">시즈오카</span>
+            <span class="apmeta">도착 11:25 · 목 티업 13:25 · 온천 이즈 슈젠지 100분</span>
+            <span class="apcount">2인 0/1곳</span>
+          </th>
+        </tr>
+        <tr class="nope" data-usable="0">
+          <td class="cname"><strong>시즈오카 CC 하마오카 코스</strong><span class="ja">静岡カントリークラブ 浜岡コース</span></td>
+          <td class="cdist">25km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">토너먼트 개최</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="0">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">KKJ</span>
+            <span class="apcity">기타큐슈</span>
+            <span class="apmeta">도착 09:25 · 목 티업 11:25 · 온천 유후인 110분</span>
+            <span class="apcount">2인 0/2곳</span>
+          </th>
+        </tr>
+        <tr class="nope" data-usable="0">
+          <td class="cname"><strong>기타큐슈 CC</strong><span class="ja">北九州カントリー倶楽部</span></td>
+          <td class="cdist">30km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">27홀 대형 코스</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>세이타노모리 기타큐슈 GC</strong><span class="ja">瀬板の森北九州ゴルフコース</span></td>
+          <td class="cdist">35km<span class="muted"> / 45분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">야하타니시구 시영권</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="1">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">KMI</span>
+            <span class="apcity">미야자키</span>
+            <span class="apmeta">도착 10:45 · 목 티업 12:45 · 온천 시가이아 마쓰다케 온천 25분</span>
+            <span class="apcount on">2인 1/3곳</span>
+          </th>
+        </tr>
+        <tr class="usable" data-usable="1">
+          <td class="cname"><strong>피닉스 CC</strong><span class="ja">フェニックスカントリークラブ</span></td>
+          <td class="cdist">18km<span class="muted"> / 25분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="crem">던롭 피닉스 토너먼트 개최 — 일본 최정상급</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>미야자키 CC</strong><span class="ja">宮崎カントリークラブ</span></td>
+          <td class="cdist">17km<span class="muted"> / 25분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">명문</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>톰 왓슨 GC</strong><span class="ja">トム・ワトソンゴルフコース</span></td>
+          <td class="cdist">22km<span class="muted"> / 30분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">톰 왓슨 설계 링크스</td>
+        </tr>
+      </tbody>
+<tbody class="apgroup" data-usable="0">
+        <tr class="aphead">
+          <th colspan="4">
+            <span class="apcode">HIJ</span>
+            <span class="apcity">히로시마</span>
+            <span class="apmeta">도착 11:00 · 목 티업 13:00 · 온천 미야하마 온천 75분</span>
+            <span class="apcount">2인 0/2곳</span>
+          </th>
+        </tr>
+        <tr class="nope" data-usable="0">
+          <td class="cname"><strong>히로시마 CC</strong><span class="ja">広島カントリークラブ</span></td>
+          <td class="cdist">25km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">현 내 명문</td>
+        </tr>
+<tr class="nope" data-usable="0">
+          <td class="cname"><strong>빈고 CC</strong><span class="ja">備後カントリークラブ</span></td>
+          <td class="cdist">30km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome unk">확인 필요</span></td>
+          <td class="crem">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="mnote">목·금 플레이 기준이라 <strong>평일 2사무 보증</strong> 플랜이 모두 유효합니다. 2사무 할증은 1인당 500~2,200엔 수준이고 할증 없는 플랜은 평일 한정이 많습니다. 플랜은 날짜 단위로 바뀌니 예약 시점에 각 공항 카드의 GDO 링크로 확인하세요.</p>
+  </div>
+</dialog>
+
 <footer>
   <p><strong>판정 방식</strong> — 한국·일본은 시차가 없으므로 <em>현지 도착시각 = 인천 출발시각 + 운항시간</em>으로 계산했습니다. 운항시간은 노선별 표준 block time 추정치입니다.</p>
   <ul>
@@ -2204,6 +2647,24 @@ footer ul{padding-left:18px}
     };
     [...cards].sort((a,b)=>val(a)-val(b)).forEach(el=>grid.appendChild(el));
   }
+
+  // 2인 플레이 골프장 팝업
+  const modal = document.getElementById('coursemodal');
+  const openBtn = document.getElementById('openmodal');
+  const mfilter = document.getElementById('mfilter');
+  function applyModalFilter(){
+    const only = mfilter.checked;
+    modal.querySelectorAll('tbody.apgroup').forEach(g=>{
+      g.querySelectorAll('tr[data-usable]').forEach(tr=>{
+        tr.classList.toggle('off', only && tr.dataset.usable !== '1');
+      });
+      g.classList.toggle('off', only && g.dataset.usable !== '1');
+    });
+  }
+  openBtn.addEventListener('click', ()=>{ applyModalFilter(); modal.showModal(); });
+  mfilter.addEventListener('change', applyModalFilter);
+  modal.querySelector('.mclose').addEventListener('click', ()=>modal.close());
+  modal.addEventListener('click', (e)=>{ if (e.target === modal) modal.close(); });
 
   cut.addEventListener('input', apply);
   golfonly.addEventListener('change', apply);
