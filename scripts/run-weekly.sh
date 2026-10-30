@@ -18,6 +18,12 @@ LOG="logs/weekly-$STAMP.log"
   PREV="out/analysis.json"
   if [ -f "$PREV" ]; then cp "$PREV" "out/history/analysis-prev.json"; fi
 
+  # 예약사이트 링크 유효성 점검 (실패해도 빌드는 계속)
+  if [ "${SKIP_ENRICH:-0}" != "1" ]; then
+    echo "--- 예약링크 검증 ---"
+    node scripts/enrich.mjs --verify 2>&1 | tail -5 || echo "검증 생략(네트워크)"
+  fi
+
   node src/build.mjs --source=auto
 
   cp out/analysis.json "out/history/analysis-$STAMP.json"

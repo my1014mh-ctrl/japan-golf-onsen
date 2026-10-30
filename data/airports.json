@@ -45,7 +45,9 @@
         "rating": 3,
         "areas": "하카타역·텐진·캐널시티",
         "note": "공항 지하철 5분"
-      }
+      },
+      "jaName": "福岡空港",
+      "cityCenterJa": "博多駅"
     },
     {
       "iata": "KKJ",
@@ -83,7 +85,9 @@
         "rating": 1,
         "areas": "고쿠라 리버워크·우오마치",
         "note": "공항→고쿠라 35분"
-      }
+      },
+      "jaName": "北九州空港",
+      "cityCenterJa": "小倉駅"
     },
     {
       "iata": "OIT",
@@ -122,7 +126,9 @@
         "rating": 1,
         "areas": "오이타 아뮤플라자·벳푸 상점가",
         "note": "공항→오이타시 60분"
-      }
+      },
+      "jaName": "大分空港",
+      "cityCenterJa": "大分駅"
     },
     {
       "iata": "KMJ",
@@ -165,7 +171,9 @@
         "rating": 2,
         "areas": "시모토리·가미토리 아케이드",
         "note": "공항→시내 45분"
-      }
+      },
+      "jaName": "阿蘇くまもと空港",
+      "cityCenterJa": "熊本駅"
     },
     {
       "iata": "NGS",
@@ -203,7 +211,9 @@
         "rating": 1,
         "areas": "하마노마치 아케이드",
         "note": "공항→시내 45분"
-      }
+      },
+      "jaName": "長崎空港",
+      "cityCenterJa": "長崎駅"
     },
     {
       "iata": "HSG",
@@ -241,7 +251,9 @@
         "rating": 0,
         "areas": "대형 상업시설 없음",
         "note": "우레시노 온천가 중심"
-      }
+      },
+      "jaName": "佐賀空港",
+      "cityCenterJa": "佐賀駅"
     },
     {
       "iata": "KMI",
@@ -281,7 +293,9 @@
         "rating": 1,
         "areas": "다치바나도리 / 이온몰",
         "note": "공항→시내 15분"
-      }
+      },
+      "jaName": "宮崎空港",
+      "cityCenterJa": "宮崎駅"
     },
     {
       "iata": "KOJ",
@@ -324,7 +338,9 @@
         "rating": 2,
         "areas": "텐몬칸 상점가",
         "note": "공항→시내 40분"
-      }
+      },
+      "jaName": "鹿児島空港",
+      "cityCenterJa": "鹿児島中央駅"
     },
     {
       "iata": "MYJ",
@@ -358,7 +374,9 @@
         "rating": 1,
         "areas": "오카이도·긴텐가이 아케이드",
         "note": "공항→시내 20분"
-      }
+      },
+      "jaName": "松山空港",
+      "cityCenterJa": "松山市駅"
     },
     {
       "iata": "TAK",
@@ -396,7 +414,9 @@
         "rating": 1,
         "areas": "마루가메초 아케이드",
         "note": "공항→시내 40분"
-      }
+      },
+      "jaName": "高松空港",
+      "cityCenterJa": "高松駅"
     },
     {
       "iata": "TKS",
@@ -434,7 +454,9 @@
         "rating": 0,
         "areas": "도쿠시마 소규모",
         "note": "—"
-      }
+      },
+      "jaName": "徳島空港",
+      "cityCenterJa": "徳島駅"
     },
     {
       "iata": "HIJ",
@@ -473,7 +495,9 @@
         "rating": 2,
         "areas": "혼도리·에디온 / 디 아웃렛 히로시마",
         "note": "공항→시내 50분"
-      }
+      },
+      "jaName": "広島空港",
+      "cityCenterJa": "広島駅"
     },
     {
       "iata": "OKJ",
@@ -511,7 +535,9 @@
         "rating": 1,
         "areas": "오모테초·구라시키 미관지구",
         "note": "공항→시내 30분"
-      }
+      },
+      "jaName": "岡山空港",
+      "cityCenterJa": "岡山駅"
     },
     {
       "iata": "YGJ",
@@ -549,7 +575,9 @@
         "rating": 0,
         "areas": "요나고 시내 소규모",
         "note": "—"
-      }
+      },
+      "jaName": "米子鬼太郎空港",
+      "cityCenterJa": "米子駅"
     },
     {
       "iata": "UBJ",
@@ -587,7 +615,9 @@
         "rating": 0,
         "areas": "소규모",
         "note": "—"
-      }
+      },
+      "jaName": "山口宇部空港",
+      "cityCenterJa": "新山口駅"
     },
     {
       "iata": "KIX",
@@ -630,7 +660,9 @@
         "rating": 3,
         "areas": "신사이바시·우메다·린쿠 프리미엄 아웃렛",
         "note": "린쿠 아웃렛은 공항 5분"
-      }
+      },
+      "jaName": "関西国際空港",
+      "cityCenterJa": "大阪難波駅"
     },
     {
       "iata": "UKB",
@@ -665,7 +697,9 @@
         "rating": 2,
         "areas": "고베 산노미야·하버랜드",
         "note": "—"
-      }
+      },
+      "jaName": "神戸空港",
+      "cityCenterJa": "三宮駅"
     },
     {
       "iata": "NGO",
@@ -708,7 +742,9 @@
         "rating": 2,
         "areas": "사카에·나고야역 / 미쓰이 아웃렛 재즈드림",
         "note": "재즈드림 공항 30분"
-      }
+      },
+      "jaName": "中部国際空港",
+      "cityCenterJa": "名古屋駅"
     },
     {
       "iata": "KMQ",
@@ -746,7 +782,9 @@
         "rating": 1,
         "areas": "가나자와 오미초·히가시차야",
         "note": "공항→가나자와 50분"
-      }
+      },
+      "jaName": "小松空港",
+      "cityCenterJa": "金沢駅"
     },
     {
       "iata": "FSZ",
@@ -789,7 +827,9 @@
         "rating": 1,
         "areas": "시즈오카 고후쿠초 / 고텐바 프리미엄 아웃렛",
         "note": "고텐바 아웃렛 2시간"
-      }
+      },
+      "jaName": "静岡空港",
+      "cityCenterJa": "静岡駅"
     },
     {
       "iata": "TOY",
@@ -827,7 +867,9 @@
         "rating": 1,
         "areas": "도야마 소가와",
         "note": "—"
-      }
+      },
+      "jaName": "富山空港",
+      "cityCenterJa": "富山駅"
     },
     {
       "iata": "KIJ",
@@ -865,7 +907,9 @@
         "rating": 1,
         "areas": "니가타 반다이시티",
         "note": "—"
-      }
+      },
+      "jaName": "新潟空港",
+      "cityCenterJa": "新潟駅"
     },
     {
       "iata": "NRT",
@@ -909,7 +953,9 @@
         "rating": 3,
         "areas": "긴자·신주쿠 / 시스이 프리미엄 아웃렛",
         "note": "시스이 아웃렛 공항 15분"
-      }
+      },
+      "jaName": "成田国際空港",
+      "cityCenterJa": "東京駅"
     },
     {
       "iata": "HND",
@@ -952,7 +998,9 @@
         "rating": 3,
         "areas": "긴자·시부야·신주쿠",
         "note": "모노레일 25분"
-      }
+      },
+      "jaName": "東京国際空港",
+      "cityCenterJa": "東京駅"
     },
     {
       "iata": "SDJ",
@@ -994,7 +1042,9 @@
         "rating": 2,
         "areas": "이치반초 아케이드·센다이역",
         "note": "공항 액세스선 25분"
-      }
+      },
+      "jaName": "仙台空港",
+      "cityCenterJa": "仙台駅"
     },
     {
       "iata": "AOJ",
@@ -1029,7 +1079,9 @@
         "rating": 1,
         "areas": "아오모리 아우가",
         "note": "—"
-      }
+      },
+      "jaName": "青森空港",
+      "cityCenterJa": "青森駅"
     },
     {
       "iata": "CTS",
@@ -1068,7 +1120,9 @@
         "rating": 2,
         "areas": "삿포로 스스키노·다누키코지 / 치토세 아웃렛",
         "note": "라라포트 공항 10분"
-      }
+      },
+      "jaName": "新千歳空港",
+      "cityCenterJa": "札幌駅"
     },
     {
       "iata": "HKD",
@@ -1099,7 +1153,9 @@
         "rating": 1,
         "areas": "하코다테 아침시장·베이",
         "note": "—"
-      }
+      },
+      "jaName": "函館空港",
+      "cityCenterJa": "函館駅"
     },
     {
       "iata": "AKJ",
@@ -1134,7 +1190,9 @@
         "rating": 1,
         "areas": "아사히카와 헤이와도리",
         "note": "—"
-      }
+      },
+      "jaName": "旭川空港",
+      "cityCenterJa": "旭川駅"
     },
     {
       "iata": "OKA",
@@ -1174,7 +1232,9 @@
         "rating": 2,
         "areas": "국제거리·아메리칸빌리지·DFS 갤러리아",
         "note": "아시비나 아웃렛 공항 15분"
-      }
+      },
+      "jaName": "那覇空港",
+      "cityCenterJa": "県庁前駅"
     },
     {
       "iata": "MMY",
@@ -1203,7 +1263,9 @@
         "rating": 0,
         "areas": "없음",
         "note": "—"
-      }
+      },
+      "jaName": "宮古空港",
+      "cityCenterJa": "平良"
     },
     {
       "iata": "ISG",
@@ -1236,7 +1298,9 @@
         "rating": 0,
         "areas": "소규모",
         "note": "—"
-      }
+      },
+      "jaName": "新石垣空港",
+      "cityCenterJa": "石垣港"
     }
   ]
 }

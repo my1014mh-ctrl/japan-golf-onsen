@@ -27,6 +27,20 @@ const TWOSOME = {
   unknown: { label: '확인 필요', cls: 'unk' },
 };
 
+function bookingLinks(c) {
+  const b = c.booking ?? {};
+  const out = [];
+  if (b.gora) out.push(`<a class="bk gora" href="${esc(b.gora.calendar ?? b.gora.url)}" target="_blank" rel="noopener" title="${esc(b.gora.name)}">GORA</a>`);
+  if (b.jalan) out.push(`<a class="bk jalan" href="${esc(b.jalan.url)}" target="_blank" rel="noopener" title="${esc(b.jalan.name)}">자란넷</a>`);
+  if (!out.length) {
+    const f = b.fallback;
+    out.push(f
+      ? `<span class="bk none">미게재 <a href="${esc(f.gora)}" target="_blank" rel="noopener">GORA 목록</a></span>`
+      : '<span class="bk none">예약사이트 미확인</span>');
+  }
+  return out.join('');
+}
+
 function courseTable(a) {
   const c = a.courses;
   if (!c || c.counts.inRadius === 0) {
@@ -39,6 +53,7 @@ function courseTable(a) {
       <td class="num">${x.distanceKm}km<span class="muted"> / ${x.driveMin}분</span></td>
       <td class="num">${x.holes}H</td>
       <td><span class="tsome ${t.cls}">${esc(t.label)}</span>${x.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}${x.greenFee ? `<span class="fee">${esc(x.greenFee)}</span>` : ''}</td>
+      <td class="bkcell">${bookingLinks(x)}</td>
     </tr>`;
   }).join('\n');
 
@@ -48,7 +63,7 @@ function courseTable(a) {
 
   return `<div class="coursebox">
     <div class="chead">
-      <span class="k">공항 ${c.radiusKm}km 내 골프장 ${c.counts.inRadius}곳 · 2인 플레이 가능 <strong>${c.counts.twosomeUsable}곳</strong></span>
+      <span class="k">공항 ${c.radiusKm}km 내 ${c.counts.inRadius}곳 · 2인 플레이 <strong>${c.counts.twosomeUsable}곳</strong> · 예약사이트 게재 ${c.counts.bookable}곳${c.counts.prestige ? ` · 명문 ${c.counts.prestige}곳` : ''}</span>
       ${c.verifyUrl ? `<a class="verify" href="${esc(c.verifyUrl)}" target="_blank" rel="noopener">GDO 2사무 검색 ↗</a>` : ''}
     </div>
     <table class="courses"><tbody>${rows}</tbody></table>
@@ -131,17 +146,18 @@ function courseModal(analysis) {
         const t = TWOSOME[c.twosome] ?? TWOSOME.unknown;
         const remarks = [c.pedigree, c.greenFee, c.noSurcharge ? '2사무 할증 없음' : null]
           .filter(Boolean).join(' · ');
-        return `<tr class="${c.twosomeUsable ? 'usable' : 'nope'}" data-usable="${c.twosomeUsable ? 1 : 0}">
-          <td class="cname"><strong>${esc(c.ko)}</strong><span class="ja">${esc(c.ja)}</span></td>
+        return `<tr class="${c.twosomeUsable ? 'usable' : 'nope'}" data-usable="${c.twosomeUsable ? 1 : 0}" data-bookable="${c.bookable ? 1 : 0}" data-prestige="${c.prestige ? 1 : 0}">
+          <td class="cname"><strong>${esc(c.ko)}</strong>${c.prestige ? '<span class="pres">명문</span>' : ''}<span class="ja">${esc(c.ja)}</span></td>
           <td class="cdist">${c.distanceKm}km<span class="muted"> / ${c.driveMin}분</span></td>
           <td class="cts"><span class="tsome ${t.cls}">${esc(t.label)}</span>${c.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}</td>
+          <td class="cbk">${bookingLinks(c)}</td>
           <td class="crem">${esc(remarks || '—')}</td>
         </tr>`;
       }).join('\n');
 
       return `<tbody class="apgroup" data-usable="${a.courses.counts.twosomeUsable > 0 ? 1 : 0}">
         <tr class="aphead">
-          <th colspan="4">
+          <th colspan="5">
             <span class="apcode">${esc(a.iata)}</span>
             <span class="apcity">${esc(a.city)}</span>
             <span class="apmeta">도착 ${esc(a.earliestArrival ?? '—')} · 목 티업 ${esc(a.arrivalRound.teeOff ?? '—')} · 온천 ${esc(a.onsen.nearest ? `${a.onsen.nearest.name} ${a.onsen.nearest.transitMin}분` : '—')}</span>
@@ -154,24 +170,27 @@ function courseModal(analysis) {
 
   const usableTotal = analysis.airports.reduce((n, a) => n + (a.courses?.counts.twosomeUsable ?? 0), 0);
   const inTotal = analysis.airports.reduce((n, a) => n + (a.courses?.counts.inRadius ?? 0), 0);
+  const bookableTotal = analysis.airports.reduce((n, a) => n + (a.courses?.counts.bookable ?? 0), 0);
 
   return `<dialog id="coursemodal" aria-labelledby="cmtitle">
   <div class="mhead">
     <div>
       <h2 id="cmtitle">2인 플레이 가능 골프장</h2>
-      <p>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 · 전체 ${inTotal}곳 중 <strong>${usableTotal}곳</strong>에서 2인 플레이 확인</p>
+      <p>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 · 전체 ${inTotal}곳 중 <strong>${usableTotal}곳</strong> 2인 플레이 · <strong>${bookableTotal}곳</strong> 楽天GORA/じゃらん 게재</p>
     </div>
     <div class="mactions">
       <label class="toggle"><input type="checkbox" id="mfilter" checked>2인 가능만</label>
+      <label class="toggle"><input type="checkbox" id="mbook">예약 가능만</label>
+      <label class="toggle"><input type="checkbox" id="mpres">명문만</label>
       <button type="button" class="mclose" aria-label="닫기">닫기</button>
     </div>
   </div>
   <div class="mbody">
     <table class="mtable">
-      <thead><tr><th>골프장</th><th>거리</th><th>2인 플레이</th><th>비고</th></tr></thead>
+      <thead><tr><th>골프장</th><th>거리</th><th>2인 플레이</th><th>예약</th><th>비고</th></tr></thead>
       ${groups}
     </table>
-    <p class="mnote">목·금 플레이 기준이라 <strong>평일 2사무 보증</strong> 플랜이 모두 유효합니다. 2사무 할증은 1인당 500~2,200엔 수준이고 할증 없는 플랜은 평일 한정이 많습니다. 플랜은 날짜 단위로 바뀌니 예약 시점에 각 공항 카드의 GDO 링크로 확인하세요.</p>
+    <p class="mnote">예약 링크는 <strong>楽天GORA</strong>(예약 캘린더로 직결)와 <strong>じゃらんゴルフ</strong> 코스 페이지입니다. 두 사이트 모두 미게재인 코스는 회원제 명문이거나 다른 경로(PGM·아코디아 공식, GDO)로만 예약되는 경우입니다. 목·금 플레이 기준이라 <strong>평일 2사무 보증</strong> 플랜이 모두 유효합니다. 2사무 할증은 1인당 500~2,200엔 수준이고 할증 없는 플랜은 평일 한정이 많습니다. 플랜은 날짜 단위로 바뀌니 예약 시점에 각 공항 카드의 GDO 링크로 확인하세요.</p>
   </div>
 </dialog>`;
 }
@@ -397,6 +416,14 @@ table.mtable tr.nope{opacity:.62}
 .cdist{white-space:nowrap;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink2);font-size:12px}
 .cts{white-space:nowrap}
 .crem{font-size:12px;color:var(--ink2)}
+.bk{display:inline-block;font-size:10.5px;font-weight:650;padding:2px 7px;border-radius:5px;margin:0 4px 3px 0;text-decoration:none;white-space:nowrap}
+.bk.gora{color:#fff;background:#bf0000}
+.bk.jalan{color:#fff;background:#f06400}
+.bk.gora:hover,.bk.jalan:hover{filter:brightness(1.12)}
+.bk.none{color:var(--ink2);background:transparent;border:1px dashed var(--line);font-weight:400}
+.bk.none a{color:var(--b)}
+.pres{display:inline-block;font-size:9.5px;font-weight:700;color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent2) 45%,transparent);border-radius:4px;padding:1px 4px;margin-left:5px;vertical-align:1px}
+.bkcell,.cbk{white-space:nowrap}
 .mnote{margin:16px 0 0;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--accent2) 8%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 28%,var(--line));font-size:12px;color:var(--ink2)}
 tbody.apgroup.off,table.mtable tr.off{display:none}
 @media (max-width:680px){
@@ -410,7 +437,7 @@ tbody.apgroup.off,table.mtable tr.off{display:none}
   table.mtable tr.usable .cname{padding-left:9px}
   table.mtable tr.usable{border-left:2px solid var(--accent);padding-left:9px}
   table.mtable tr.usable .cname{border-left:0;padding-left:0}
-  .cdist,.cts{display:inline-block;margin:3px 10px 2px 0}
+  .cdist,.cts,.cbk{display:inline-block;margin:3px 10px 2px 0}
   tr.aphead th{padding:14px 0 4px}
   .apmeta{display:block;margin:2px 0 0}
   .apcount{float:none;display:inline-block;margin-top:4px}
@@ -590,17 +617,24 @@ ${courseModal(analysis)}
   const modal = document.getElementById('coursemodal');
   const openBtn = document.getElementById('openmodal');
   const mfilter = document.getElementById('mfilter');
+  const mbook = document.getElementById('mbook');
+  const mpres = document.getElementById('mpres');
   function applyModalFilter(){
-    const only = mfilter.checked;
     modal.querySelectorAll('tbody.apgroup').forEach(g=>{
+      let shown = 0;
       g.querySelectorAll('tr[data-usable]').forEach(tr=>{
-        tr.classList.toggle('off', only && tr.dataset.usable !== '1');
+        let ok = true;
+        if (mfilter.checked && tr.dataset.usable !== '1') ok = false;
+        if (ok && mbook.checked && tr.dataset.bookable !== '1') ok = false;
+        if (ok && mpres.checked && tr.dataset.prestige !== '1') ok = false;
+        tr.classList.toggle('off', !ok);
+        if (ok) shown++;
       });
-      g.classList.toggle('off', only && g.dataset.usable !== '1');
+      g.classList.toggle('off', shown === 0);
     });
   }
   openBtn.addEventListener('click', ()=>{ applyModalFilter(); modal.showModal(); });
-  mfilter.addEventListener('change', applyModalFilter);
+  [mfilter, mbook, mpres].forEach(el=>el.addEventListener('change', applyModalFilter));
   modal.querySelector('.mclose').addEventListener('click', ()=>modal.close());
   modal.addEventListener('click', (e)=>{ if (e.target === modal) modal.close(); });
 

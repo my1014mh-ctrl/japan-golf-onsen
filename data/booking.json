@@ -1,0 +1,412 @@
+{
+  "gora": {
+    "久山カントリー倶楽部": {
+      "id": "400038",
+      "name": "久山カントリー倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400038/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400038/",
+      "verified": true
+    },
+    "ザ・クイーンズヒルゴルフクラブ": {
+      "id": "400021",
+      "name": "ザ・クイーンズヒルゴルフクラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400021/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400021/",
+      "verified": true
+    },
+    "福岡国際カントリークラブ": {
+      "id": "400040",
+      "name": "福岡国際カントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400040/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400040/",
+      "verified": true
+    },
+    "福岡センチュリーゴルフ倶楽部": {
+      "id": "400042",
+      "name": "福岡センチュリーゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400042/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400042/",
+      "verified": true
+    },
+    "セブンミリオンカントリークラブ": {
+      "id": "400027",
+      "name": "セブンミリオンカントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400027/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400027/",
+      "verified": true
+    },
+    "福岡雷山ゴルフ倶楽部": {
+      "id": "400043",
+      "name": "福岡雷山ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400043/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400043/",
+      "verified": true
+    },
+    "北九州カントリー倶楽部": {
+      "id": "400010",
+      "name": "北九州カントリー倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400010/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400010/",
+      "verified": true
+    },
+    "瀬板の森北九州ゴルフコース": {
+      "id": "400026",
+      "name": "瀬板の森北九州ゴルフコース",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/400026/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400026/",
+      "verified": true
+    },
+    "別府ゴルフ倶楽部": {
+      "id": "440020",
+      "name": "別府ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/440020/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/440020/",
+      "verified": true
+    },
+    "大分中央ゴルフクラブ": {
+      "id": "440006",
+      "name": "大分中央ゴルフクラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/440006/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/440006/",
+      "verified": true
+    },
+    "別府の森ゴルフ倶楽部": {
+      "id": "440021",
+      "name": "別府の森ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/440021/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/440021/",
+      "verified": true
+    },
+    "別府扇山ゴルフ倶楽部": {
+      "id": "440019",
+      "name": "別府扇山ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/440019/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/440019/",
+      "verified": true
+    },
+    "熊本空港カントリークラブ": {
+      "id": "430018",
+      "name": "熊本空港カントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/430018/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/",
+      "verified": true
+    },
+    "フェニックスカントリークラブ": {
+      "id": "450012",
+      "name": "フェニックスカントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/450012/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/450012/",
+      "verified": true
+    },
+    "トム・ワトソンゴルフコース": {
+      "id": "450008",
+      "name": "トム・ワトソンゴルフコース",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/450008/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/450008/",
+      "verified": true
+    },
+    "宮崎カントリークラブ": {
+      "id": "450016",
+      "name": "宮崎カントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/450016/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/450016/",
+      "verified": true
+    },
+    "かごしま空港36カントリークラブ": {
+      "id": "460009",
+      "name": "かごしま空港３６カントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/460009/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/460009/",
+      "verified": true
+    },
+    "霧島ゴルフクラブ": {
+      "id": "460018",
+      "name": "霧島ゴルフクラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/460018/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/460018/",
+      "verified": true
+    },
+    "溝辺カントリークラブ": {
+      "id": "460030",
+      "name": "溝辺カントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/460030/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/460030/",
+      "verified": true
+    },
+    "祁答院ゴルフ倶楽部": {
+      "id": "460021",
+      "name": "祁答院ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/460021/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/460021/",
+      "verified": true
+    },
+    "道後ゴルフ倶楽部": {
+      "id": "380013",
+      "name": "道後ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/380013/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/380013/",
+      "verified": true
+    },
+    "奥道後ゴルフクラブ": {
+      "id": "380008",
+      "name": "奥道後ゴルフクラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/380008/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/380008/",
+      "verified": true
+    },
+    "松山国際ゴルフ倶楽部【PGM】": {
+      "id": "380017",
+      "name": "松山国際ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/380017/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/380017/",
+      "verified": true
+    },
+    "関西空港ゴルフ倶楽部【PGM】": {
+      "id": "270013",
+      "name": "関西空港ゴルフ倶楽部",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/270013/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/270013/",
+      "verified": true
+    },
+    "ザ・サザンリンクスゴルフクラブ": {
+      "id": "470011",
+      "name": "ザ・サザンリンクス・ゴルフクラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/470011/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/470011/",
+      "verified": true
+    },
+    "パームヒルズゴルフリゾートクラブ": {
+      "id": "470016",
+      "name": "パームヒルズゴルフリゾートクラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/470016/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/470016/",
+      "verified": true
+    },
+    "三河カントリークラブ": {
+      "id": "230045",
+      "name": "三河カントリークラブ",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/230045/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/230045/",
+      "verified": true
+    },
+    "川奈ホテルゴルフコース 富士コース": {
+      "id": "520174",
+      "name": "川奈ホテルゴルフコース　富士コース",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/520174/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/520174/",
+      "verified": true
+    },
+    "総武カントリークラブ": {
+      "id": "120149",
+      "name": "総武カントリークラブ　北コース",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/120149/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/120149/",
+      "verified": true
+    }
+  },
+  "jalan": {
+    "久山カントリー倶楽部": {
+      "id": "gc02334",
+      "name": "久山カントリー倶楽部",
+      "url": "https://golf-jalan.net/gc02334/",
+      "verified": true
+    },
+    "福岡国際カントリークラブ": {
+      "id": "gc02326",
+      "name": "福岡国際カントリークラブ　【ＰＧＭ】",
+      "url": "https://golf-jalan.net/gc02326/",
+      "verified": true
+    },
+    "北九州カントリー倶楽部": {
+      "id": "gc02348",
+      "name": "北九州カントリー倶楽部　【ＰＧＭ】",
+      "url": "https://golf-jalan.net/gc02348/",
+      "verified": true
+    },
+    "瀬板の森北九州ゴルフコース": {
+      "id": "gc02311",
+      "name": "瀬板の森北九州ゴルフコース【ＰＧＭ】",
+      "url": "https://golf-jalan.net/gc02311/",
+      "verified": true
+    },
+    "別府ゴルフ倶楽部": {
+      "id": "gc02470",
+      "name": "別府ゴルフ倶楽部　【ＰＧＭ】",
+      "url": "https://golf-jalan.net/gc02470/",
+      "verified": true
+    },
+    "大分中央ゴルフクラブ": {
+      "id": "gc02454",
+      "name": "大分中央ゴルフクラブ",
+      "url": "https://golf-jalan.net/gc02454/",
+      "verified": true
+    },
+    "別府の森ゴルフ倶楽部": {
+      "id": "gc02462",
+      "name": "別府の森ゴルフ倶楽部【アコーディア】",
+      "url": "https://golf-jalan.net/gc02462/",
+      "verified": true
+    },
+    "別府扇山ゴルフ倶楽部": {
+      "id": "gc02464",
+      "name": "別府扇山ゴルフ倶楽部",
+      "url": "https://golf-jalan.net/gc02464/",
+      "verified": true
+    },
+    "熊本空港カントリークラブ": {
+      "id": "gc02431",
+      "name": "熊本空港カントリークラブ",
+      "url": "https://golf-jalan.net/gc02431/",
+      "verified": true
+    },
+    "フェニックスカントリークラブ": {
+      "id": "gc02479",
+      "name": "フェニックスカントリークラブ",
+      "url": "https://golf-jalan.net/gc02479/",
+      "verified": true
+    },
+    "トム・ワトソンゴルフコース": {
+      "id": "gc02483",
+      "name": "トム・ワトソンゴルフコース",
+      "url": "https://golf-jalan.net/gc02483/",
+      "verified": true
+    },
+    "宮崎カントリークラブ": {
+      "id": "gc02480",
+      "name": "宮崎カントリークラブ",
+      "url": "https://golf-jalan.net/gc02480/",
+      "verified": true
+    },
+    "かごしま空港36カントリークラブ": {
+      "id": "gc02532",
+      "name": "かごしま空港３６カントリークラブ",
+      "url": "https://golf-jalan.net/gc02532/",
+      "verified": true
+    },
+    "霧島ゴルフクラブ": {
+      "id": "gc02533",
+      "name": "霧島ゴルフクラブ",
+      "url": "https://golf-jalan.net/gc02533/",
+      "verified": true
+    },
+    "溝辺カントリークラブ": {
+      "id": "gc02531",
+      "name": "溝辺カントリークラブ",
+      "url": "https://golf-jalan.net/gc02531/",
+      "verified": true
+    },
+    "祁答院ゴルフ倶楽部": {
+      "id": "gc02526",
+      "name": "祁答院ゴルフ倶楽部",
+      "url": "https://golf-jalan.net/gc02526/",
+      "verified": true
+    },
+    "道後ゴルフ倶楽部": {
+      "id": "gc02275",
+      "name": "道後ゴルフ倶楽部",
+      "url": "https://golf-jalan.net/gc02275/",
+      "verified": true
+    },
+    "奥道後ゴルフクラブ": {
+      "id": "gc02284",
+      "name": "奥道後ゴルフクラブ",
+      "url": "https://golf-jalan.net/gc02284/",
+      "verified": true
+    },
+    "松山国際ゴルフ倶楽部【PGM】": {
+      "id": "gc02289",
+      "name": "松山国際ゴルフ倶楽部　【ＰＧＭ】",
+      "url": "https://golf-jalan.net/gc02289/",
+      "verified": true
+    },
+    "関西空港ゴルフ倶楽部【PGM】": {
+      "id": "gc01836",
+      "name": "関西空港ゴルフ倶楽部　【ＰＧＭ】",
+      "url": "https://golf-jalan.net/gc01836/",
+      "verified": true
+    },
+    "三河カントリークラブ": {
+      "id": "gc01627",
+      "name": "三河カントリークラブ",
+      "url": "https://golf-jalan.net/gc01627/",
+      "verified": true
+    }
+  },
+  "missing": [],
+  "prefFallback": {
+    "福岡県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/fukuoka.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/fukuoka/"
+    },
+    "大分県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/oita.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/oita/"
+    },
+    "熊本県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/kumamoto.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/kumamoto/"
+    },
+    "宮崎県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/miyazaki.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/miyazaki/"
+    },
+    "鹿児島県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/kagoshima.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/kagoshima/"
+    },
+    "長崎県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/nagasaki.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/nagasaki/"
+    },
+    "佐賀県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/saga.html",
+      "jalan": "https://golf-jalan.net/course/kyushu/saga/"
+    },
+    "沖縄県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/okinawa.html",
+      "jalan": "https://golf-jalan.net/course/okinawa/okinawa/"
+    },
+    "愛媛県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/ehime.html",
+      "jalan": "https://golf-jalan.net/course/shikoku/ehime/"
+    },
+    "広島県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/hiroshima.html",
+      "jalan": "https://golf-jalan.net/course/chugoku/hiroshima/"
+    },
+    "大阪府": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/osaka.html",
+      "jalan": "https://golf-jalan.net/course/kinki/osaka/"
+    },
+    "愛知県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/aichi.html",
+      "jalan": "https://golf-jalan.net/course/chubu/aichi/"
+    },
+    "静岡県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/shizuoka.html",
+      "jalan": "https://golf-jalan.net/course/chubu/shizuoka/"
+    },
+    "千葉県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/chiba.html",
+      "jalan": "https://golf-jalan.net/course/kanto/chiba/"
+    },
+    "神奈川県": {
+      "gora": "https://gora.golf.rakuten.co.jp/doc/special/easylink/kanagawa.html",
+      "jalan": "https://golf-jalan.net/course/kanto/kanagawa/"
+    }
+  },
+  "meta": {
+    "updated": "2026-10-30",
+    "sources": [
+      "楽天GORA 都道府県 코스가이드",
+      "じゃらんゴルフ 지역 랭킹"
+    ],
+    "note": "지역 랭킹 페이지는 상위권만 노출되므로 자란넷 미매칭은 미게재가 아니라 미노출일 수 있다. --verify 로 URL 유효성과 코스명 일치를 검사한다.",
+    "counts": {
+      "gora": 29,
+      "jalan": 21,
+      "neither": 11,
+      "total": 40
+    }
+  }
+}

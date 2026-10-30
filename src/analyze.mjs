@@ -5,7 +5,23 @@ const DOW_NAMES = { 1: '월', 2: '화', 3: '수', 4: '목', 5: '금', 6: '토', 
 
 export async function loadCourses() {
   const raw = await readFile(new URL('../data/golf-courses.json', import.meta.url), 'utf8');
-  return JSON.parse(raw);
+  const data = JSON.parse(raw);
+  // 예약사이트 ID(enrich.mjs 수집본) 병합 — 없으면 그대로 진행
+  try {
+    const bk = JSON.parse(await readFile(new URL('../data/booking.json', import.meta.url), 'utf8'));
+    data.booking = bk;
+    for (const c of data.courses) {
+      c.booking = {
+        gora: bk.gora?.[c.ja] ?? null,
+        jalan: bk.jalan?.[c.ja] ?? null,
+        fallback: bk.prefFallback?.[c.pref] ?? null,
+      };
+      c.bookable = Boolean(c.booking.gora || c.booking.jalan);
+    }
+  } catch {
+    for (const c of data.courses) { c.booking = { gora: null, jalan: null, fallback: null }; c.bookable = false; }
+  }
+  return data;
 }
 
 export async function loadTrip() {
@@ -51,9 +67,11 @@ function matchCourses(iata, courseData, { radiusKm, weekdayPlay }) {
   });
 
   const inRadius = all.filter((c) => c.distanceKm <= radiusKm).map(decorate);
+  const prestigeRe = /(명문|토너먼트|최고|最古|굴지|성지|100대)/;
   const corridor = inRadius.filter((c) => c.corridor);
   const usable = inRadius.filter((c) => c.twosomeUsable);
 
+  for (const c of inRadius) c.prestige = prestigeRe.test(c.pedigree ?? '');
   const sortKey = (a, b) => b.twosomeRank - a.twosomeRank || a.distanceKm - b.distanceKm;
   return {
     radiusKm,
@@ -65,6 +83,12 @@ function matchCourses(iata, courseData, { radiusKm, weekdayPlay }) {
       corridor: corridor.length,
       twosomeUsable: usable.length,
       twosomeUnknown: inRadius.filter((c) => c.twosome === 'unknown').length,
+      bookable: inRadius.filter((c) => c.bookable).length,
+      gora: inRadius.filter((c) => c.booking?.gora).length,
+      jalan: inRadius.filter((c) => c.booking?.jalan).length,
+      prestige: inRadius.filter((c) => c.prestige).length,
+      prestigeBookable: inRadius.filter((c) => c.prestige && c.bookable).length,
+      prestigeReady: inRadius.filter((c) => c.prestige && c.bookable && c.twosomeUsable).length,
     },
     best: [...usable].sort(sortKey)[0] ?? null,
     verifyUrl: all.length ? gdoTwosomeUrl(all[0].pref, stateMap) : null,
@@ -241,6 +265,7 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       ? golf * 2 + onsen * 2 + shoppingRating * 2
         + arrivalRound.score * 2
         + Math.min(3, courses.counts.twosomeUsable)
+        + Math.min(2, courses.counts.prestigeBookable)
         + Math.min(2, Math.floor((route.dailyFlights ?? 1) / 4))
         - (nearestOnsen && nearestOnsen.transitMin > 120 ? 1 : 0)
         + (ret ? ret.rating : 0)
@@ -312,6 +337,8 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       tierA: feasibleList.filter((r) => r.verdict.tier === 'A').length,
       twoRounds: feasibleList.filter((r) => r.golfRounds >= 2).length,
       twosomeReady: feasibleList.filter((r) => r.courses.counts.twosomeUsable > 0).length,
+      bookableCourses: feasibleList.reduce((n, r) => n + r.courses.counts.bookable, 0),
+      prestigeReady: feasibleList.reduce((n, r) => n + r.courses.counts.prestigeReady, 0),
       sundayFull: feasibleList.filter((r) => (r.returnLeg?.rating ?? 0) >= 3).length,
       maxRoundsBest: feasibleList.reduce((m, r) => Math.max(m, r.maxRounds ?? 0), 0),
       earliestArrival: feasibleList.reduce((min, r) => (!min || r.earliestArrival < min ? r.earliestArrival : min), null),

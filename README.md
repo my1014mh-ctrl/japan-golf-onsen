@@ -76,6 +76,26 @@ commit + push 하고, GitHub Pages가 1~2분 내 반영한다. `surge`로 바꾸
 
 각 공항 카드에는 해당 都道府県의 GDO 2사무 검색 링크가 자동 생성된다.
 
+### 예약사이트 연동 (楽天GORA / じゃらんゴルフ)
+
+`scripts/enrich.mjs` 가 두 사이트의 코스 ID를 수집해 `data/booking.json` 에 캐시한다.
+
+```bash
+node scripts/enrich.mjs --booking          # 예약 ID 수집
+node scripts/enrich.mjs --verify           # 저장된 URL 열어 코스명 일치 검사
+node scripts/enrich.mjs --geo              # 골프장 좌표 수집 (OSM Overpass)
+node scripts/enrich.mjs --booking --force  # 전체 재수집
+```
+
+- **楽天GORA**: 都道府県 코스가이드 페이지(EUC-JP)를 파싱해 `c_id` 추출 → 예약 캘린더로 직결
+- **じゃらんゴルフ**: 지역 랭킹 페이지의 `data-golfcd` 블록에서 `gc` ID 추출
+  (상위권만 노출되므로 미매칭이 곧 미게재는 아니다)
+
+**매칭은 보수적으로 한다.** 예약 링크가 다른 코스로 붙으면 치명적이므로
+'앞에서부터 일치(anchored)'만 인정한다 — `東広島CC ⊅ 広島CC`, `成田東CC ⊅ 成田GC` 는 모두 거부.
+확신이 없으면 코스 링크 대신 都道府県 목록 링크를 보여준다.
+`--verify` 는 저장된 URL을 실제로 열어 코스명이 있는지 확인하며 주간 배치에 포함된다.
+
 ### 귀국편이 일요일을 가른다
 
 귀국편 일본 출발 시각 − 공항수속 2시간 − 공항이동 1시간 = **일요일 현지 활동 마감 시각**.
@@ -164,6 +184,7 @@ scripts/diff.mjs            주간 변동 비교
 ## 다음 단계
 
 - [ ] 실제 API 키 연동 → 편명 단위 시각 확정
+- [ ] 도시별 지도(공항·시내·골프장) — 좌표 수집 중, Overpass 호출 제한 해제 후 재시도
 - [ ] 2사무 `unknown` 코스 해소 — GDO/楽天GORA 2사무 목록 주간 스크래핑
 - [ ] 코스별 3월 티업 가능 시간·그린피 실데이터
 - [ ] 온천 숙소(료칸) 체크인 시간 + 공항 이동 교통편 연결
