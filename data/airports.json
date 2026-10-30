@@ -94,7 +94,7 @@
       "city": "오이타",
       "name": "오이타공항",
       "region": "규슈",
-      "blockMinutes": 95,
+      "blockMinutes": 105,
       "golfMarch": {
         "rating": 2,
         "note": "벳푸·유후인 주변 코스. 3월 라운딩 양호",
@@ -135,7 +135,7 @@
       "city": "구마모토",
       "name": "구마모토공항",
       "region": "규슈",
-      "blockMinutes": 100,
+      "blockMinutes": 95,
       "golfMarch": {
         "rating": 3,
         "note": "아소 주변 고원 코스. 3월 양호",
@@ -302,7 +302,7 @@
       "city": "가고시마",
       "name": "가고시마공항",
       "region": "규슈",
-      "blockMinutes": 100,
+      "blockMinutes": 95,
       "golfMarch": {
         "rating": 3,
         "note": "3월 최적. 기리시마 고원 코스",

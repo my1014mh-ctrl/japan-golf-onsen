@@ -1,6 +1,7 @@
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 const CONFIDENCE_LABEL = {
+  verified: '시간표 확인됨',
   official: '공식 스케줄',
   high: '추정(신뢰 높음)',
   medium: '추정(변동 가능)',
@@ -283,7 +284,7 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .word{font-size:12.5px}
 .muted{color:var(--ink2);font-size:12px}
 .conf{font-size:11px;color:var(--ink2);border:1px dashed var(--line);border-radius:6px;padding:1px 6px}
-.conf.c-official{color:var(--accent);border-style:solid}
+.conf.c-official,.conf.c-verified{color:var(--accent);border-style:solid}
 .chips,.onsenlist{margin-top:12px;font-size:12.5px}
 .chips .k,.onsenlist .k{display:block;font-size:11.5px;color:var(--ink2);margin-bottom:5px}
 .chip{display:inline-block;border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin:0 5px 5px 0;font-size:12px}
@@ -462,7 +463,7 @@ footer ul{padding-left:18px}
   </div>
 </header>
 
-${analysis.source !== 'api' ? `<p class="banner"><strong>추정 데이터로 렌더링됨.</strong> 편명 단위 실제 시각은 공공데이터포털 <em>인천국제공항공사 여객기 정기운항편 일정 정보</em> API 키를 <code>.env</code>에 넣고 <code>npm run build:api</code>를 실행하면 확정됩니다. 현재 표는 노선별 오전 출발 윈도우 기준 가능성 판정입니다.</p>` : ''}
+${analysis.source !== 'api' ? `<p class="banner"><strong>일부 노선만 시간표 확인됨.</strong> 구마모토·마쓰야마·오이타·가고시마는 공개 시간표로 확인한 실제 운항편이고(<em>시간표 확인됨</em> 표시), 나머지는 추정입니다. 검증한 4개 중 <strong>가고시마는 오전편이 아예 없어 후보에서 탈락</strong>했습니다 — 추정 표시된 노선은 예약 전 반드시 확인하세요. 편명 단위 실제 시각은 공공데이터포털 <em>인천국제공항공사 여객기 정기운항편 일정 정보</em> API 키를 <code>.env</code>에 넣고 <code>npm run build:api</code>를 실행하면 확정됩니다. 현재 표는 노선별 오전 출발 윈도우 기준 가능성 판정입니다.</p>` : ''}
 
 <section class="windows">
   <h2 class="sec">출발 ${esc(analysis.trip.departDowName ?? '목')}요일 · 귀국 ${esc(analysis.trip.returnDowName ?? '일')}요일 — 3월 후보 4개 창</h2>
