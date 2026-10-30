@@ -138,6 +138,7 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
 .tsome{display:inline-block;font-size:10.5px;padding:2px 6px;border-radius:5px;white-space:nowrap;border:1px solid var(--line);color:var(--ink2)}
 .tsome.ok2{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:650}
 .tsome.ok{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 50%,transparent);font-weight:600}
+.tnote{display:block;font-size:10.5px;color:var(--accent2);margin-top:4px;white-space:normal;max-width:34ch;line-height:1.4}
 .wkend{display:block;font-size:10px;font-weight:650;color:var(--accent);margin-top:2px}
 .wkno{display:block;font-size:10px;color:var(--accent2);margin-top:2px}
 .day.dead{background:transparent;border-color:var(--line);opacity:.7}
@@ -254,7 +255,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>목 출발 · 일 귀국 (3박 4일) · 목·금·일 골프 / 토 쇼핑·온천</strong> 기준. 인천공항 출발 <strong>직항</strong>으로 현지 <strong>12:00 이전 도착</strong>이 가능한 공항. 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸고, <strong>2인 플레이(2사무) 가능 여부</strong>를 코스별로 표기했습니다. 목·금 플레이라 <em>평일 2사무 보증</em> 플랜이 모두 유효합니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 10. 30. 오후 3:33</span>
+    <span>갱신 2026. 10. 30. 오후 3:47</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>검토 노선 31개</span>
@@ -295,7 +296,7 @@ footer ul{padding-left:18px}
   <div class="stat accent"><b id="s-early">8</b><span>10:00 이전 도착</span></div>
   <div class="stat"><b id="s-golf">16</b><span>3월 골프 가능</span></div>
   <div class="stat"><b id="s-a">8</b><span>최우선 후보</span></div>
-  <div class="stat accent"><b id="s-two">2</b><span>일요일 2인 플레이 가능</span></div>
+  <div class="stat accent"><b id="s-two">3</b><span>일요일 2인 플레이 가능</span></div>
   <div class="stat"><b id="s-sun">12</b><span>목·금·일 3라운딩 가능</span></div>
 </section>
 
@@ -335,7 +336,7 @@ footer ul{padding-left:18px}
 
 <h2 class="sec">오전 도착 가능 (<span id="cnt">21</span>)</h2>
 <div class="grid" id="grid">
-<article class="card tier-A" data-region="규슈" data-golf="3" data-onsen="2" data-arrmin="475" data-earliest="07:55" data-score="35" data-iata="FUK" data-early="1" data-earlycount="2" data-rounds="3" data-sunday="1" data-twosome="2" data-wkend="0" data-shopping="3">
+<article class="card tier-A" data-region="규슈" data-golf="3" data-onsen="2" data-arrmin="475" data-earliest="07:55" data-score="37" data-iata="FUK" data-early="1" data-earlycount="2" data-rounds="3" data-sunday="1" data-twosome="2" data-wkend="1" data-shopping="3">
   <header>
     <div class="titleline">
       <h3>후쿠오카 <span class="iata">FUK</span></h3>
@@ -375,7 +376,7 @@ footer ul{padding-left:18px}
   <div class="roundsline">
     <span class="k">목·금·일 라운딩</span>
     <strong class="r3">3<span class="of">/3</span>회</strong>
-    <span class="muted">일요일 2인 플레이는 1곳에서 조건 확인 필요</span>
+    <span class="muted">일요일 2인 플레이 가능 1곳 (전일 2사무)</span>
     
   </div>
   <p class="note ret"><strong>일요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 17:30 (귀국편 20:30 − 수속 2시간 − 공항이동 1시간).</p>
@@ -397,22 +398,22 @@ footer ul{padding-left:18px}
   <p class="note src">※ 공개 시간표 확인 2026-10-30</p>
   <div class="coursebox">
     <div class="chead">
-      <span class="k">공항 50km 내 6곳 · 평일 2인 <strong>2곳</strong> / 일요일 2인 <strong>0곳</strong> · 예약 게재 6곳 · 명문 4곳</span>
+      <span class="k">공항 50km 내 6곳 · 평일 2인 <strong>2곳</strong> / 일요일 2인 <strong>1곳</strong> · 예약 게재 6곳 · 명문 4곳</span>
       <a class="verify" href="https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&amp;prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C" target="_blank" rel="noopener">GDO 2사무 검색 ↗</a>
     </div>
     <table class="courses"><tbody><tr class="usable">
       <td><strong>히사야마 CC</strong><span class="ja">久山カントリー倶楽部</span><span class="ped">공항 최근접</span></td>
       <td class="num">20km<span class="muted"> / 25분</span></td>
       <td class="num">18H</td>
-      <td><span class="tsome ok">평일 2인</span><span class="wkno">일요일 불가</span><span class="nosur">할증 없음</span><span class="fee">평일 셀프 2사무 8,980엔(총액)</span></td>
-      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400038/" target="_blank" rel="noopener" title="久山カントリー倶楽部">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02334/" target="_blank" rel="noopener" title="久山カントリー倶楽部">자란넷</a></td>
+      <td><span class="tsome ok2">전일 2인</span><span class="wkend">일요일 OK</span><span class="nosur">할증 없음</span><span class="fee">평일 2사무 할증없음 총 8,980엔 / 土日祝 2사무 보증·할증없음 플랜 있음</span></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400038/" target="_blank" rel="noopener" title="久山カントリー倶楽部">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02334/" target="_blank" rel="noopener" title="久山カントリー倶楽部">자란넷</a><span class="tnote">土日祝 2사무도 가능 — 일반 요금은 1인 1,760엔 할증이나 「2サム保証・割増無」 플랜 선택 시 면제. 土日祝 18H 셀프 7,655엔~(자란넷)</span></td>
     </tr>
 <tr class="usable">
       <td><strong>후쿠오카 국제 CC</strong><span class="ja">福岡国際カントリークラブ</span><span class="ped">명문 · 토너먼트 개최</span></td>
       <td class="num">33km<span class="muted"> / 40분</span></td>
       <td class="num">18H</td>
       <td><span class="tsome maybe">2인 플랜 있음</span></td>
-      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400040/" target="_blank" rel="noopener" title="福岡国際カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02326/" target="_blank" rel="noopener" title="福岡国際カントリークラブ　【ＰＧＭ】">자란넷</a></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400040/" target="_blank" rel="noopener" title="福岡国際カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02326/" target="_blank" rel="noopener" title="福岡国際カントリークラブ　【ＰＧＭ】">자란넷</a><span class="tnote">「中山コース(指定昼食付) 2サム保証/割増あり」 플랜 확인. 「2サム保証・割増なし」 옵션도 존재하나 요일 조건은 플랜별 — 일요일 적용 여부 확인 필요</span></td>
     </tr>
 <tr class="">
       <td><strong>더 퀸즈힐 GC</strong><span class="ja">ザ・クイーンズヒルゴルフクラブ</span><span class="ped">토너먼트 개최 코스</span></td>
@@ -520,7 +521,7 @@ footer ul{padding-left:18px}
       <td class="num">3km<span class="muted"> / 5분</span></td>
       <td class="num">18H</td>
       <td><span class="tsome maybe">2인 플랜 있음</span></td>
-      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02431/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">자란넷</a></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02431/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">자란넷</a><span class="tnote">⚠ 확인된 2사무 보증 플랜이 「月・火限定」 셀프데이(총 9,500엔) — 목·금·일 적용 여부를 반드시 확인해야 함</span></td>
     </tr>
 <tr class="">
       <td><strong>아소 GC</strong><span class="ja">阿蘇ゴルフクラブ</span><span class="ped">아소 고원 코스</span></td>
@@ -2033,16 +2034,16 @@ footer ul{padding-left:18px}
         <tr class="usable" data-usable="1" data-bookable="1" data-prestige="0">
           <td class="cname"><strong>히사야마 CC</strong><span class="ja">久山カントリー倶楽部</span></td>
           <td class="cdist">20km<span class="muted"> / 25분</span></td>
-          <td class="cts"><span class="tsome ok">평일 2인</span><span class="wkno">일요일 불가</span><span class="nosur">할증 없음</span></td>
+          <td class="cts"><span class="tsome ok2">전일 2인</span><span class="wkend">일요일 OK</span><span class="nosur">할증 없음</span></td>
           <td class="cbk"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400038/" target="_blank" rel="noopener" title="久山カントリー倶楽部">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02334/" target="_blank" rel="noopener" title="久山カントリー倶楽部">자란넷</a></td>
-          <td class="crem">공항 최근접 · 평일 셀프 2사무 8,980엔(총액) · 2사무 할증 없음</td>
+          <td class="crem">공항 최근접 · 평일 2사무 할증없음 총 8,980엔 / 土日祝 2사무 보증·할증없음 플랜 있음 · 2사무 할증 없음<span class="tnote">土日祝 2사무도 가능 — 일반 요금은 1인 1,760엔 할증이나 「2サム保証・割増無」 플랜 선택 시 면제. 土日祝 18H 셀프 7,655엔~(자란넷)</span></td>
         </tr>
 <tr class="usable" data-usable="1" data-bookable="1" data-prestige="1">
           <td class="cname"><strong>후쿠오카 국제 CC</strong><span class="pres">명문</span><span class="ja">福岡国際カントリークラブ</span></td>
           <td class="cdist">33km<span class="muted"> / 40분</span></td>
           <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
           <td class="cbk"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/400040/" target="_blank" rel="noopener" title="福岡国際カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02326/" target="_blank" rel="noopener" title="福岡国際カントリークラブ　【ＰＧＭ】">자란넷</a></td>
-          <td class="crem">명문 · 토너먼트 개최</td>
+          <td class="crem">명문 · 토너먼트 개최<span class="tnote">「中山コース(指定昼食付) 2サム保証/割増あり」 플랜 확인. 「2サム保証・割増なし」 옵션도 존재하나 요일 조건은 플랜별 — 일요일 적용 여부 확인 필요</span></td>
         </tr>
 <tr class="nope" data-usable="0" data-bookable="1" data-prestige="1">
           <td class="cname"><strong>더 퀸즈힐 GC</strong><span class="pres">명문</span><span class="ja">ザ・クイーンズヒルゴルフクラブ</span></td>
@@ -2087,7 +2088,7 @@ footer ul{padding-left:18px}
           <td class="cdist">3km<span class="muted"> / 5분</span></td>
           <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
           <td class="cbk"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02431/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">자란넷</a></td>
-          <td class="crem">1974년 개장 명문 · 공항 인접</td>
+          <td class="crem">1974년 개장 명문 · 공항 인접<span class="tnote">⚠ 확인된 2사무 보증 플랜이 「月・火限定」 셀프데이(총 9,500엔) — 목·금·일 적용 여부를 반드시 확인해야 함</span></td>
         </tr>
 <tr class="nope" data-usable="0" data-bookable="0" data-prestige="0">
           <td class="cname"><strong>아소 GC</strong><span class="ja">阿蘇ゴルフクラブ</span></td>

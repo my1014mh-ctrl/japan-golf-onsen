@@ -54,7 +54,7 @@ function courseTable(a) {
       <td class="num">${x.distanceKm}km<span class="muted"> / ${x.driveMin}분</span></td>
       <td class="num">${x.holes}H</td>
       <td><span class="tsome ${t.cls}">${esc(t.label)}</span>${x.twosomeWeekend === true ? '<span class="wkend">일요일 OK</span>' : x.twosomeWeekend === false ? '<span class="wkno">일요일 불가</span>' : ''}${x.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}${x.greenFee ? `<span class="fee">${esc(x.greenFee)}</span>` : ''}</td>
-      <td class="bkcell">${bookingLinks(x)}</td>
+      <td class="bkcell">${bookingLinks(x)}${x.twosomeNote ? `<span class="tnote">${esc(x.twosomeNote)}</span>` : ''}</td>
     </tr>`;
   }).join('\n');
 
@@ -159,7 +159,7 @@ function courseModal(analysis) {
           <td class="cdist">${c.distanceKm}km<span class="muted"> / ${c.driveMin}분</span></td>
           <td class="cts"><span class="tsome ${t.cls}">${esc(t.label)}</span>${c.twosomeWeekend === true ? '<span class="wkend">일요일 OK</span>' : c.twosomeWeekend === false ? '<span class="wkno">일요일 불가</span>' : ''}${c.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}</td>
           <td class="cbk">${bookingLinks(c)}</td>
-          <td class="crem">${esc(remarks || '—')}</td>
+          <td class="crem">${esc(remarks || '—')}${c.twosomeNote ? `<span class="tnote">${esc(c.twosomeNote)}</span>` : ''}</td>
         </tr>`;
       }).join('\n');
 
@@ -350,6 +350,7 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
 .tsome{display:inline-block;font-size:10.5px;padding:2px 6px;border-radius:5px;white-space:nowrap;border:1px solid var(--line);color:var(--ink2)}
 .tsome.ok2{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:650}
 .tsome.ok{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 50%,transparent);font-weight:600}
+.tnote{display:block;font-size:10.5px;color:var(--accent2);margin-top:4px;white-space:normal;max-width:34ch;line-height:1.4}
 .wkend{display:block;font-size:10px;font-weight:650;color:var(--accent);margin-top:2px}
 .wkno{display:block;font-size:10px;color:var(--accent2);margin-top:2px}
 .day.dead{background:transparent;border-color:var(--line);opacity:.7}
