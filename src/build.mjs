@@ -36,10 +36,10 @@ async function main() {
   const trip = await loadTrip();
   const courseData = await loadCourses();
   const DOW = { 1: '월', 2: '화', 3: '수', 4: '목', 5: '금', 6: '토', 7: '일' };
-  if (args['depart-day']) trip.departDow = Number(args['depart-day']);
-  if (args['return-day']) trip.returnDow = Number(args['return-day']);
-  trip.departDowName = DOW[trip.departDow];
-  trip.returnDowName = DOW[trip.returnDow];
+  for (const v of trip.variants ?? []) {
+    v.departDowName = DOW[v.departDow];
+    v.returnDowName = DOW[v.returnDow];
+  }
 
   const cutoff = args.cutoff ?? process.env.ARRIVAL_CUTOFF ?? trip.arrivalCutoff ?? '12:00';
   const early = args.early ?? process.env.EARLY_CUTOFF ?? trip.earlyArrival ?? '10:00';
@@ -82,7 +82,14 @@ async function main() {
     console.log(`[source] 베이스라인 사용 — ${schedule.routes.length}개 노선`);
   }
 
-  const analysis = analyze(schedule, airports, { cutoff, early, trip }, courseData);
+  // 일정 variant별로 각각 분석
+  const variants = (trip.variants ?? [null]).map((variant) =>
+    analyze(schedule, airports, { cutoff, early, trip, variant }, courseData));
+  const analysis = {
+    ...variants[0],
+    variants,
+    multiVariant: variants.length > 1,
+  };
   analysis.warnings = warnings;
 
   const htmlPath = path.resolve(ROOT, args.out ?? 'docs/index.html');
@@ -92,20 +99,25 @@ async function main() {
   await writeFile(jsonPath, JSON.stringify(analysis, null, 2));
   await writeFile(htmlPath, renderHtml(analysis, { tripLabel: args.trip ?? '2027년 3월' }));
 
+  console.log('');
+  console.log(`범위: ${(trip.includeRegions ?? []).join('·') || '전체'}${(trip.includeIata ?? []).length ? ' + ' + trip.includeIata.join('·') : ''}`);
+  for (const v of variants) {
+    const st = v.stats;
+    console.log('');
+    console.log(`━━ ${v.variant.label} — ${v.variant.summary}`);
+    console.log(`   후보 창: ${(v.variant.windows ?? []).map((w) => `${w.depart.slice(5)}→${w.return.slice(5)}`).join(', ')}`);
+    console.log(`   ${cutoff} 이전 도착 ${st.feasible}/${st.totalRoutes} · 3라운딩 ${st.threeRounds} · 귀국일 2인가능 ${st.weekendTwosome}`);
+    for (const a of v.airports.filter((x) => x.feasible).sort((x, y) => y.score - x.score)) {
+      const t = a.courses.inRadius.filter((c) => c.twosomeReturnDay === true).map((c) => c.ko);
+      console.log(`   ${a.iata} ${a.city.padEnd(7)} ${a.golfRounds}/3회 도착 ${a.earliestArrival} 귀국 ${a.returnLeg?.depJST ?? '—'} 귀국일2인 ${t.length ? t.join(',') : '없음'}  ${a.verdict.label}`);
+    }
+    const blocked = v.airports.filter((x) => !x.feasible);
+    if (blocked.length) console.log(`   [불가] ${blocked.map((x) => `${x.iata} ${x.verdict.label}`).join(' / ')}`);
+  }
   const { stats } = analysis;
   console.log('');
-  console.log(`${trip.departDowName} 출발 / ${trip.returnDowName} 귀국 · ${trip.nights}박 ${trip.nights + 1}일`);
-  console.log(`후보 창: ${(trip.windows ?? []).map((w) => `${w.depart.slice(5)}→${w.return.slice(5)}`).join(', ')}`);
-  console.log('');
   console.log(`도착 커트오프 ${cutoff} 기준 (조기 기준선 ${early})`);
-  console.log(`  ${cutoff} 이전 도착:     ${stats.feasible} / ${stats.totalRoutes}`);
-  console.log(`  ${early} 이전 도착:     ${stats.beforeEarly}  (그중 3월 골프 가능 ${stats.beforeEarlyGolf})`);
-  console.log(`  3월 골프 가능:       ${stats.golfPlayable}`);
-  console.log(`  목·금 2라운딩 가능:  ${stats.twoRounds}`);
-  console.log(`  2인 플레이 코스 보유: ${stats.twosomeReady}`);
-  console.log(`  ${trip.returnDowName}요일 온천+쇼핑 여유: ${stats.sundayFull}`);
-  console.log(`  최우선 후보(A):      ${stats.tierA}`);
-  console.log(`  가장 빠른 도착:      ${stats.earliestArrival ?? '—'}`);
+  console.log(`  검토 노선 ${stats.totalRoutes} · 최우선 후보 ${stats.tierA} · 가장 빠른 도착 ${stats.earliestArrival ?? '—'}`);
   console.log('');
   console.log(`[${early} 이전 도착 가능]`);
   for (const a of analysis.airports.filter((x) => x.beforeEarly)) {

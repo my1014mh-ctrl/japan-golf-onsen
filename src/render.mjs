@@ -205,9 +205,7 @@ function courseModal(analysis) {
 
 export function renderHtml(analysis, opts = {}) {
   const tripLabel = opts.tripLabel ?? '2027년 3월';
-  const feasible = analysis.airports.filter((a) => a.feasible);
-  const infeasible = analysis.airports.filter((a) => !a.feasible);
-  const regions = [...new Set(analysis.airports.map((a) => a.region))];
+  const variants = analysis.variants ?? [analysis];
   const fmt = new Intl.DateTimeFormat('ko-KR', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Seoul' });
 
   return `<!doctype html>
@@ -313,6 +311,18 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .stat.accent{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
 .stat.accent b{color:var(--accent)}
 .flights tr.early td{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.tabs{display:flex;gap:8px;margin:22px 0 0;border-bottom:1px solid var(--line)}
+.tab{font:inherit;background:transparent;border:1px solid var(--line);border-bottom:0;border-radius:11px 11px 0 0;padding:10px 16px 11px;cursor:pointer;color:var(--ink2);display:flex;flex-direction:column;gap:2px;align-items:flex-start;position:relative;top:1px}
+.tab .tlabel{font-size:15px;font-weight:650;letter-spacing:-.01em}
+.tab .tmeta{font-size:11px;font-weight:400}
+.tab.on{background:var(--panel);color:var(--ink);border-color:var(--line);border-bottom:1px solid var(--panel)}
+.tab.on .tlabel{color:var(--accent)}
+.tab:hover:not(.on){color:var(--ink)}
+.vpanel{display:none}
+.vpanel.on{display:block}
+.vsummary{margin:18px 0 16px;padding:12px 14px;border-radius:12px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);font-size:13px;display:flex;flex-direction:column;gap:3px}
+.vsummary strong{font-size:14px;letter-spacing:-.01em}
+.vsummary span{color:var(--ink2);font-size:12.5px}
 .windows{margin:26px 0 8px}
 .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
 .win{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow)}
@@ -372,6 +382,10 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
 .empty{color:var(--ink2);font-size:13.5px;padding:18px;border:1px dashed var(--line);border-radius:12px}
 @media (max-width:680px){
   .wrap{padding:20px 14px 56px}
+  .tabs{gap:5px}
+  .tab{padding:9px 12px 10px;flex:1}
+  .tab .tlabel{font-size:14px}
+  .tab .tmeta{font-size:10px}
   .stats{grid-template-columns:repeat(2,1fr);gap:8px}
   .stat{padding:11px 12px;border-radius:12px}
   .stat b{font-size:22px}
@@ -465,85 +479,89 @@ footer ul{padding-left:18px}
 <div class="wrap">
 <header class="top">
   <h1>${esc(tripLabel)} 일본 골프·온천 — 오전 도착 가능 공항</h1>
-  <p class="lede"><strong>목 출발 · 일 귀국 (3박 4일) · 목·금·일 골프 / 토 쇼핑·온천</strong> 기준. 인천공항 출발 <strong>직항</strong>으로 현지 <strong>${esc(analysis.cutoff)} 이전 도착</strong>이 가능한 공항. 골프장은 <strong>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 + 공항↔도시 축선</strong>의 코스만 추렸고, <strong>2인 플레이(2사무) 가능 여부</strong>를 코스별로 표기했습니다. 목·금 플레이라 <em>평일 2사무 보증</em> 플랜이 모두 유효합니다.</p>
+  <p class="lede"><strong>인천 출발 3박 4일 · 토요일은 온천·쇼핑</strong>으로 비우고 나머지 3일을 라운딩에 씁니다. 두 일정(<strong>목~일</strong> / <strong>금~월</strong>)을 탭으로 비교하세요. 범위는 <strong>규슈 전역 + 히로시마</strong>이며, 골프장은 <strong>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 + 공항↔도시 축선</strong>의 코스만 추렸습니다.</p>
   <div class="metaline">
     <span>갱신 ${esc(fmt.format(new Date(analysis.generatedAt)))}</span>
     <span>데이터: ${esc(analysis.sourceLabel)}</span>
     <span>커트오프 ${esc(analysis.cutoff)}</span>
-    <span>검토 노선 ${analysis.stats.totalRoutes}개</span>
-    <span>${esc(analysis.trip.month ?? '2027-03')} · ${esc(analysis.trip.departDowName ?? '목')}→${esc(analysis.trip.returnDowName ?? '일')}</span>
+    <span>후보 ${analysis.stats.totalRoutes}개 공항</span>
   </div>
 </header>
 
-${analysis.source !== 'api' ? `<p class="banner"><strong>${analysis.airports.filter((x) => x.confidence === 'verified').length}개 노선은 공항 공식 시간표로 확인됨</strong>(<em>시간표 확인됨</em> 표시), 나머지는 추정입니다. 확인 과정에서 <strong>가고시마·기타큐슈는 3월 오전편이 없고, 나가사키는 일요일 귀국편이, 사가는 목요일 출발편이 없다</strong>는 사실이 드러났습니다 — 추정 표시된 노선은 예약 전 반드시 확인하세요. 편명 단위 실제 시각은 공공데이터포털 <em>인천국제공항공사 여객기 정기운항편 일정 정보</em> API 키를 <code>.env</code>에 넣고 <code>npm run build:api</code>를 실행하면 확정됩니다. 현재 표는 노선별 오전 출발 윈도우 기준 가능성 판정입니다.</p>` : ''}
+${analysis.source !== 'api' ? `<p class="banner"><strong>후보 9개 공항 전부 공항 공식 시간표로 확인됨.</strong> 확인 과정에서 <strong>가고시마·기타큐슈는 3월 오전편이 없고, 나가사키는 목·화·월·토만, 사가는 월·수·금·일만 운항</strong>한다는 사실이 드러나 일정별로 가능 여부가 갈립니다.</p>` : ''}
 
-<section class="windows">
-  <h2 class="sec">출발 ${esc(analysis.trip.departDowName ?? '목')}요일 · 귀국 ${esc(analysis.trip.returnDowName ?? '일')}요일 — 3월 후보 4개 창</h2>
-  <div class="wgrid">
-${(analysis.trip.windows ?? []).map((w) => {
+<div class="tabs" role="tablist">
+${variants.map((v, i) => `<button type="button" class="tab${i === 0 ? ' on' : ''}" role="tab" aria-selected="${i === 0}" data-tab="${esc(v.variant.id)}">
+    <span class="tlabel">${esc(v.variant.label)}</span>
+    <span class="tmeta">${v.stats.threeRounds}곳 3라운딩 · ${v.stats.feasible}곳 가능</span>
+  </button>`).join('\n')}
+</div>
+
+${variants.map((v, i) => {
+  const feas = v.airports.filter((a) => a.feasible);
+  const infeas = v.airports.filter((a) => !a.feasible);
+  const regions = [...new Set(v.airports.map((a) => a.region))];
+  const vid = esc(v.variant.id);
   const d = (iso) => { const [, m, dd] = iso.split('-'); return `${Number(m)}/${Number(dd)}`; };
-  return `<div class="win${(w.tags ?? []).includes('연휴주의') || (w.tags ?? []).includes('시즌변경') ? ' caution' : ''}">
+  return `<section class="vpanel${i === 0 ? ' on' : ''}" id="v-${vid}" data-vid="${vid}">
+  <p class="vsummary"><strong>${esc(v.variant.summary)}</strong><span>${esc(v.variant.note)}</span></p>
+
+  <div class="wgrid">
+${(v.variant.windows ?? []).map((w) => `<div class="win${(w.tags ?? []).some((t) => ['연휴주의', '시즌변경'].includes(t)) ? ' caution' : ''}">
       <div class="wdates">${esc(d(w.depart))} <span class="arrow">→</span> ${esc(d(w.return))}</div>
       <div class="wtags">${(w.tags ?? []).map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
       <ul>${(w.notes ?? []).map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
-    </div>`;
+    </div>`).join('\n')}
+  </div>
+
+  <section class="stats">
+    <div class="stat"><b data-s="feasible">${v.stats.feasible}</b><span>${esc(analysis.cutoff)} 이전 도착</span></div>
+    <div class="stat accent"><b data-s="rounds">${v.stats.threeRounds}</b><span>3라운딩 가능</span></div>
+    <div class="stat accent"><b data-s="two">${v.stats.weekendTwosome}</b><span>${esc(v.variant.returnDowName)}요일 2인 플레이</span></div>
+    <div class="stat"><b data-s="early">${v.stats.beforeEarly}</b><span>${esc(analysis.early)} 이전 도착</span></div>
+  </section>
+
+  <div class="controls">
+    <div class="row">
+      <label class="k">도착 커트오프</label>
+      <input type="range" class="cut" min="420" max="900" step="15" value="${(() => { const [h, m] = analysis.cutoff.split(':').map(Number); return h * 60 + m; })()}">
+      <span class="cut-label">${esc(analysis.cutoff)}</span>
+    </div>
+    <div class="row">
+      <label class="k">지역</label>
+      <div class="row regions">${regions.map((r) => `<label class="toggle"><input type="checkbox" value="${esc(r)}" checked>${esc(r)}</label>`).join('')}</div>
+    </div>
+    <div class="row">
+      <label class="k">골프장</label>
+      <button type="button" class="cta openmodal">2인 플레이 골프장 한눈에 보기 →</button>
+    </div>
+    <div class="row">
+      <label class="k">조건</label>
+      <label class="toggle"><input type="checkbox" class="f-rounds">3라운딩만</label>
+      <label class="toggle"><input type="checkbox" class="f-two">${esc(v.variant.returnDowName)}요일 2인 가능만</label>
+      <label class="k" style="margin-left:auto">정렬</label>
+      <select class="sortsel">
+        <option value="score">종합 추천순</option>
+        <option value="rounds">라운딩 횟수순</option>
+        <option value="arrival">도착 이른순</option>
+        <option value="onsen">온천 조건순</option>
+        <option value="shopping">쇼핑 조건순</option>
+      </select>
+    </div>
+  </div>
+
+  <h2 class="sec">일정 성립 (<span class="cnt">${feas.length}</span>)</h2>
+  <div class="grid">
+${feas.map((a) => card(a, analysis.early)).join('\n')}
+  </div>
+  <p class="empty noresult" style="display:none">조건에 맞는 공항이 없습니다. 필터를 해제하세요.</p>
+
+  ${infeas.length ? `<h2 class="sec">일정 불가 (${infeas.length})</h2>
+  <div class="grid">
+${infeas.map((a) => `<article class="card tier-X"><div class="titleline"><h3>${esc(a.city)} <span class="iata">${esc(a.iata)}</span></h3><span class="badge tX">${esc(a.verdict.label)}</span></div><p class="sub">${esc(a.region)} · 비행 ${esc(a.blockLabel)}${a.earliestArrival ? ` · 가장 빠른 도착 ${esc(a.earliestArrival)}` : ''}</p><p class="note">${esc(a.verdict.reason)}</p>${a.sourceNote ? `<p class="note src">※ ${esc(a.sourceNote)}</p>` : ''}</article>`).join('\n')}
+  </div>` : ''}
+</section>`;
 }).join('\n')}
-  </div>
-</section>
-
-<section class="stats">
-  <div class="stat"><b id="s-feasible">${analysis.stats.feasible}</b><span>${esc(analysis.cutoff)} 이전 도착</span></div>
-  <div class="stat accent"><b id="s-early">${analysis.stats.beforeEarly}</b><span>${esc(analysis.early)} 이전 도착</span></div>
-  <div class="stat"><b id="s-golf">${analysis.stats.golfPlayable}</b><span>3월 골프 가능</span></div>
-  <div class="stat"><b id="s-a">${analysis.stats.tierA}</b><span>최우선 후보</span></div>
-  <div class="stat accent"><b id="s-two">${analysis.stats.weekendTwosome}</b><span>일요일 2인 플레이 가능</span></div>
-  <div class="stat"><b id="s-sun">${analysis.stats.threeRounds}</b><span>목·금·일 3라운딩 가능</span></div>
-</section>
-
-<div class="controls">
-  <div class="row">
-    <label class="k" for="cut">도착 커트오프</label>
-    <input id="cut" type="range" min="540" max="900" step="15" value="${(() => { const [h, m] = analysis.cutoff.split(':').map(Number); return h * 60 + m; })()}">
-    <span class="cut" id="cutlabel">${esc(analysis.cutoff)}</span>
-  </div>
-  <div class="row">
-    <label class="k">지역</label>
-    <div class="row" id="regions">${regions.map((r) => `<label class="toggle"><input type="checkbox" value="${esc(r)}" checked>${esc(r)}</label>`).join('')}</div>
-  </div>
-  <div class="row">
-    <label class="k">골프장</label>
-    <button type="button" id="openmodal" class="cta">2인 플레이 골프장 한눈에 보기 →</button>
-  </div>
-  <div class="row">
-    <label class="k">조건</label>
-    <label class="toggle"><input type="checkbox" id="earlyonly">${esc(analysis.early)} 전 도착만</label>
-    <label class="toggle"><input type="checkbox" id="golfonly">3월 골프 가능만</label>
-    <label class="toggle"><input type="checkbox" id="onsenonly">온천 양호 이상만</label>
-    <label class="toggle"><input type="checkbox" id="twosomeonly">2인 플레이 가능 코스 있는 곳만</label>
-    <label class="toggle"><input type="checkbox" id="sundayonly">일요일 라운딩 가능만</label>
-    <label class="k" for="sort" style="margin-left:auto">정렬</label>
-    <select id="sort">
-      <option value="score">종합 추천순</option>
-      <option value="arrival">도착 이른순</option>
-      <option value="golf">골프 조건순</option>
-      <option value="onsen">온천 조건순</option>
-      <option value="rounds">라운딩 횟수순</option>
-      <option value="twosome">2인 플레이 코스순</option>
-      <option value="shopping">쇼핑 조건순</option>
-    </select>
-  </div>
-</div>
-
-<h2 class="sec">오전 도착 가능 (<span id="cnt">${feasible.length}</span>)</h2>
-<div class="grid" id="grid">
-${feasible.map((a) => card(a, analysis.early)).join('\n')}
-</div>
-<p class="empty" id="noresult" style="display:none">조건에 맞는 공항이 없습니다. 커트오프를 늦추거나 필터를 해제하세요.</p>
-
-${infeasible.length ? `<h2 class="sec">오전 도착 불가 (${infeasible.length})</h2>
-<div class="grid">
-${infeasible.map((a) => `<article class="card tier-X"><div class="titleline"><h3>${esc(a.city)} <span class="iata">${esc(a.iata)}</span></h3><span class="badge tX">${esc(a.verdict.label)}</span></div><p class="sub">${esc(a.region)} · 비행 ${esc(a.blockLabel)} · 가장 빠른 도착 ${esc(a.earliestArrival ?? '—')}</p><p class="note">${esc(a.verdict.reason)} — ${esc(analysis.cutoff)} 도착은 인천 ${esc(a.latestDepForCutoff)} 이전, ${esc(analysis.early)} 도착은 ${esc(a.latestDepForEarly)} 이전 출발편이 필요합니다.</p>${a.sourceNote ? `<p class="note src">※ ${esc(a.sourceNote)}</p>` : ''}</article>`).join('\n')}
-</div>` : ''}
 
 ${courseModal(analysis)}
 
@@ -565,103 +583,105 @@ ${courseModal(analysis)}
 
 <script>
 (function(){
-  const grid = document.getElementById('grid');
-  const cards = [...grid.querySelectorAll('.card')];
-  const cut = document.getElementById('cut');
-  const cutlabel = document.getElementById('cutlabel');
-  const sortSel = document.getElementById('sort');
-  const golfonly = document.getElementById('golfonly');
-  const earlyonly = document.getElementById('earlyonly');
-  const sundayonly = document.getElementById('sundayonly');
-  const twosomeonly = document.getElementById('twosomeonly');
-  const onsenonly = document.getElementById('onsenonly');
-  const regionBoxes = [...document.querySelectorAll('#regions input')];
-  const cnt = document.getElementById('cnt');
-  const noresult = document.getElementById('noresult');
   const pad = (n) => String(n).padStart(2,'0');
   const hhmm = (m) => pad(Math.floor(m/60)) + ':' + pad(m%60);
   const toMin = (s) => { const p = String(s).split(':'); return (+p[0])*60 + (+p[1]); };
 
-  function apply(){
-    const c = +cut.value;
-    cutlabel.textContent = hhmm(c);
-    const regions = new Set(regionBoxes.filter(b=>b.checked).map(b=>b.value));
-    let shown = 0;
-    for (const el of cards){
-      const earliest = el.dataset.earliest ? toMin(el.dataset.earliest) : null;
-      let ok = earliest !== null && earliest <= c;
-      if (ok && !regions.has(el.dataset.region)) ok = false;
-      if (ok && earlyonly.checked && el.dataset.early !== '1') ok = false;
-      if (ok && golfonly.checked && +el.dataset.golf < 2) ok = false;
-      if (ok && onsenonly.checked && +el.dataset.onsen < 2) ok = false;
-      if (ok && sundayonly.checked && el.dataset.sunday !== '1') ok = false;
-      if (ok && twosomeonly.checked && +el.dataset.twosome < 1) ok = false;
-      el.classList.toggle('off', !ok);
-      if (ok) shown++;
-      // 편별 행도 커트오프에 맞춰 숨김
-      el.querySelectorAll('.flights tbody tr').forEach(tr=>{
-        tr.style.display = (+tr.dataset.arr <= c) ? '' : 'none';
+  // ── 탭 ──
+  const tabs = [...document.querySelectorAll('.tab')];
+  const panels = [...document.querySelectorAll('.vpanel')];
+  function showTab(id){
+    tabs.forEach(t=>{ const on = t.dataset.tab===id; t.classList.toggle('on',on); t.setAttribute('aria-selected',on); });
+    panels.forEach(p=>p.classList.toggle('on', p.dataset.vid===id));
+    try { localStorage.setItem('jgo-tab', id); } catch {}
+  }
+  tabs.forEach(t=>t.addEventListener('click', ()=>showTab(t.dataset.tab)));
+  try { const saved = localStorage.getItem('jgo-tab');
+    if (saved && tabs.some(t=>t.dataset.tab===saved)) showTab(saved); } catch {}
+
+  // ── 패널별 필터/정렬 ──
+  for (const panel of panels){
+    const grid = panel.querySelector('.grid');
+    if (!grid) continue;
+    const cards = [...grid.querySelectorAll('.card')];
+    const cut = panel.querySelector('.cut');
+    const cutLabel = panel.querySelector('.cut-label');
+    const sortSel = panel.querySelector('.sortsel');
+    const fRounds = panel.querySelector('.f-rounds');
+    const fTwo = panel.querySelector('.f-two');
+    const regionBoxes = [...panel.querySelectorAll('.regions input')];
+    const cnt = panel.querySelector('.cnt');
+    const noresult = panel.querySelector('.noresult');
+    const stat = (k) => panel.querySelector('[data-s="'+k+'"]');
+
+    function apply(){
+      const c = +cut.value;
+      cutLabel.textContent = hhmm(c);
+      const regions = new Set(regionBoxes.filter(b=>b.checked).map(b=>b.value));
+      let shown = 0;
+      for (const el of cards){
+        const earliest = el.dataset.earliest ? toMin(el.dataset.earliest) : null;
+        let ok = earliest !== null && earliest <= c;
+        if (ok && !regions.has(el.dataset.region)) ok = false;
+        if (ok && fRounds.checked && +el.dataset.rounds < 3) ok = false;
+        if (ok && fTwo.checked && !(el.dataset.sunday==='1' && +el.dataset.wkend>0)) ok = false;
+        el.classList.toggle('off', !ok);
+        if (ok) shown++;
+        el.querySelectorAll('.flights tbody tr').forEach(tr=>{
+          tr.style.display = (+tr.dataset.arr <= c) ? '' : 'none';
+        });
+      }
+      cnt.textContent = shown;
+      if (noresult) noresult.style.display = shown ? 'none' : '';
+      const vis = cards.filter(el=>!el.classList.contains('off'));
+      if (stat('feasible')) stat('feasible').textContent = vis.length;
+      if (stat('rounds')) stat('rounds').textContent = vis.filter(el=>+el.dataset.rounds>=3).length;
+      if (stat('two')) stat('two').textContent = vis.filter(el=>el.dataset.sunday==='1'&&+el.dataset.wkend>0).length;
+      if (stat('early')) stat('early').textContent = vis.filter(el=>el.dataset.early==='1').length;
+    }
+    function sortCards(){
+      const key = sortSel.value;
+      const val = (el) => {
+        if (key === 'arrival') return el.dataset.earliest ? toMin(el.dataset.earliest) : 9999;
+        if (key === 'rounds') return -(+el.dataset.rounds * 100 + +el.dataset.score);
+        if (key === 'onsen') return -(+el.dataset.onsen * 10 + +el.dataset.golf);
+        if (key === 'shopping') return -(+el.dataset.shopping * 10 + +el.dataset.onsen);
+        return -(+el.dataset.score);
+      };
+      [...cards].sort((a,b)=>val(a)-val(b)).forEach(el=>grid.appendChild(el));
+    }
+    cut.addEventListener('input', apply);
+    [fRounds, fTwo].forEach(el=>el.addEventListener('change', apply));
+    regionBoxes.forEach(b=>b.addEventListener('change', apply));
+    sortSel.addEventListener('change', ()=>{ sortCards(); apply(); });
+    apply();
+  }
+
+  // ── 골프장 팝업 (코스 정보는 일정과 무관한 고정 사실) ──
+  const modal = document.getElementById('coursemodal');
+  if (modal){
+    const mfilter = document.getElementById('mfilter');
+    const mbook = document.getElementById('mbook');
+    const mpres = document.getElementById('mpres');
+    function applyModalFilter(){
+      modal.querySelectorAll('tbody.apgroup').forEach(g=>{
+        let shown = 0;
+        g.querySelectorAll('tr[data-usable]').forEach(tr=>{
+          let ok = true;
+          if (mfilter.checked && tr.dataset.usable !== '1') ok = false;
+          if (ok && mbook.checked && tr.dataset.bookable !== '1') ok = false;
+          if (ok && mpres.checked && tr.dataset.prestige !== '1') ok = false;
+          tr.classList.toggle('off', !ok);
+          if (ok) shown++;
+        });
+        g.classList.toggle('off', shown === 0);
       });
     }
-    cnt.textContent = shown;
-    noresult.style.display = shown ? 'none' : '';
-    const visible = cards.filter(el=>!el.classList.contains('off'));
-    document.getElementById('s-feasible').textContent = visible.length;
-    document.getElementById('s-early').textContent = visible.filter(el=>el.dataset.early==='1').length;
-    document.getElementById('s-golf').textContent = visible.filter(el=>+el.dataset.golf>=2).length;
-    document.getElementById('s-sun').textContent = visible.filter(el=>+el.dataset.rounds>=3).length;
-    document.getElementById('s-two').textContent = visible.filter(el=>el.dataset.sunday==='1'&&+el.dataset.wkend>0).length;
-    document.getElementById('s-a').textContent = visible.filter(el=>el.classList.contains('tier-A')).length;
+    document.querySelectorAll('.openmodal').forEach(b=>b.addEventListener('click', ()=>{ applyModalFilter(); modal.showModal(); }));
+    [mfilter, mbook, mpres].forEach(el=>el.addEventListener('change', applyModalFilter));
+    modal.querySelector('.mclose').addEventListener('click', ()=>modal.close());
+    modal.addEventListener('click', (e)=>{ if (e.target === modal) modal.close(); });
   }
-
-  function sortCards(){
-    const key = sortSel.value;
-    const val = (el) => {
-      if (key === 'arrival') return el.dataset.earliest ? toMin(el.dataset.earliest) : 9999;
-      if (key === 'golf') return -(+el.dataset.golf * 10 + +el.dataset.onsen);
-      if (key === 'onsen') return -(+el.dataset.onsen * 10 + +el.dataset.golf);
-      if (key === 'rounds') return -(+el.dataset.rounds * 10 + +el.dataset.golf);
-      if (key === 'twosome') return -(+el.dataset.twosome * 10 + +el.dataset.golf);
-      if (key === 'shopping') return -(+el.dataset.shopping * 10 + +el.dataset.onsen);
-      return -(+el.dataset.score);
-    };
-    [...cards].sort((a,b)=>val(a)-val(b)).forEach(el=>grid.appendChild(el));
-  }
-
-  // 2인 플레이 골프장 팝업
-  const modal = document.getElementById('coursemodal');
-  const openBtn = document.getElementById('openmodal');
-  const mfilter = document.getElementById('mfilter');
-  const mbook = document.getElementById('mbook');
-  const mpres = document.getElementById('mpres');
-  function applyModalFilter(){
-    modal.querySelectorAll('tbody.apgroup').forEach(g=>{
-      let shown = 0;
-      g.querySelectorAll('tr[data-usable]').forEach(tr=>{
-        let ok = true;
-        if (mfilter.checked && tr.dataset.usable !== '1') ok = false;
-        if (ok && mbook.checked && tr.dataset.bookable !== '1') ok = false;
-        if (ok && mpres.checked && tr.dataset.prestige !== '1') ok = false;
-        tr.classList.toggle('off', !ok);
-        if (ok) shown++;
-      });
-      g.classList.toggle('off', shown === 0);
-    });
-  }
-  openBtn.addEventListener('click', ()=>{ applyModalFilter(); modal.showModal(); });
-  [mfilter, mbook, mpres].forEach(el=>el.addEventListener('change', applyModalFilter));
-  modal.querySelector('.mclose').addEventListener('click', ()=>modal.close());
-  modal.addEventListener('click', (e)=>{ if (e.target === modal) modal.close(); });
-
-  cut.addEventListener('input', apply);
-  golfonly.addEventListener('change', apply);
-  earlyonly.addEventListener('change', apply);
-  sundayonly.addEventListener('change', apply);
-  twosomeonly.addEventListener('change', apply);
-  onsenonly.addEventListener('change', apply);
-  regionBoxes.forEach(b=>b.addEventListener('change', apply));
-  sortSel.addEventListener('change', ()=>{ sortCards(); apply(); });
-  apply();
 })();
 </script>
 </body>
