@@ -463,7 +463,7 @@ footer ul{padding-left:18px}
   </div>
 </header>
 
-${analysis.source !== 'api' ? `<p class="banner"><strong>일부 노선만 시간표 확인됨.</strong> 구마모토·마쓰야마·오이타·가고시마는 공개 시간표로 확인한 실제 운항편이고(<em>시간표 확인됨</em> 표시), 나머지는 추정입니다. 검증한 4개 중 <strong>가고시마는 오전편이 아예 없어 후보에서 탈락</strong>했습니다 — 추정 표시된 노선은 예약 전 반드시 확인하세요. 편명 단위 실제 시각은 공공데이터포털 <em>인천국제공항공사 여객기 정기운항편 일정 정보</em> API 키를 <code>.env</code>에 넣고 <code>npm run build:api</code>를 실행하면 확정됩니다. 현재 표는 노선별 오전 출발 윈도우 기준 가능성 판정입니다.</p>` : ''}
+${analysis.source !== 'api' ? `<p class="banner"><strong>${analysis.airports.filter((x) => x.confidence === 'verified').length}개 노선은 공항 공식 시간표로 확인됨</strong>(<em>시간표 확인됨</em> 표시), 나머지는 추정입니다. 확인 과정에서 <strong>가고시마·기타큐슈는 3월 오전편이 없고, 나가사키는 일요일 귀국편이, 사가는 목요일 출발편이 없다</strong>는 사실이 드러났습니다 — 추정 표시된 노선은 예약 전 반드시 확인하세요. 편명 단위 실제 시각은 공공데이터포털 <em>인천국제공항공사 여객기 정기운항편 일정 정보</em> API 키를 <code>.env</code>에 넣고 <code>npm run build:api</code>를 실행하면 확정됩니다. 현재 표는 노선별 오전 출발 윈도우 기준 가능성 판정입니다.</p>` : ''}
 
 <section class="windows">
   <h2 class="sec">출발 ${esc(analysis.trip.departDowName ?? '목')}요일 · 귀국 ${esc(analysis.trip.returnDowName ?? '일')}요일 — 3월 후보 4개 창</h2>

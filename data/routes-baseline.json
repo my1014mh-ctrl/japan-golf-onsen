@@ -199,20 +199,31 @@
       "iata": "KKJ",
       "carriers": [
         "진에어",
-        "제주항공"
+        "대한항공"
       ],
-      "dailyFlights": 2,
-      "earliestDep": "08:00",
-      "morningDepWindow": [
-        "08:00",
-        "10:00"
+      "dailyFlights": 1,
+      "earliestDep": "16:05",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "진에어",
+          "flightNo": "LJ385/KE5749",
+          "depTime": "16:05",
+          "arrTime": "17:30",
+          "days": "1234567",
+          "source": "기타큐슈공항 공식 국제선 시간표 (2026-10-25~2027-03-27)",
+          "note": "대한항공 공동운항"
+        }
       ],
-      "confidence": "medium",
-      "flights": [],
       "weeklyFrequency": "daily",
-      "returnPattern": "all-day",
-      "lastReturnDep": "16:00",
-      "verified": false
+      "returnPattern": "single-rotation",
+      "lastReturnDep": "18:30",
+      "verified": true,
+      "sourceNote": "기타큐슈공항 공식 국제선 시간표 (2026-10-25~2027-03-27) — 오전편 LJ387(인천 10:05→11:30)은 2027-02-01~03-01 한정 운항이라 3월 여행에는 해당 없음",
+      "departDays": "1234567",
+      "returnDays": "1234567",
+      "returnNote": "LJ386 기타큐슈 18:30→인천 20:05 (매일)"
     },
     {
       "iata": "OIT",
@@ -221,33 +232,33 @@
         "티웨이"
       ],
       "dailyFlights": 2,
-      "earliestDep": "10:00",
+      "earliestDep": "09:05",
       "morningDepWindow": null,
       "confidence": "verified",
       "flights": [
         {
-          "airline": "제주항공",
-          "flightNo": null,
-          "depTime": "10:00",
+          "airline": "대한항공",
+          "flightNo": "KE2177",
+          "depTime": "09:05",
+          "arrTime": "10:50",
           "days": null,
-          "note": "",
-          "source": "웹 공개 시간표 확인 2026-10-30"
+          "source": "오이타공항 공식 운항정보 (2026-10-30)"
         },
         {
           "airline": "제주항공",
-          "flightNo": null,
-          "depTime": "11:05",
+          "flightNo": "7C1811",
+          "depTime": "11:15",
+          "arrTime": "13:00",
           "days": null,
-          "note": "도착 13:00",
-          "source": "웹 공개 시간표 확인 2026-10-30"
+          "source": "오이타공항 공식 운항정보 (2026-10-30)"
         }
       ],
       "weeklyFrequency": "daily",
       "returnPattern": "all-day",
-      "lastReturnDep": "12:45",
+      "lastReturnDep": "14:00",
       "verified": true,
-      "sourceNote": "웹 공개 시간표 확인 2026-10-30",
-      "returnNote": "제주항공 오이타 12:45 출발 → 인천 14:35"
+      "sourceNote": "오이타공항 공식 운항정보 (2026-10-30)",
+      "returnNote": "KE2178 오이타 12:00 / 7C1812 14:00 출발 (운항요일 미표기)"
     },
     {
       "iata": "KMJ",
@@ -263,38 +274,59 @@
       "flights": [
         {
           "airline": "티웨이",
-          "flightNo": null,
+          "flightNo": "TW287",
           "depTime": "07:50",
-          "days": null,
-          "note": "",
-          "source": "웹 공개 시간표 확인 2026-10-30"
+          "arrTime": "09:25",
+          "days": "1234567",
+          "source": "구마모토공항 국제선 공식 시간표 (2026-10)"
+        },
+        {
+          "airline": "대한항공",
+          "flightNo": "KE2155",
+          "depTime": "17:05",
+          "arrTime": "18:35",
+          "days": "1234567",
+          "source": "구마모토공항 국제선 공식 시간표 (2026-10)"
         }
       ],
       "weeklyFrequency": "daily",
       "returnPattern": "all-day",
-      "lastReturnDep": "10:25",
+      "lastReturnDep": "19:35",
       "verified": true,
-      "sourceNote": "웹 공개 시간표 확인 2026-10-30",
-      "returnNote": "티웨이 구마모토 10:25 출발 → 인천 12:05"
+      "sourceNote": "구마모토공항 국제선 공식 시간표 (2026-10)",
+      "returnNote": "TW288 구마모토 10:25→인천 12:00 / KE2156 19:35→21:20 (둘 다 매일)"
     },
     {
       "iata": "NGS",
       "carriers": [
-        "제주항공",
-        "티웨이"
+        "대한항공",
+        "델타",
+        "JAL",
+        "아시아나"
       ],
       "dailyFlights": 1,
-      "earliestDep": "09:00",
-      "morningDepWindow": [
-        "09:00",
-        "10:30"
+      "earliestDep": "08:00",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "대한항공",
+          "flightNo": "KE2191",
+          "depTime": "08:00",
+          "arrTime": "09:30",
+          "days": "1246",
+          "source": "나가사키공항 국제선 공식 시간표 (2026-10-25~11-30)",
+          "note": "대한항공·델타·JAL·아시아나 4사 공동운항"
+        }
       ],
-      "confidence": "medium",
-      "flights": [],
-      "weeklyFrequency": "daily",
+      "weeklyFrequency": "limited",
       "returnPattern": "single-rotation",
-      "lastReturnDep": null,
-      "verified": false
+      "lastReturnDep": "10:40",
+      "verified": true,
+      "sourceNote": "나가사키공항 국제선 공식 시간표 (2026-10-25~11-30)",
+      "departDays": "1246",
+      "returnDays": "1246",
+      "returnNote": "KE2192 나가사키 10:40→인천 12:20, 월·화·목·토만 운항 — 일요일 귀국편 없음"
     },
     {
       "iata": "HSG",
@@ -302,17 +334,27 @@
         "티웨이"
       ],
       "dailyFlights": 1,
-      "earliestDep": "09:30",
-      "morningDepWindow": [
-        "09:30",
-        "10:30"
+      "earliestDep": "07:55",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "티웨이",
+          "flightNo": "TW285",
+          "depTime": "07:55",
+          "arrTime": "09:50",
+          "days": "1357",
+          "source": "사가현 공식 발표 + 공개 시간표 (티웨이 주 4왕복)"
+        }
       ],
-      "confidence": "medium",
-      "flights": [],
       "weeklyFrequency": "limited",
       "returnPattern": "single-rotation",
-      "lastReturnDep": null,
-      "verified": false
+      "lastReturnDep": "10:50",
+      "verified": true,
+      "sourceNote": "사가현 공식 발표 + 공개 시간표 (티웨이 주 4왕복) — 월·수·금·일 운항으로 목요일 출발편이 없음",
+      "departDays": "1357",
+      "returnDays": "1357",
+      "returnNote": "TW286 사가 10:50→인천 12:15 (월·수·금·일)"
     },
     {
       "iata": "KMI",
@@ -406,46 +448,64 @@
       "flights": [
         {
           "airline": "제주항공",
-          "flightNo": null,
+          "flightNo": "7C1701",
           "depTime": "07:00",
-          "days": null,
-          "note": "주 14편(1일 2편)",
-          "source": "웹 공개 시간표 확인 2026-10-30"
+          "arrTime": "08:35",
+          "days": "1234567",
+          "source": "마쓰야마공항 국제선 공식 시간표"
         },
         {
           "airline": "제주항공",
-          "flightNo": null,
-          "depTime": "12:55",
-          "days": null,
-          "note": "도착 14:40",
-          "source": "웹 공개 시간표 확인 2026-10-30"
+          "flightNo": "7C1703",
+          "depTime": "13:15",
+          "arrTime": "14:50",
+          "days": "1234567",
+          "source": "마쓰야마공항 국제선 공식 시간표"
         }
       ],
       "weeklyFrequency": "daily",
       "returnPattern": "all-day",
-      "lastReturnDep": "15:00",
+      "lastReturnDep": "15:50",
       "verified": true,
-      "sourceNote": "웹 공개 시간표 확인 2026-10-30",
-      "returnNote": "귀국편 시각 미확인 — 역산값 사용"
+      "sourceNote": "마쓰야마공항 국제선 공식 시간표",
+      "returnNote": "7C1702 마쓰야마 09:35→인천 11:15 / 7C1704 15:50→17:30 (둘 다 매일)"
     },
     {
       "iata": "TAK",
       "carriers": [
         "에어서울",
-        "제주항공"
+        "진에어"
       ],
-      "dailyFlights": 1,
-      "earliestDep": "08:40",
-      "morningDepWindow": [
-        "08:40",
-        "10:30"
+      "dailyFlights": 2,
+      "earliestDep": "08:45",
+      "morningDepWindow": null,
+      "confidence": "verified",
+      "flights": [
+        {
+          "airline": "에어서울",
+          "flightNo": "RS297",
+          "depTime": "08:45",
+          "arrTime": "10:30",
+          "days": "1234567",
+          "source": "다카마쓰공항 국제선 공식 시간표 (2026-10-25~11-30)"
+        },
+        {
+          "airline": "진에어",
+          "flightNo": "LJ299",
+          "depTime": "14:10",
+          "arrTime": "15:50",
+          "days": "1234567",
+          "source": "다카마쓰공항 국제선 공식 시간표 (2026-10-25~11-30)"
+        }
       ],
-      "confidence": "medium",
-      "flights": [],
       "weeklyFrequency": "daily",
-      "returnPattern": "single-rotation",
-      "lastReturnDep": null,
-      "verified": false
+      "returnPattern": "all-day",
+      "lastReturnDep": "16:50",
+      "verified": true,
+      "sourceNote": "다카마쓰공항 국제선 공식 시간표 (2026-10-25~11-30)",
+      "departDays": "1234567",
+      "returnDays": "1234567",
+      "returnNote": "RS298 다카마쓰 11:40→인천 13:20 / LJ300 16:50→18:35 (둘 다 매일)"
     },
     {
       "iata": "TKS",
@@ -538,21 +598,18 @@
     },
     {
       "iata": "UBJ",
-      "carriers": [
-        "에어부산"
-      ],
-      "dailyFlights": 1,
-      "earliestDep": "10:00",
-      "morningDepWindow": [
-        "10:00",
-        "11:00"
-      ],
-      "confidence": "low",
+      "carriers": [],
+      "dailyFlights": 0,
+      "earliestDep": null,
+      "morningDepWindow": null,
+      "confidence": "verified",
       "flights": [],
       "weeklyFrequency": "limited",
       "returnPattern": "single-rotation",
       "lastReturnDep": null,
-      "verified": false
+      "verified": true,
+      "sourceNote": "야마구치우베공항 공식: 「定期便の運航情報はありません」 — 정기 국제선 없음(전세편만)",
+      "noScheduledService": true
     },
     {
       "iata": "UKB",

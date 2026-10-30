@@ -114,7 +114,7 @@ function evaluateArrivalRound(earliestArrival) {
  * 일본 현지 출발 lastReturnDep 에서 공항 수속(airportLead)과 공항 이동(60분)을 빼면
  * 현지 활동을 끝내야 하는 시각이 나온다. 18홀은 약 5시간 필요.
  */
-function evaluateReturn({ route, block, trip }) {
+function evaluateReturn({ route, block, trip, returnDow }) {
   const lead = trip.airportLeadMinutes ?? 120;
   const toAirport = 60;
   const roundMin = (trip.roundHours ?? 5) * 60;
@@ -131,6 +131,11 @@ function evaluateReturn({ route, block, trip }) {
     }
   }
   if (!depJST) return null;
+
+  // 귀국편이 귀국 요일에 운항하는지 — 주 몇 회 노선은 일요일 편이 없을 수 있다
+  const operatesOnReturnDay = route.returnDays
+    ? operatesOn(route.returnDays, returnDow)
+    : null; // 정보 없음
 
   const depMin = toMinutes(depJST);
   const lastActivityMin = depMin - lead - toAirport;
@@ -150,6 +155,8 @@ function evaluateReturn({ route, block, trip }) {
   return {
     depJST,
     derived,
+    operatesOnReturnDay,
+    returnDays: route.returnDays ?? null,
     pattern: route.returnPattern ?? 'unknown',
     lastActivity: toHHMM(lastActivityMin),
     canRound,
@@ -197,6 +204,7 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
   for (const route of schedule.routes) {
     const ap = airportByIata.get(route.iata);
     if (!ap) continue;
+    if (route.noScheduledService) continue; // 정기 국제선 미취항
     const block = ap.blockMinutes;
 
     // 커트오프를 맞추려면 늦어도 이 시각에는 인천에서 떠야 한다
@@ -204,8 +212,8 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
     const latestDepForEarly = toHHMM(earlyMin - block);
 
     const flights = (route.flights ?? []).map((f) => {
-      // 검증편은 편별 실제 운항시간(f.block)을 쓰고, 없으면 노선 표준값을 쓴다
-      const arrTime = addMinutes(f.depTime, f.block ?? block);
+      // 우선순위: 공식 시간표의 도착시각 > 편별 운항시간 > 노선 표준 운항시간
+      const arrTime = f.arrTime ?? addMinutes(f.depTime, f.block ?? block);
       return {
         ...f,
         arrTime,
@@ -238,11 +246,12 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       earliestArrival = earliestArrMin != null ? toHHMM(earliestArrMin) : null;
     }
     if (earliestArrival) slack = cutoffMin - toMinutes(earliestArrival);
+    const departDowOk = route.departDays ? operatesOn(route.departDays, departDow) : null;
 
     const earlyFlights = qualifying.filter((f) => f.beforeEarly);
     const beforeEarly = earliestArrival != null && toMinutes(earliestArrival) <= earlyMin;
 
-    const ret = evaluateReturn({ route, block, trip });
+    const ret = evaluateReturn({ route, block, trip, returnDow });
     const golfClosed = ap.golfMarch.rating === 0;
 
     // 골프는 목·금 2일만. 도착일 라운딩 성립 여부가 횟수를 가른다.
@@ -313,13 +322,22 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       maxRounds: golfRounds,
       courses,
       shopping: ap.shopping ?? { rating: 0, areas: '—', note: '' },
-      verdict: verdictFor({ feasible, golf, onsen, shopping: shoppingRating, rounds: golfRounds, twosome: courses.counts.twosomeUsable }),
+      departDowOk,
+      itineraryOk: ret?.operatesOnReturnDay !== false && departDowOk !== false,
+      verdict: ret?.operatesOnReturnDay === false
+        ? { tier: 'X', label: `${DOW_NAMES[returnDow]}요일 귀국편 없음`, reason: `귀국편이 ${daysLabel(route.returnDays)}만 운항 — ${DOW_NAMES[departDow]}→${DOW_NAMES[returnDow]} 일정 불가` }
+        : departDowOk === false
+          ? { tier: 'X', label: `${DOW_NAMES[departDow]}요일 출발편 없음`, reason: `출발편이 ${daysLabel(route.departDays)}만 운항` }
+          : verdictFor({ feasible, golf, onsen, shopping: shoppingRating, rounds: golfRounds, twosome: courses.counts.twosomeUsable }),
       score,
     });
   }
 
   results.sort((a, b) => b.score - a.score || (a.earliestArrival ?? '').localeCompare(b.earliestArrival ?? ''));
 
+  for (const r of results) {
+    if (r.itineraryOk === false) r.feasible = false;
+  }
   const feasibleList = results.filter((r) => r.feasible);
   return {
     generatedAt: new Date().toISOString(),
@@ -342,6 +360,7 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       bookableCourses: feasibleList.reduce((n, r) => n + r.courses.counts.bookable, 0),
       prestigeReady: feasibleList.reduce((n, r) => n + r.courses.counts.prestigeReady, 0),
       sundayFull: feasibleList.filter((r) => (r.returnLeg?.rating ?? 0) >= 3).length,
+      itineraryBlocked: results.filter((r) => r.itineraryOk === false).length,
       maxRoundsBest: feasibleList.reduce((m, r) => Math.max(m, r.maxRounds ?? 0), 0),
       earliestArrival: feasibleList.reduce((min, r) => (!min || r.earliestArrival < min ? r.earliestArrival : min), null),
     },
