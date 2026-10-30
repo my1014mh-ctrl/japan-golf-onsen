@@ -6,6 +6,9 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$PROJECT_DIR"
 mkdir -p out/history logs
 
+# .env 로드 (DATA_GO_KR_KEY, PUBLISH_TARGET 등)
+if [ -f .env ]; then set -a; . ./.env; set +a; fi
+
 STAMP="$(date +%Y-%m-%d)"
 LOG="logs/weekly-$STAMP.log"
 

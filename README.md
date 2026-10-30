@@ -3,13 +3,24 @@
 인천공항(ICN)에서 **직항**으로 일본 현지에 **12:00 이전 도착**이 가능한 공항을 추려,
 3월 골프 가능 여부와 온천 접근성까지 합쳐 후보 도시를 판정한다.
 
-## 휴대폰에서 보기
+## 페이지 주소
 
-**https://claude.ai/code/artifact/d3d3d50b-0ad6-448e-bd8f-54e252b04b2b**
+| 주소 | 성격 | 갱신 |
+|---|---|---|
+| **https://my1014mh-ctrl.github.io/japan-golf-onsen/** | 공개 (로그인 불필요) | 월요일 배치가 자동 push → 자동 반영 |
+| https://claude.ai/code/artifact/d3d3d50b-0ad6-448e-bd8f-54e252b04b2b | 비공개 (Claude 로그인) | 수동 재발행 필요 |
 
-Claude 계정으로 로그인한 상태에서 열리는 비공개 페이지(기본값 비공개). 동반자와 볼 거면 페이지
-공유 메뉴에서 공유하면 된다. 배치로 `docs/index.html`이 갱신되면 **같은 경로를 재발행해야**
-이 링크 내용이 바뀐다 (대화에서 "페이지 갱신" 요청 → 동일 URL로 재발행).
+휴대폰에서는 GitHub Pages 주소를 쓰면 로그인 없이 바로 열린다.
+
+### 호스팅 설정 (최초 1회, 이미 완료)
+
+```bash
+gh auth login                        # 브라우저 인증
+bash scripts/setup-github-pages.sh   # 저장소 생성 + push + Pages 활성화
+```
+
+`.env`의 `PUBLISH_TARGET=github` 때문에 `scripts/run-weekly.sh`가 끝날 때 자동으로
+commit + push 하고, GitHub Pages가 1~2분 내 반영한다. `surge`로 바꾸면 surge.sh로 배포한다.
 
 ## 판정 로직
 
