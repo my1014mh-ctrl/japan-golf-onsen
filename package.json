@@ -1,0 +1,13 @@
+{
+  "name": "japan-golf-onsen",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "2027년 3월 일본 골프+온천 여행: 인천 출발 오전 도착 직항 가능 공항 탐색",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "build:api": "node src/build.mjs --source=api",
+    "weekly": "bash scripts/run-weekly.sh"
+  },
+  "engines": { "node": ">=20" }
+}

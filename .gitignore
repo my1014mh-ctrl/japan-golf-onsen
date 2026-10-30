@@ -1,0 +1,6 @@
+node_modules/
+.env
+logs/
+docs/200.html
+out/analysis.json
+out/history/analysis-prev.json

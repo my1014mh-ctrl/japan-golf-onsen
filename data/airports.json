@@ -1,0 +1,1242 @@
+{
+  "meta": {
+    "description": "인천(ICN) 출발 일본 직항 취항 공항 메타데이터. blockMinutes는 정기편 표준 운항시간(block time) 추정치이며 한일 시차가 없으므로 도착시각 = 출발시각 + blockMinutes.",
+    "updated": "2026-10-30"
+  },
+  "airports": [
+    {
+      "iata": "FUK",
+      "city": "후쿠오카",
+      "name": "후쿠오카공항",
+      "region": "규슈",
+      "blockMinutes": 80,
+      "golfMarch": {
+        "rating": 3,
+        "note": "3월 최적. 시내 30분 내 코스 다수",
+        "courses": [
+          "후쿠오카 CC",
+          "구라테 GC",
+          "코가 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유후인",
+            "transitMin": 135
+          },
+          {
+            "name": "벳푸",
+            "transitMin": 150
+          },
+          {
+            "name": "하라타키/후타고",
+            "transitMin": 50
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 5
+      },
+      "accessNote": "지하철로 하카타역 5분. 렌터카·고속버스 모두 편리",
+      "shopping": {
+        "rating": 3,
+        "areas": "하카타역·텐진·캐널시티",
+        "note": "공항 지하철 5분"
+      }
+    },
+    {
+      "iata": "KKJ",
+      "city": "기타큐슈",
+      "name": "기타큐슈공항",
+      "region": "규슈",
+      "blockMinutes": 85,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 라운딩 가능. 코스 밀집도는 후쿠오카보다 낮음",
+        "courses": [
+          "기타큐슈 GC",
+          "고쿠라 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유후인",
+            "transitMin": 110
+          },
+          {
+            "name": "벳푸",
+            "transitMin": 120
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 13,
+        "lowC": 4
+      },
+      "accessNote": "24시간 공항. 렌터카 필수에 가까움",
+      "shopping": {
+        "rating": 1,
+        "areas": "고쿠라 리버워크·우오마치",
+        "note": "공항→고쿠라 35분"
+      }
+    },
+    {
+      "iata": "OIT",
+      "city": "오이타",
+      "name": "오이타공항",
+      "region": "규슈",
+      "blockMinutes": 95,
+      "golfMarch": {
+        "rating": 2,
+        "note": "벳푸·유후인 주변 코스. 3월 라운딩 양호",
+        "courses": [
+          "벳푸 GC",
+          "APU 주변 코스",
+          "오이타 사까노이치 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "벳푸",
+            "transitMin": 45
+          },
+          {
+            "name": "유후인",
+            "transitMin": 55
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "골프+온천 조합 최강 후보. 공항에서 온천지까지 1시간 이내",
+      "shopping": {
+        "rating": 1,
+        "areas": "오이타 아뮤플라자·벳푸 상점가",
+        "note": "공항→오이타시 60분"
+      }
+    },
+    {
+      "iata": "KMJ",
+      "city": "구마모토",
+      "name": "구마모토공항",
+      "region": "규슈",
+      "blockMinutes": 100,
+      "golfMarch": {
+        "rating": 3,
+        "note": "아소 주변 고원 코스. 3월 양호",
+        "courses": [
+          "아소 GC",
+          "구마모토 쿠고 CC",
+          "그란돔 아소"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "구로카와 온천",
+            "transitMin": 75
+          },
+          {
+            "name": "아소 우치노마키",
+            "transitMin": 55
+          },
+          {
+            "name": "히토요시",
+            "transitMin": 100
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 15,
+        "lowC": 3
+      },
+      "accessNote": "렌터카 권장. 구로카와까지 산길 1시간 15분",
+      "shopping": {
+        "rating": 2,
+        "areas": "시모토리·가미토리 아케이드",
+        "note": "공항→시내 45분"
+      }
+    },
+    {
+      "iata": "NGS",
+      "city": "나가사키",
+      "name": "나가사키공항",
+      "region": "규슈",
+      "blockMinutes": 90,
+      "golfMarch": {
+        "rating": 2,
+        "note": "해안 코스. 3월 바람 주의",
+        "courses": [
+          "나가사키 사이카이 GC",
+          "파사지 킨카이"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "운젠",
+            "transitMin": 90
+          },
+          {
+            "name": "오바마 온천",
+            "transitMin": 80
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 6
+      },
+      "accessNote": "공항이 섬(오무라만)에 위치, 다리로 연결",
+      "shopping": {
+        "rating": 1,
+        "areas": "하마노마치 아케이드",
+        "note": "공항→시내 45분"
+      }
+    },
+    {
+      "iata": "HSG",
+      "city": "사가",
+      "name": "사가공항",
+      "region": "규슈",
+      "blockMinutes": 90,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호, 저렴한 코스 다수",
+        "courses": [
+          "사가 로얄 GC",
+          "우레시노 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "우레시노 온천",
+            "transitMin": 60
+          },
+          {
+            "name": "다케오 온천",
+            "transitMin": 50
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "운항편 적음(보통 1일 1편). 렌터카 필수",
+      "shopping": {
+        "rating": 0,
+        "areas": "대형 상업시설 없음",
+        "note": "우레시노 온천가 중심"
+      }
+    },
+    {
+      "iata": "KMI",
+      "city": "미야자키",
+      "name": "미야자키공항",
+      "region": "규슈",
+      "blockMinutes": 105,
+      "golfMarch": {
+        "rating": 3,
+        "note": "일본 골프 성지. 3월 최적, 토너먼트 코스 다수",
+        "courses": [
+          "피닉스 CC",
+          "미야자키 CC",
+          "톰 왓슨 GC",
+          "아오시마 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "시가이아 마쓰다케 온천",
+            "transitMin": 25
+          },
+          {
+            "name": "기리시마",
+            "transitMin": 110
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 17,
+        "lowC": 6
+      },
+      "accessNote": "공항-피닉스 CC 20분. 골프 중심 일정에 최적",
+      "shopping": {
+        "rating": 1,
+        "areas": "다치바나도리 / 이온몰",
+        "note": "공항→시내 15분"
+      }
+    },
+    {
+      "iata": "KOJ",
+      "city": "가고시마",
+      "name": "가고시마공항",
+      "region": "규슈",
+      "blockMinutes": 100,
+      "golfMarch": {
+        "rating": 3,
+        "note": "3월 최적. 기리시마 고원 코스",
+        "courses": [
+          "기리시마 GC",
+          "가고시마 고쿠사이 GC",
+          "이부스키 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "기리시마 온천",
+            "transitMin": 40
+          },
+          {
+            "name": "이부스키 사철 온천",
+            "transitMin": 100
+          },
+          {
+            "name": "공항 무료 足湯",
+            "transitMin": 0
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 17,
+        "lowC": 7
+      },
+      "accessNote": "공항 바로 옆 기리시마 온천+골프 벨트. 온천 품질 최상위",
+      "shopping": {
+        "rating": 2,
+        "areas": "텐몬칸 상점가",
+        "note": "공항→시내 40분"
+      }
+    },
+    {
+      "iata": "MYJ",
+      "city": "마쓰야마",
+      "name": "마쓰야마공항",
+      "region": "시코쿠",
+      "blockMinutes": 100,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호. 세토내해 조망 코스",
+        "courses": [
+          "마쓰야마 GC",
+          "에히메 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "도고 온천",
+            "transitMin": 30
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "일본 최고(最古) 도고온천까지 30분. 온천 접근성 1위급",
+      "shopping": {
+        "rating": 1,
+        "areas": "오카이도·긴텐가이 아케이드",
+        "note": "공항→시내 20분"
+      }
+    },
+    {
+      "iata": "TAK",
+      "city": "다카마쓰",
+      "name": "다카마쓰공항",
+      "region": "시코쿠",
+      "blockMinutes": 105,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호. 강수 적은 지역",
+        "courses": [
+          "다카마쓰 GC",
+          "사누키 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "고토히라 온천",
+            "transitMin": 45
+          },
+          {
+            "name": "시오노에 온천",
+            "transitMin": 35
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "온천 규모는 작지만 날씨가 안정적",
+      "shopping": {
+        "rating": 1,
+        "areas": "마루가메초 아케이드",
+        "note": "공항→시내 40분"
+      }
+    },
+    {
+      "iata": "TKS",
+      "city": "도쿠시마",
+      "name": "도쿠시마공항",
+      "region": "시코쿠",
+      "blockMinutes": 110,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호",
+        "courses": [
+          "도쿠시마 CC",
+          "아와 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "오보케·이야 온천",
+            "transitMin": 110
+          },
+          {
+            "name": "고토히라",
+            "transitMin": 70
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "운항편이 오후 출발 위주",
+      "shopping": {
+        "rating": 0,
+        "areas": "도쿠시마 소규모",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "HIJ",
+      "city": "히로시마",
+      "name": "히로시마공항",
+      "region": "주고쿠",
+      "blockMinutes": 100,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호. 공항 인접 코스 다수",
+        "courses": [
+          "히로시마 CC",
+          "빈고 CC",
+          "세토내해 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "미야하마 온천",
+            "transitMin": 75
+          },
+          {
+            "name": "유키 온천",
+            "transitMin": 90
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 3
+      },
+      "accessNote": "공항이 시내에서 50분 떨어진 산간. 렌터카 유리",
+      "shopping": {
+        "rating": 2,
+        "areas": "혼도리·에디온 / 디 아웃렛 히로시마",
+        "note": "공항→시내 50분"
+      }
+    },
+    {
+      "iata": "OKJ",
+      "city": "오카야마",
+      "name": "오카야마공항",
+      "region": "주고쿠",
+      "blockMinutes": 105,
+      "golfMarch": {
+        "rating": 2,
+        "note": "일본 내 강수량 최저 지역. 3월 라운딩 안정적",
+        "courses": [
+          "오카야마 GC",
+          "도몬 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유바라 온천",
+            "transitMin": 80
+          },
+          {
+            "name": "오쿠쓰 온천",
+            "transitMin": 70
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 3
+      },
+      "accessNote": "'하레노쿠니(맑음의 나라)' 3월 날씨 리스크 최소",
+      "shopping": {
+        "rating": 1,
+        "areas": "오모테초·구라시키 미관지구",
+        "note": "공항→시내 30분"
+      }
+    },
+    {
+      "iata": "YGJ",
+      "city": "요나고",
+      "name": "요나고공항",
+      "region": "주고쿠",
+      "blockMinutes": 110,
+      "golfMarch": {
+        "rating": 1,
+        "note": "3월 초 잔설·저온 가능. 중순 이후 권장",
+        "courses": [
+          "다이센 CC",
+          "요나고 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "가이케 온천",
+            "transitMin": 15
+          },
+          {
+            "name": "미사사 온천",
+            "transitMin": 70
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 12,
+        "lowC": 3
+      },
+      "accessNote": "공항-가이케온천 15분. 온천 접근성 최상이나 3월 날씨 변동",
+      "shopping": {
+        "rating": 0,
+        "areas": "요나고 시내 소규모",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "UBJ",
+      "city": "야마구치 우베",
+      "name": "야마구치우베공항",
+      "region": "주고쿠",
+      "blockMinutes": 95,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호",
+        "courses": [
+          "야마구치 GC",
+          "우베 72 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유다 온천",
+            "transitMin": 50
+          },
+          {
+            "name": "나가토유모토",
+            "transitMin": 100
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 3
+      },
+      "accessNote": "우베 72는 36홀 대형 퍼블릭",
+      "shopping": {
+        "rating": 0,
+        "areas": "소규모",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "KIX",
+      "city": "오사카",
+      "name": "간사이국제공항",
+      "region": "간사이",
+      "blockMinutes": 110,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호. 다만 인기 코스 예약 경쟁",
+        "courses": [
+          "한나 GC",
+          "로쿠코 국제 GC",
+          "이바라키 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "아리마 온천",
+            "transitMin": 100
+          },
+          {
+            "name": "시라하마 온천",
+            "transitMin": 130
+          },
+          {
+            "name": "기노사키 온천",
+            "transitMin": 190
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "편수 최다 = 시간 선택권 최대. 온천지는 다소 멀다",
+      "shopping": {
+        "rating": 3,
+        "areas": "신사이바시·우메다·린쿠 프리미엄 아웃렛",
+        "note": "린쿠 아웃렛은 공항 5분"
+      }
+    },
+    {
+      "iata": "UKB",
+      "city": "고베",
+      "name": "고베공항",
+      "region": "간사이",
+      "blockMinutes": 115,
+      "golfMarch": {
+        "rating": 2,
+        "note": "롯코산 주변 코스. 3월 양호",
+        "courses": [
+          "고베 GC",
+          "롯코 국제 GC",
+          "한신 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "아리마 온천",
+            "transitMin": 50
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 5
+      },
+      "accessNote": "2025년 국제선 개항. 아리마온천 50분으로 간사이 최단",
+      "shopping": {
+        "rating": 2,
+        "areas": "고베 산노미야·하버랜드",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "NGO",
+      "city": "나고야",
+      "name": "주부국제공항",
+      "region": "주부",
+      "blockMinutes": 115,
+      "golfMarch": {
+        "rating": 2,
+        "note": "3월 양호",
+        "courses": [
+          "나고야 GC",
+          "미카와 CC",
+          "스즈카 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "게로 온천",
+            "transitMin": 150
+          },
+          {
+            "name": "유노야마 온천",
+            "transitMin": 80
+          },
+          {
+            "name": "가이즈카",
+            "transitMin": 60
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "게로온천은 멀지만 온천 품질 최상급",
+      "shopping": {
+        "rating": 2,
+        "areas": "사카에·나고야역 / 미쓰이 아웃렛 재즈드림",
+        "note": "재즈드림 공항 30분"
+      }
+    },
+    {
+      "iata": "KMQ",
+      "city": "고마쓰",
+      "name": "고마쓰공항",
+      "region": "호쿠리쿠",
+      "blockMinutes": 120,
+      "golfMarch": {
+        "rating": 1,
+        "note": "3월 초 저온·잔설 가능. 중하순 권장",
+        "courses": [
+          "가타야마즈 GC",
+          "고마쓰 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "가가 온천(야마시로·야마나카)",
+            "transitMin": 35
+          },
+          {
+            "name": "와쿠라 온천",
+            "transitMin": 110
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 12,
+        "lowC": 3
+      },
+      "accessNote": "가가온천+골프 묶기 좋으나 3월 상순 눈 리스크",
+      "shopping": {
+        "rating": 1,
+        "areas": "가나자와 오미초·히가시차야",
+        "note": "공항→가나자와 50분"
+      }
+    },
+    {
+      "iata": "FSZ",
+      "city": "시즈오카",
+      "name": "시즈오카공항",
+      "region": "주부",
+      "blockMinutes": 135,
+      "golfMarch": {
+        "rating": 3,
+        "note": "이즈·하코네 명문 코스권. 3월 최적",
+        "courses": [
+          "가와나 호텔 GC",
+          "시즈오카 CC",
+          "닛케이 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "이즈 슈젠지",
+            "transitMin": 100
+          },
+          {
+            "name": "아타미",
+            "transitMin": 110
+          },
+          {
+            "name": "하코네",
+            "transitMin": 140
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 15,
+        "lowC": 5
+      },
+      "accessNote": "가와나 후지코스 등 명문 접근. 골프+온천 품질 모두 상위",
+      "shopping": {
+        "rating": 1,
+        "areas": "시즈오카 고후쿠초 / 고텐바 프리미엄 아웃렛",
+        "note": "고텐바 아웃렛 2시간"
+      }
+    },
+    {
+      "iata": "TOY",
+      "city": "도야마",
+      "name": "도야마공항",
+      "region": "호쿠리쿠",
+      "blockMinutes": 125,
+      "golfMarch": {
+        "rating": 1,
+        "note": "3월 상순 적설 가능성",
+        "courses": [
+          "도야마 GC",
+          "구로베 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "우나즈키 온천",
+            "transitMin": 60
+          },
+          {
+            "name": "도나미",
+            "transitMin": 45
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 11,
+        "lowC": 2
+      },
+      "accessNote": "3월 여행에는 날씨 리스크 큼",
+      "shopping": {
+        "rating": 1,
+        "areas": "도야마 소가와",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "KIJ",
+      "city": "니가타",
+      "name": "니가타공항",
+      "region": "주부",
+      "blockMinutes": 130,
+      "golfMarch": {
+        "rating": 1,
+        "note": "3월 상·중순 코스 휴장 가능",
+        "courses": [
+          "니가타 CC",
+          "조에쓰 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "에치고 유자와",
+            "transitMin": 105
+          },
+          {
+            "name": "쓰키오카 온천",
+            "transitMin": 45
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 10,
+        "lowC": 2
+      },
+      "accessNote": "골프 목적이면 비권장",
+      "shopping": {
+        "rating": 1,
+        "areas": "니가타 반다이시티",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "NRT",
+      "city": "도쿄 나리타",
+      "name": "나리타국제공항",
+      "region": "간토",
+      "blockMinutes": 145,
+      "golfMarch": {
+        "rating": 3,
+        "note": "지바 코스 밀집. 3월 최적",
+        "courses": [
+          "소부 CC",
+          "지바 CC",
+          "나리타 GC",
+          "오크 빌리지"
+        ]
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "하코네",
+            "transitMin": 210
+          },
+          {
+            "name": "기누가와",
+            "transitMin": 180
+          },
+          {
+            "name": "나리타 야마토노유",
+            "transitMin": 20
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 13,
+        "lowC": 4
+      },
+      "accessNote": "골프는 최상, 본격 온천지는 멀다",
+      "shopping": {
+        "rating": 3,
+        "areas": "긴자·신주쿠 / 시스이 프리미엄 아웃렛",
+        "note": "시스이 아웃렛 공항 15분"
+      }
+    },
+    {
+      "iata": "HND",
+      "city": "도쿄 하네다",
+      "name": "하네다공항",
+      "region": "간토",
+      "blockMinutes": 140,
+      "golfMarch": {
+        "rating": 3,
+        "note": "가나가와·지바 코스. 3월 최적",
+        "courses": [
+          "요코하마 CC",
+          "소데가우라 CC",
+          "도쿄 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "하코네",
+            "transitMin": 130
+          },
+          {
+            "name": "유가와라",
+            "transitMin": 120
+          },
+          {
+            "name": "하네다 이즈미텐쿠노유",
+            "transitMin": 5
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 6
+      },
+      "accessNote": "하코네 2시간. 골프+온천 균형 양호, 비용은 높음",
+      "shopping": {
+        "rating": 3,
+        "areas": "긴자·시부야·신주쿠",
+        "note": "모노레일 25분"
+      }
+    },
+    {
+      "iata": "SDJ",
+      "city": "센다이",
+      "name": "센다이공항",
+      "region": "도호쿠",
+      "blockMinutes": 150,
+      "golfMarch": {
+        "rating": 1,
+        "note": "3월 상순 휴장/동결 그린 가능. 하순 조건부",
+        "courses": [
+          "센다이 CC",
+          "이즈미 파크타운 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "아키우 온천",
+            "transitMin": 55
+          },
+          {
+            "name": "나루코 온천",
+            "transitMin": 110
+          },
+          {
+            "name": "자오 온천",
+            "transitMin": 100
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 9,
+        "lowC": 0
+      },
+      "accessNote": "온천은 훌륭하나 3월 골프는 도박",
+      "shopping": {
+        "rating": 2,
+        "areas": "이치반초 아케이드·센다이역",
+        "note": "공항 액세스선 25분"
+      }
+    },
+    {
+      "iata": "AOJ",
+      "city": "아오모리",
+      "name": "아오모리공항",
+      "region": "도호쿠",
+      "blockMinutes": 145,
+      "golfMarch": {
+        "rating": 0,
+        "note": "3월 전 코스 적설 휴장",
+        "courses": []
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "스카유 온천",
+            "transitMin": 50
+          },
+          {
+            "name": "아오니 온천",
+            "transitMin": 80
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 6,
+        "lowC": -3
+      },
+      "accessNote": "온천 전용 일정만 가능",
+      "shopping": {
+        "rating": 1,
+        "areas": "아오모리 아우가",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "CTS",
+      "city": "삿포로",
+      "name": "신치토세공항",
+      "region": "홋카이도",
+      "blockMinutes": 170,
+      "golfMarch": {
+        "rating": 0,
+        "note": "3월 전 코스 적설 휴장(개장 4월 말~5월)",
+        "courses": []
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "노보리베쓰",
+            "transitMin": 65
+          },
+          {
+            "name": "조잔케이",
+            "transitMin": 90
+          },
+          {
+            "name": "유노카와",
+            "transitMin": 220
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 4,
+        "lowC": -5
+      },
+      "accessNote": "골프 불가. 온천+스키 조합만 성립",
+      "shopping": {
+        "rating": 2,
+        "areas": "삿포로 스스키노·다누키코지 / 치토세 아웃렛",
+        "note": "라라포트 공항 10분"
+      }
+    },
+    {
+      "iata": "HKD",
+      "city": "하코다테",
+      "name": "하코다테공항",
+      "region": "홋카이도",
+      "blockMinutes": 160,
+      "golfMarch": {
+        "rating": 0,
+        "note": "3월 적설 휴장",
+        "courses": []
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유노카와 온천",
+            "transitMin": 20
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 5,
+        "lowC": -3
+      },
+      "accessNote": "골프 불가",
+      "shopping": {
+        "rating": 1,
+        "areas": "하코다테 아침시장·베이",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "AKJ",
+      "city": "아사히카와",
+      "name": "아사히카와공항",
+      "region": "홋카이도",
+      "blockMinutes": 180,
+      "golfMarch": {
+        "rating": 0,
+        "note": "3월 적설 휴장",
+        "courses": []
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "소운쿄 온천",
+            "transitMin": 85
+          },
+          {
+            "name": "아사히다케 온천",
+            "transitMin": 60
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 2,
+        "lowC": -8
+      },
+      "accessNote": "골프 불가",
+      "shopping": {
+        "rating": 1,
+        "areas": "아사히카와 헤이와도리",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "OKA",
+      "city": "오키나와 나하",
+      "name": "나하공항",
+      "region": "오키나와",
+      "blockMinutes": 140,
+      "golfMarch": {
+        "rating": 3,
+        "note": "3월 기온 20도대. 일본 내 최상 조건",
+        "courses": [
+          "가누차 리조트",
+          "더 사우스링크스",
+          "PGM 긴완",
+          "류큐 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "류진노유(세나가지마)",
+            "transitMin": 20
+          },
+          {
+            "name": "자마미/나고 온천시설",
+            "transitMin": 80
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 22,
+        "lowC": 16
+      },
+      "accessNote": "골프 조건 최고, 전통 온천 문화는 약함",
+      "shopping": {
+        "rating": 2,
+        "areas": "국제거리·아메리칸빌리지·DFS 갤러리아",
+        "note": "아시비나 아웃렛 공항 15분"
+      }
+    },
+    {
+      "iata": "MMY",
+      "city": "미야코지마",
+      "name": "미야코공항",
+      "region": "오키나와",
+      "blockMinutes": 155,
+      "golfMarch": {
+        "rating": 3,
+        "note": "시사이드 코스. 3월 최적",
+        "courses": [
+          "미야코지마 에메랄드 코스",
+          "시기라 베이 CC"
+        ]
+      },
+      "onsen": {
+        "rating": 0,
+        "areas": []
+      },
+      "weatherMarch": {
+        "highC": 22,
+        "lowC": 17
+      },
+      "accessNote": "온천 없음. 골프 전용",
+      "shopping": {
+        "rating": 0,
+        "areas": "없음",
+        "note": "—"
+      }
+    },
+    {
+      "iata": "ISG",
+      "city": "이시가키",
+      "name": "이시가키공항",
+      "region": "오키나와",
+      "blockMinutes": 165,
+      "golfMarch": {
+        "rating": 2,
+        "note": "코스 수 적음",
+        "courses": [
+          "이시가키지마 GC"
+        ]
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "이시가키지마 온천",
+            "transitMin": 25
+          }
+        ]
+      },
+      "weatherMarch": {
+        "highC": 23,
+        "lowC": 18
+      },
+      "accessNote": "계절·부정기 운항 많음",
+      "shopping": {
+        "rating": 0,
+        "areas": "소규모",
+        "note": "—"
+      }
+    }
+  ]
+}

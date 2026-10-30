@@ -1,0 +1,4621 @@
+{
+  "generatedAt": "2026-10-30T04:33:13.038Z",
+  "cutoff": "12:00",
+  "early": "10:00",
+  "trip": {
+    "month": "2027-03",
+    "departDow": 4,
+    "returnDow": 7,
+    "nights": 3,
+    "arrivalCutoff": "12:00",
+    "earlyArrival": "10:00",
+    "airportLeadMinutes": 120,
+    "roundHours": 5,
+    "windows": [
+      {
+        "depart": "2027-03-04",
+        "return": "2027-03-07",
+        "tags": [
+          "저가",
+          "한산"
+        ],
+        "notes": [
+          "3월 상순 — 항공·숙박 최저가대, 골프장 한산",
+          "호쿠리쿠·도호쿠·홋카이도 잔설 리스크 최대",
+          "규슈·오키나와는 이미 라운딩 가능"
+        ]
+      },
+      {
+        "depart": "2027-03-11",
+        "return": "2027-03-14",
+        "tags": [
+          "무난"
+        ],
+        "notes": [
+          "일본 공휴일·연휴 없음 → 골프장 예약 경쟁 가장 낮음",
+          "규슈·시코쿠 라운딩 조건 안정적",
+          "4개 창 중 가성비 기본값"
+        ]
+      },
+      {
+        "depart": "2027-03-18",
+        "return": "2027-03-21",
+        "tags": [
+          "연휴주의"
+        ],
+        "notes": [
+          "귀국일 3/21(일)이 일본 춘분의 날(春分の日), 다음날 3/22(월) 대체휴일 → 3연휴 시작",
+          "토·일 골프장 혼잡 + 그린피 할증, 료칸 요금 상승",
+          "귀국편 좌석 경쟁도 상승"
+        ]
+      },
+      {
+        "depart": "2027-03-25",
+        "return": "2027-03-28",
+        "tags": [
+          "벚꽃",
+          "시즌변경"
+        ],
+        "notes": [
+          "귀국일 3/28(일)이 IATA 하계시즌 첫날 → 귀국편 시각·기종 변경 가능, 예약 시 반드시 재확인",
+          "규슈·간사이 벚꽃 개화~만개 시기 → 숙박비 상승, 경관 최상",
+          "날씨·기온은 4개 창 중 가장 유리"
+        ]
+      }
+    ],
+    "plan": [
+      {
+        "dow": 4,
+        "name": "목",
+        "offset": 0,
+        "activities": [
+          "도착",
+          "골프"
+        ],
+        "note": "도착 당일 라운딩 — 도착시각이 관건"
+      },
+      {
+        "dow": 5,
+        "name": "금",
+        "offset": 1,
+        "activities": [
+          "골프"
+        ],
+        "note": "평일 풀 라운딩. 2サム 할증 없는 플랜 대부분 평일 한정"
+      },
+      {
+        "dow": 6,
+        "name": "토",
+        "offset": 2,
+        "activities": [
+          "쇼핑",
+          "온천"
+        ],
+        "note": "도시 쇼핑 + 온천 숙박. 토요일은 료칸 할증일"
+      },
+      {
+        "dow": 7,
+        "name": "일",
+        "offset": 3,
+        "activities": [
+          "온천",
+          "귀국"
+        ],
+        "note": "귀국편 시각이 일요일 활용 시간을 결정"
+      }
+    ],
+    "golfDows": [
+      4,
+      5
+    ],
+    "leisureDows": [
+      6,
+      7
+    ],
+    "courseRadiusKm": 50,
+    "departDowName": "목",
+    "returnDowName": "일"
+  },
+  "source": "baseline",
+  "sourceLabel": "추정 베이스라인 (data/routes-baseline.json)",
+  "fetchedAt": "2026-10-30T04:33:13.026Z",
+  "sourceMeta": {
+    "description": "인천 출발 일본 직항 노선의 '오전 출발편' 베이스라인. 공식 API 키가 없을 때 사용하는 추정 데이터이며, flights[]가 비어 있으면 earliestDep 윈도우로 가능성만 판정한다.",
+    "updated": "2026-10-30",
+    "confidenceLegend": {
+      "high": "편수 많은 간선 노선, 첫 출발 시각대가 안정적",
+      "medium": "1일 1~2편 노선, 시즌별 출발 시각 변동 있음",
+      "low": "부정기/계절편 또는 출발 시각 확인 필요"
+    },
+    "disclaimer": "flightNo 단위 실제 시각은 data.go.kr 정기운항편 API로 갱신해야 확정됩니다.",
+    "returnNote": "lastReturnDep은 '일본 현지 출발 시각' 추정치. single-rotation 노선은 왕복 1회전 구조상 낮 출발이 되며 analyze.mjs에서 역산한다.",
+    "frequencyNote": "weeklyFrequency=limited 노선은 주 3~5회 운항으로, 목요일 출발/일요일 귀국 가능 여부를 개별 확인해야 한다."
+  },
+  "stats": {
+    "totalRoutes": 32,
+    "feasible": 26,
+    "beforeEarly": 6,
+    "beforeEarlyGolf": 6,
+    "golfPlayable": 21,
+    "tierA": 14,
+    "twoRounds": 24,
+    "twosomeReady": 8,
+    "sundayFull": 7,
+    "maxRoundsBest": 2,
+    "earliestArrival": "08:10"
+  },
+  "airports": [
+    {
+      "iata": "FUK",
+      "city": "후쿠오카",
+      "airportName": "후쿠오카공항",
+      "region": "규슈",
+      "blockMinutes": 80,
+      "blockLabel": "1시간 20분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "제주항공",
+        "티웨이",
+        "진에어",
+        "에어서울",
+        "에어부산",
+        "JAL"
+      ],
+      "dailyFlights": 10,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "06:50",
+      "morningDepWindow": [
+        "06:50",
+        "11:00"
+      ],
+      "latestDepForCutoff": "10:40",
+      "latestDepForEarly": "08:40",
+      "beforeEarly": true,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "08:10",
+      "slackMinutes": 230,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "3월 최적. 시내 30분 내 코스 다수",
+        "courses": [
+          "후쿠오카 CC",
+          "구라테 GC",
+          "코가 GC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유후인",
+            "transitMin": 135
+          },
+          {
+            "name": "벳푸",
+            "transitMin": 150
+          },
+          {
+            "name": "하라타키/후타고",
+            "transitMin": 50
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "하라타키/후타고",
+          "transitMin": 50
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 5
+      },
+      "accessNote": "지하철로 하카타역 5분. 렌터카·고속버스 모두 편리",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "20:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "17:30",
+        "canRound": true,
+        "leisureHours": 8.5,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "여유",
+        "score": 3,
+        "teeOff": "10:10"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "FUK",
+            "pref": "福岡県",
+            "ko": "히사야마 CC",
+            "ja": "久山カントリー倶楽部",
+            "driveMin": 25,
+            "distanceKm": 20,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "공항 최근접",
+            "twosome": "weekday",
+            "note": "후쿠오카공항 25분 — 도착 당일 라운딩 1순위. 평일 셀프 2사무 보증 + 할증 없음 플랜 확인",
+            "verified": true,
+            "noSurcharge": true,
+            "greenFee": "평일 셀프 2사무 8,980엔(총액)",
+            "twosomeRank": 2,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          },
+          {
+            "iata": "FUK",
+            "pref": "福岡県",
+            "ko": "후쿠오카 국제 CC",
+            "ja": "福岡国際カントリークラブ",
+            "driveMin": 40,
+            "distanceKm": 33,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "명문 · 토너먼트 개최",
+            "twosome": "available",
+            "note": "현 내 명문·토너먼트 개최. 규슈 2사무 보증 플랜 보유 코스 목록 포함",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          },
+          {
+            "iata": "FUK",
+            "pref": "福岡県",
+            "ko": "더 퀸즈힐 GC",
+            "ja": "ザ・クイーンズヒルゴルフクラブ",
+            "driveMin": 35,
+            "distanceKm": 28,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "토너먼트 개최 코스",
+            "twosome": "unknown",
+            "note": "후쿠오카 3대 토너먼트 코스 중 하나",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          },
+          {
+            "iata": "FUK",
+            "pref": "福岡県",
+            "ko": "세븐밀리온 CC",
+            "ja": "セブンミリオンカントリークラブ",
+            "driveMin": 35,
+            "distanceKm": 30,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "인기 코스",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          },
+          {
+            "iata": "FUK",
+            "pref": "福岡県",
+            "ko": "후쿠오카 센추리 GC",
+            "ja": "福岡センチュリーゴルフ倶楽部",
+            "driveMin": 45,
+            "distanceKm": 38,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "토너먼트 개최 코스",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          },
+          {
+            "iata": "FUK",
+            "pref": "福岡県",
+            "ko": "후쿠오카 라이잔 GC",
+            "ja": "福岡雷山ゴルフ倶楽部",
+            "driveMin": 60,
+            "distanceKm": 45,
+            "holes": 18,
+            "corridor": false,
+            "pedigree": "프로 토너먼트(스텝업투어) 개최",
+            "twosome": "unknown",
+            "note": "이토시마 방면 — 도시 반대편",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 6,
+          "inRadius": 6,
+          "corridor": 5,
+          "twosomeUsable": 2,
+          "twosomeUnknown": 4
+        },
+        "best": {
+          "iata": "FUK",
+          "pref": "福岡県",
+          "ko": "히사야마 CC",
+          "ja": "久山カントリー倶楽部",
+          "driveMin": 25,
+          "distanceKm": 20,
+          "holes": 18,
+          "corridor": true,
+          "pedigree": "공항 최근접",
+          "twosome": "weekday",
+          "note": "후쿠오카공항 25분 — 도착 당일 라운딩 1순위. 평일 셀프 2사무 보증 + 할증 없음 플랜 확인",
+          "verified": true,
+          "noSurcharge": true,
+          "greenFee": "평일 셀프 2사무 8,980엔(총액)",
+          "twosomeRank": 2,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 3,
+        "areas": "하카타역·텐진·캐널시티",
+        "note": "공항 지하철 5분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "목·금 2라운딩 + 2인 플레이 가능 + 토·일 쇼핑·온천 모두 충족"
+      },
+      "score": 29
+    },
+    {
+      "iata": "HND",
+      "city": "도쿄 하네다",
+      "airportName": "하네다공항",
+      "region": "간토",
+      "blockMinutes": 140,
+      "blockLabel": "2시간 20분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "JAL",
+        "ANA",
+        "제주항공"
+      ],
+      "dailyFlights": 8,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "07:40",
+      "morningDepWindow": [
+        "07:40",
+        "10:00"
+      ],
+      "latestDepForCutoff": "09:40",
+      "latestDepForEarly": "07:40",
+      "beforeEarly": true,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:00",
+      "slackMinutes": 120,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "가나가와·지바 코스. 3월 최적",
+        "courses": [
+          "요코하마 CC",
+          "소데가우라 CC",
+          "도쿄 GC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "하코네",
+            "transitMin": 130
+          },
+          {
+            "name": "유가와라",
+            "transitMin": 120
+          },
+          {
+            "name": "하네다 이즈미텐쿠노유",
+            "transitMin": 5
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "하네다 이즈미텐쿠노유",
+          "transitMin": 5
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 6
+      },
+      "accessNote": "하코네 2시간. 골프+온천 균형 양호, 비용은 높음",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "19:40",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "16:40",
+        "canRound": true,
+        "leisureHours": 7.7,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "여유",
+        "score": 3,
+        "teeOff": "12:00"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "HND",
+            "pref": "神奈川県",
+            "ko": "요코하마 CC",
+            "ja": "横浜カントリークラブ",
+            "driveMin": 50,
+            "distanceKm": 35,
+            "holes": 36,
+            "corridor": true,
+            "pedigree": "일본 명문",
+            "twosome": "unknown",
+            "note": "멤버 중심 — 2사무 가능성 낮음",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C"
+          },
+          {
+            "iata": "HND",
+            "pref": "千葉県",
+            "ko": "소데가우라 CC",
+            "ja": "袖ヶ浦カンツリークラブ",
+            "driveMin": 45,
+            "distanceKm": 35,
+            "holes": 36,
+            "corridor": true,
+            "pedigree": "아쿠아라인 경유",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E5%8D%83%E8%91%89%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 2,
+          "inRadius": 2,
+          "corridor": 2,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 2
+        },
+        "best": null,
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 3,
+        "areas": "긴자·시부야·신주쿠",
+        "note": "모노레일 25분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 27
+    },
+    {
+      "iata": "KIX",
+      "city": "오사카",
+      "airportName": "간사이국제공항",
+      "region": "간사이",
+      "blockMinutes": 110,
+      "blockLabel": "1시간 50분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "제주항공",
+        "티웨이",
+        "진에어",
+        "에어서울",
+        "에어부산",
+        "피치"
+      ],
+      "dailyFlights": 10,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "06:40",
+      "morningDepWindow": [
+        "06:40",
+        "11:00"
+      ],
+      "latestDepForCutoff": "10:10",
+      "latestDepForEarly": "08:10",
+      "beforeEarly": true,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "08:30",
+      "slackMinutes": 210,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호. 다만 인기 코스 예약 경쟁",
+        "courses": [
+          "한나 GC",
+          "로쿠코 국제 GC",
+          "이바라키 CC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "아리마 온천",
+            "transitMin": 100
+          },
+          {
+            "name": "시라하마 온천",
+            "transitMin": 130
+          },
+          {
+            "name": "기노사키 온천",
+            "transitMin": 190
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "아리마 온천",
+          "transitMin": 100
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "편수 최다 = 시간 선택권 최대. 온천지는 다소 멀다",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "20:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "17:30",
+        "canRound": true,
+        "leisureHours": 8.5,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "여유",
+        "score": 3,
+        "teeOff": "10:30"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "KIX",
+            "pref": "大阪府",
+            "ko": "간사이공항 GC (PGM)",
+            "ja": "関西空港ゴルフ倶楽部【PGM】",
+            "driveMin": 40,
+            "distanceKm": 25,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "공항 전용 입지",
+            "twosome": "available",
+            "note": "공항 40분 / 오사카 시내 50분. 2사무 가능(예약 상황에 따라), 셀프·캐디 선택 가능",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E8%BF%91%E7%95%BF&prefecture=%E5%A4%A7%E9%98%AA%E5%BA%9C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 1,
+          "inRadius": 1,
+          "corridor": 1,
+          "twosomeUsable": 1,
+          "twosomeUnknown": 0
+        },
+        "best": {
+          "iata": "KIX",
+          "pref": "大阪府",
+          "ko": "간사이공항 GC (PGM)",
+          "ja": "関西空港ゴルフ倶楽部【PGM】",
+          "driveMin": 40,
+          "distanceKm": 25,
+          "holes": 18,
+          "corridor": true,
+          "pedigree": "공항 전용 입지",
+          "twosome": "available",
+          "note": "공항 40분 / 오사카 시내 50분. 2사무 가능(예약 상황에 따라), 셀프·캐디 선택 가능",
+          "verified": true,
+          "twosomeRank": 1,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E8%BF%91%E7%95%BF&prefecture=%E5%A4%A7%E9%98%AA%E5%BA%9C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E8%BF%91%E7%95%BF&prefecture=%E5%A4%A7%E9%98%AA%E5%BA%9C"
+      },
+      "shopping": {
+        "rating": 3,
+        "areas": "신사이바시·우메다·린쿠 프리미엄 아웃렛",
+        "note": "린쿠 아웃렛은 공항 5분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "목·금 2라운딩 + 2인 플레이 가능 + 토·일 쇼핑·온천 모두 충족"
+      },
+      "score": 26
+    },
+    {
+      "iata": "NRT",
+      "city": "도쿄 나리타",
+      "airportName": "나리타국제공항",
+      "region": "간토",
+      "blockMinutes": 145,
+      "blockLabel": "2시간 25분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "제주항공",
+        "티웨이",
+        "진에어",
+        "이스타",
+        "ZIPAIR",
+        "JAL",
+        "ANA"
+      ],
+      "dailyFlights": 12,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "07:30",
+      "morningDepWindow": [
+        "07:30",
+        "10:00"
+      ],
+      "latestDepForCutoff": "09:35",
+      "latestDepForEarly": "07:35",
+      "beforeEarly": true,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "09:55",
+      "slackMinutes": 125,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "지바 코스 밀집. 3월 최적",
+        "courses": [
+          "소부 CC",
+          "지바 CC",
+          "나리타 GC",
+          "오크 빌리지"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "하코네",
+            "transitMin": 210
+          },
+          {
+            "name": "기누가와",
+            "transitMin": 180
+          },
+          {
+            "name": "나리타 야마토노유",
+            "transitMin": 20
+          }
+        ],
+        "word": "제한적",
+        "nearest": {
+          "name": "나리타 야마토노유",
+          "transitMin": 20
+        }
+      },
+      "weatherMarch": {
+        "highC": 13,
+        "lowC": 4
+      },
+      "accessNote": "골프는 최상, 본격 온천지는 멀다",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "19:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "16:30",
+        "canRound": true,
+        "leisureHours": 7.5,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "여유",
+        "score": 3,
+        "teeOff": "11:55"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "NRT",
+            "pref": "千葉県",
+            "ko": "나리타 GC",
+            "ja": "成田ゴルフ倶楽部",
+            "driveMin": 25,
+            "distanceKm": 15,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "공항 최근접",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E5%8D%83%E8%91%89%E7%9C%8C"
+          },
+          {
+            "iata": "NRT",
+            "pref": "千葉県",
+            "ko": "오크 빌리지 GC",
+            "ja": "オークビレッヂゴルフクラブ",
+            "driveMin": 35,
+            "distanceKm": 25,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E5%8D%83%E8%91%89%E7%9C%8C"
+          },
+          {
+            "iata": "NRT",
+            "pref": "千葉県",
+            "ko": "소부 CC",
+            "ja": "総武カントリークラブ",
+            "driveMin": 50,
+            "distanceKm": 40,
+            "holes": 36,
+            "corridor": true,
+            "pedigree": "일본 명문 · 투어 개최",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E5%8D%83%E8%91%89%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 3,
+          "inRadius": 3,
+          "corridor": 3,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 3
+        },
+        "best": null,
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E9%96%A2%E6%9D%B1%E3%83%BB%E7%94%B2%E4%BF%A1%E8%B6%8A&prefecture=%E5%8D%83%E8%91%89%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 3,
+        "areas": "긴자·신주쿠 / 시스이 프리미엄 아웃렛",
+        "note": "시스이 아웃렛 공항 15분"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "유력 후보",
+        "reason": "골프 + 온천/쇼핑 한쪽 강점"
+      },
+      "score": 25
+    },
+    {
+      "iata": "KOJ",
+      "city": "가고시마",
+      "airportName": "가고시마공항",
+      "region": "규슈",
+      "blockMinutes": 100,
+      "blockLabel": "1시간 40분",
+      "carriers": [
+        "대한항공",
+        "제주항공",
+        "티웨이"
+      ],
+      "dailyFlights": 2,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "08:50",
+      "morningDepWindow": [
+        "08:50",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:20",
+      "latestDepForEarly": "08:20",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:30",
+      "slackMinutes": 90,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "3월 최적. 기리시마 고원 코스",
+        "courses": [
+          "기리시마 GC",
+          "가고시마 고쿠사이 GC",
+          "이부스키 GC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "기리시마 온천",
+            "transitMin": 40
+          },
+          {
+            "name": "이부스키 사철 온천",
+            "transitMin": 100
+          },
+          {
+            "name": "공항 무료 足湯",
+            "transitMin": 0
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "공항 무료 足湯",
+          "transitMin": 0
+        }
+      },
+      "weatherMarch": {
+        "highC": 17,
+        "lowC": 7
+      },
+      "accessNote": "공항 바로 옆 기리시마 온천+골프 벨트. 온천 품질 최상위",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "16:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "13:30",
+        "canRound": true,
+        "leisureHours": 4.5,
+        "rating": 2,
+        "label": "온천 또는 쇼핑",
+        "word": "양호"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:30"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "KOJ",
+            "pref": "鹿児島県",
+            "ko": "가고시마공항 36 CC",
+            "ja": "かごしま空港36カントリークラブ",
+            "driveMin": 15,
+            "distanceKm": 10,
+            "holes": 36,
+            "corridor": true,
+            "pedigree": "남규슈 굴지의 명문 · 36홀",
+            "twosome": "available",
+            "note": "공항 15분. 공항코스는 역사 있는 챔피언십 코스. 평일 6,680엔~. 2사무 보증 플랜 대응",
+            "verified": true,
+            "greenFee": "평일 6,680엔~",
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C"
+          },
+          {
+            "iata": "KOJ",
+            "pref": "鹿児島県",
+            "ko": "기리시마 GC",
+            "ja": "霧島ゴルフクラブ",
+            "driveMin": 25,
+            "distanceKm": 18,
+            "holes": 18,
+            "corridor": false,
+            "pedigree": "1957년 개장 · 남규슈 최고(最古) 명문, 야스다 요텐 설계",
+            "twosome": "available",
+            "note": "표고 400m 기리시마 고원 코스. 기리시마 온천과 같은 권역. 2사무 보증 대응",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C"
+          },
+          {
+            "iata": "KOJ",
+            "pref": "鹿児島県",
+            "ko": "미조베 CC",
+            "ja": "溝辺カントリークラブ",
+            "driveMin": 11,
+            "distanceKm": 7,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "챔피언십 코스 P72",
+            "twosome": "unknown",
+            "note": "공항 11분 — 권역 최단. 평일 7,380엔~",
+            "verified": true,
+            "greenFee": "평일 7,380엔~",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C"
+          },
+          {
+            "iata": "KOJ",
+            "pref": "鹿児島県",
+            "ko": "게도인 GC",
+            "ja": "祁答院ゴルフ倶楽部",
+            "driveMin": 40,
+            "distanceKm": 32,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "명문",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 4,
+          "inRadius": 4,
+          "corridor": 3,
+          "twosomeUsable": 2,
+          "twosomeUnknown": 2
+        },
+        "best": {
+          "iata": "KOJ",
+          "pref": "鹿児島県",
+          "ko": "가고시마공항 36 CC",
+          "ja": "かごしま空港36カントリークラブ",
+          "driveMin": 15,
+          "distanceKm": 10,
+          "holes": 36,
+          "corridor": true,
+          "pedigree": "남규슈 굴지의 명문 · 36홀",
+          "twosome": "available",
+          "note": "공항 15분. 공항코스는 역사 있는 챔피언십 코스. 평일 6,680엔~. 2사무 보증 플랜 대응",
+          "verified": true,
+          "greenFee": "평일 6,680엔~",
+          "twosomeRank": 1,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "텐몬칸 상점가",
+        "note": "공항→시내 40분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "목·금 2라운딩 + 2인 플레이 가능 + 토·일 쇼핑·온천 모두 충족"
+      },
+      "score": 24
+    },
+    {
+      "iata": "OKA",
+      "city": "오키나와 나하",
+      "airportName": "나하공항",
+      "region": "오키나와",
+      "blockMinutes": 140,
+      "blockLabel": "2시간 20분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "제주항공",
+        "티웨이",
+        "진에어"
+      ],
+      "dailyFlights": 5,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "07:50",
+      "morningDepWindow": [
+        "07:50",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:40",
+      "latestDepForEarly": "07:40",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:10",
+      "slackMinutes": 110,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "3월 기온 20도대. 일본 내 최상 조건",
+        "courses": [
+          "가누차 리조트",
+          "더 사우스링크스",
+          "PGM 긴완",
+          "류큐 GC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "류진노유(세나가지마)",
+            "transitMin": 20
+          },
+          {
+            "name": "자마미/나고 온천시설",
+            "transitMin": 80
+          }
+        ],
+        "word": "제한적",
+        "nearest": {
+          "name": "류진노유(세나가지마)",
+          "transitMin": 20
+        }
+      },
+      "weatherMarch": {
+        "highC": 22,
+        "lowC": 16
+      },
+      "accessNote": "골프 조건 최고, 전통 온천 문화는 약함",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "18:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "15:00",
+        "canRound": true,
+        "leisureHours": 6,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:10"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "OKA",
+            "pref": "沖縄県",
+            "ko": "더 서던링크스 GC",
+            "ja": "ザ・サザンリンクスゴルフクラブ",
+            "driveMin": 40,
+            "distanceKm": 25,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "오키나와 대표 시사이드 링크스",
+            "twosome": "all-days",
+            "note": "전일 2사무 OK",
+            "verified": true,
+            "twosomeRank": 3,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E6%B2%96%E7%B8%84%E7%9C%8C"
+          },
+          {
+            "iata": "OKA",
+            "pref": "沖縄県",
+            "ko": "팜힐스 GC 리조트",
+            "ja": "パームヒルズゴルフリゾートクラブ",
+            "driveMin": 30,
+            "distanceKm": 20,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "나하공항 최근접 리조트 코스",
+            "twosome": "weekday",
+            "note": "평일 2사무 OK. 남국 리조트 분위기",
+            "verified": true,
+            "twosomeRank": 2,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E6%B2%96%E7%B8%84%E7%9C%8C"
+          },
+          {
+            "iata": "OKA",
+            "pref": "沖縄県",
+            "ko": "PGM 골프리조트 오키나와",
+            "ja": "PGMゴルフリゾート沖縄",
+            "driveMin": 60,
+            "distanceKm": 45,
+            "holes": 18,
+            "corridor": false,
+            "pedigree": "리조트 코스",
+            "twosome": "weekday",
+            "note": "평일 2사무 OK. 공항 60분",
+            "verified": true,
+            "twosomeRank": 2,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E6%B2%96%E7%B8%84%E7%9C%8C"
+          },
+          {
+            "iata": "OKA",
+            "pref": "沖縄県",
+            "ko": "나하 GC",
+            "ja": "那覇ゴルフ倶楽部",
+            "driveMin": 30,
+            "distanceKm": 18,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "시내 접근 양호",
+            "twosome": "unknown",
+            "note": "",
+            "verified": true,
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E6%B2%96%E7%B8%84%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 4,
+          "inRadius": 4,
+          "corridor": 3,
+          "twosomeUsable": 3,
+          "twosomeUnknown": 1
+        },
+        "best": {
+          "iata": "OKA",
+          "pref": "沖縄県",
+          "ko": "더 서던링크스 GC",
+          "ja": "ザ・サザンリンクスゴルフクラブ",
+          "driveMin": 40,
+          "distanceKm": 25,
+          "holes": 18,
+          "corridor": true,
+          "pedigree": "오키나와 대표 시사이드 링크스",
+          "twosome": "all-days",
+          "note": "전일 2사무 OK",
+          "verified": true,
+          "twosomeRank": 3,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E6%B2%96%E7%B8%84%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E6%B2%96%E7%B8%84%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "국제거리·아메리칸빌리지·DFS 갤러리아",
+        "note": "아시비나 아웃렛 공항 15분"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "유력 후보",
+        "reason": "골프 + 온천/쇼핑 한쪽 강점"
+      },
+      "score": 23
+    },
+    {
+      "iata": "NGO",
+      "city": "나고야",
+      "airportName": "주부국제공항",
+      "region": "주부",
+      "blockMinutes": 115,
+      "blockLabel": "1시간 55분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "제주항공",
+        "티웨이",
+        "진에어",
+        "에어서울"
+      ],
+      "dailyFlights": 6,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "07:20",
+      "morningDepWindow": [
+        "07:20",
+        "10:00"
+      ],
+      "latestDepForCutoff": "10:05",
+      "latestDepForEarly": "08:05",
+      "beforeEarly": true,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "09:15",
+      "slackMinutes": 165,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호",
+        "courses": [
+          "나고야 GC",
+          "미카와 CC",
+          "스즈카 CC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "게로 온천",
+            "transitMin": 150
+          },
+          {
+            "name": "유노야마 온천",
+            "transitMin": 80
+          },
+          {
+            "name": "가이즈카",
+            "transitMin": 60
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "가이즈카",
+          "transitMin": 60
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "게로온천은 멀지만 온천 품질 최상급",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "19:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "16:00",
+        "canRound": true,
+        "leisureHours": 7,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "여유",
+        "score": 3,
+        "teeOff": "11:15"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "NGO",
+            "pref": "愛知県",
+            "ko": "미카와 CC",
+            "ja": "三河カントリークラブ",
+            "driveMin": 50,
+            "distanceKm": 38,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E6%9D%B1%E6%B5%B7&prefecture=%E6%84%9B%E7%9F%A5%E7%9C%8C"
+          },
+          {
+            "iata": "NGO",
+            "pref": "愛知県",
+            "ko": "나고야 GC 와고 코스",
+            "ja": "名古屋ゴルフ倶楽部 和合コース",
+            "driveMin": 60,
+            "distanceKm": 42,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "일본 명문 · 중부오픈 개최",
+            "twosome": "unknown",
+            "note": "멤버 중심 운영 — 2사무 가능성 낮음",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E6%9D%B1%E6%B5%B7&prefecture=%E6%84%9B%E7%9F%A5%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 2,
+          "inRadius": 2,
+          "corridor": 2,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 2
+        },
+        "best": null,
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E6%9D%B1%E6%B5%B7&prefecture=%E6%84%9B%E7%9F%A5%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "사카에·나고야역 / 미쓰이 아웃렛 재즈드림",
+        "note": "재즈드림 공항 30분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 22
+    },
+    {
+      "iata": "KMJ",
+      "city": "구마모토",
+      "airportName": "구마모토공항",
+      "region": "규슈",
+      "blockMinutes": 100,
+      "blockLabel": "1시간 40분",
+      "carriers": [
+        "제주항공",
+        "티웨이",
+        "진에어"
+      ],
+      "dailyFlights": 2,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "08:30",
+      "morningDepWindow": [
+        "08:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:20",
+      "latestDepForEarly": "08:20",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:10",
+      "slackMinutes": 110,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "아소 주변 고원 코스. 3월 양호",
+        "courses": [
+          "아소 GC",
+          "구마모토 쿠고 CC",
+          "그란돔 아소"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "구로카와 온천",
+            "transitMin": 75
+          },
+          {
+            "name": "아소 우치노마키",
+            "transitMin": 55
+          },
+          {
+            "name": "히토요시",
+            "transitMin": 100
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "아소 우치노마키",
+          "transitMin": 55
+        }
+      },
+      "weatherMarch": {
+        "highC": 15,
+        "lowC": 3
+      },
+      "accessNote": "렌터카 권장. 구로카와까지 산길 1시간 15분",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "15:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "12:30",
+        "canRound": true,
+        "leisureHours": 3.5,
+        "rating": 1,
+        "label": "아침 온천만",
+        "word": "제한적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:10"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "KMJ",
+            "pref": "熊本県",
+            "ko": "구마모토공항 CC",
+            "ja": "熊本空港カントリークラブ",
+            "driveMin": 5,
+            "distanceKm": 3,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "1974년 개장 명문 · 공항 인접",
+            "twosome": "available",
+            "note": "공항에 바로 붙어 있어 도착 당일 라운딩에 최적. 현 내 2사무 보증 코스 목록 포함",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%86%8A%E6%9C%AC%E7%9C%8C"
+          },
+          {
+            "iata": "KMJ",
+            "pref": "熊本県",
+            "ko": "아소 GC",
+            "ja": "阿蘇ゴルフクラブ",
+            "driveMin": 40,
+            "distanceKm": 30,
+            "holes": 18,
+            "corridor": false,
+            "pedigree": "아소 고원 코스",
+            "twosome": "unknown",
+            "note": "구로카와·우치노마키 온천 방면",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%86%8A%E6%9C%AC%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 2,
+          "inRadius": 2,
+          "corridor": 1,
+          "twosomeUsable": 1,
+          "twosomeUnknown": 1
+        },
+        "best": {
+          "iata": "KMJ",
+          "pref": "熊本県",
+          "ko": "구마모토공항 CC",
+          "ja": "熊本空港カントリークラブ",
+          "driveMin": 5,
+          "distanceKm": 3,
+          "holes": 18,
+          "corridor": true,
+          "pedigree": "1974년 개장 명문 · 공항 인접",
+          "twosome": "available",
+          "note": "공항에 바로 붙어 있어 도착 당일 라운딩에 최적. 현 내 2사무 보증 코스 목록 포함",
+          "verified": true,
+          "twosomeRank": 1,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%86%8A%E6%9C%AC%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%86%8A%E6%9C%AC%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "시모토리·가미토리 아케이드",
+        "note": "공항→시내 45분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "목·금 2라운딩 + 2인 플레이 가능 + 토·일 쇼핑·온천 모두 충족"
+      },
+      "score": 22
+    },
+    {
+      "iata": "OIT",
+      "city": "오이타",
+      "airportName": "오이타공항",
+      "region": "규슈",
+      "blockMinutes": 95,
+      "blockLabel": "1시간 35분",
+      "carriers": [
+        "제주항공",
+        "티웨이"
+      ],
+      "dailyFlights": 2,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "08:30",
+      "morningDepWindow": [
+        "08:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:25",
+      "latestDepForEarly": "08:25",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:05",
+      "slackMinutes": 115,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "벳푸·유후인 주변 코스. 3월 라운딩 양호",
+        "courses": [
+          "벳푸 GC",
+          "APU 주변 코스",
+          "오이타 사까노이치 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "벳푸",
+            "transitMin": 45
+          },
+          {
+            "name": "유후인",
+            "transitMin": 55
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "벳푸",
+          "transitMin": 45
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "골프+온천 조합 최강 후보. 공항에서 온천지까지 1시간 이내",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "15:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "12:00",
+        "canRound": true,
+        "leisureHours": 3,
+        "rating": 1,
+        "label": "아침 온천만",
+        "word": "제한적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:05"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "OIT",
+            "pref": "大分県",
+            "ko": "오이타 중앙 GC",
+            "ja": "大分中央ゴルフクラブ",
+            "driveMin": 30,
+            "distanceKm": 26,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "공항 접근성 양호",
+            "twosome": "available",
+            "note": "공항에서 30분으로 오이타 권역 최단",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%A4%A7%E5%88%86%E7%9C%8C"
+          },
+          {
+            "iata": "OIT",
+            "pref": "大分県",
+            "ko": "벳푸 GC",
+            "ja": "別府ゴルフ倶楽部",
+            "driveMin": 35,
+            "distanceKm": 30,
+            "holes": 36,
+            "corridor": true,
+            "pedigree": "1930년 개장 · 규슈 최고(最古) 명문",
+            "twosome": "available",
+            "note": "36홀 P144 / 13,699야드 멤버 코스. 2사무 보증 대응 등록",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%A4%A7%E5%88%86%E7%9C%8C"
+          },
+          {
+            "iata": "OIT",
+            "pref": "大分県",
+            "ko": "벳푸노모리 GC",
+            "ja": "別府の森ゴルフ倶楽部",
+            "driveMin": 45,
+            "distanceKm": 38,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "가성비",
+            "twosome": "available",
+            "note": "",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%A4%A7%E5%88%86%E7%9C%8C"
+          },
+          {
+            "iata": "OIT",
+            "pref": "大分県",
+            "ko": "벳푸 오기야마 GC",
+            "ja": "別府扇山ゴルフ倶楽部",
+            "driveMin": 45,
+            "distanceKm": 40,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "벳푸 온천가 인접",
+            "twosome": "available",
+            "note": "",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%A4%A7%E5%88%86%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 4,
+          "inRadius": 4,
+          "corridor": 4,
+          "twosomeUsable": 4,
+          "twosomeUnknown": 0
+        },
+        "best": {
+          "iata": "OIT",
+          "pref": "大分県",
+          "ko": "오이타 중앙 GC",
+          "ja": "大分中央ゴルフクラブ",
+          "driveMin": 30,
+          "distanceKm": 26,
+          "holes": 18,
+          "corridor": true,
+          "pedigree": "공항 접근성 양호",
+          "twosome": "available",
+          "note": "공항에서 30분으로 오이타 권역 최단",
+          "verified": true,
+          "twosomeRank": 1,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%A4%A7%E5%88%86%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%A4%A7%E5%88%86%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "오이타 아뮤플라자·벳푸 상점가",
+        "note": "공항→오이타시 60분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 20
+    },
+    {
+      "iata": "MYJ",
+      "city": "마쓰야마",
+      "airportName": "마쓰야마공항",
+      "region": "시코쿠",
+      "blockMinutes": 100,
+      "blockLabel": "1시간 40분",
+      "carriers": [
+        "제주항공",
+        "티웨이"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:00",
+      "morningDepWindow": [
+        "09:00",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:20",
+      "latestDepForEarly": "08:20",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:40",
+      "slackMinutes": 80,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호. 세토내해 조망 코스",
+        "courses": [
+          "마쓰야마 GC",
+          "에히메 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "도고 온천",
+            "transitMin": 30
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "도고 온천",
+          "transitMin": 30
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "일본 최고(最古) 도고온천까지 30분. 온천 접근성 1위급",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "15:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "12:00",
+        "canRound": true,
+        "leisureHours": 3,
+        "rating": 1,
+        "label": "아침 온천만",
+        "word": "제한적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:40"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "MYJ",
+            "pref": "愛媛県",
+            "ko": "오쿠도고 GC",
+            "ja": "奥道後ゴルフクラブ",
+            "driveMin": 40,
+            "distanceKm": 22,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "오쿠도고 온천 권역",
+            "twosome": "all-days",
+            "note": "평일 셀프 2사무 13,800엔 / 토·일·공휴일 캐디 동반 2사무 24,500엔 — 주말에도 2사무 가능",
+            "verified": true,
+            "greenFee": "평일 2사무 13,800엔 / 토·일 캐디 24,500엔",
+            "twosomeRank": 3,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E6%84%9B%E5%AA%9B%E7%9C%8C"
+          },
+          {
+            "iata": "MYJ",
+            "pref": "愛媛県",
+            "ko": "도고 GC",
+            "ja": "道後ゴルフ倶楽部",
+            "driveMin": 30,
+            "distanceKm": 15,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "도고 온천 인접",
+            "twosome": "weekday",
+            "note": "평일 셀프·2사무 보증 플랜 점심 포함 13,500엔. 도고온천 숙박과 직결",
+            "verified": true,
+            "greenFee": "평일 2사무 13,500엔(점심 포함)",
+            "twosomeRank": 2,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E6%84%9B%E5%AA%9B%E7%9C%8C"
+          },
+          {
+            "iata": "MYJ",
+            "pref": "愛媛県",
+            "ko": "마쓰야마 국제 GC (PGM)",
+            "ja": "松山国際ゴルフ倶楽部【PGM】",
+            "driveMin": 20,
+            "distanceKm": 12,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "공항 최근접 · 페어웨이 승입 가능",
+            "twosome": "unknown",
+            "note": "마쓰야마공항에서 가장 가까운 코스",
+            "verified": true,
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E6%84%9B%E5%AA%9B%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 3,
+          "inRadius": 3,
+          "corridor": 3,
+          "twosomeUsable": 2,
+          "twosomeUnknown": 1
+        },
+        "best": {
+          "iata": "MYJ",
+          "pref": "愛媛県",
+          "ko": "오쿠도고 GC",
+          "ja": "奥道後ゴルフクラブ",
+          "driveMin": 40,
+          "distanceKm": 22,
+          "holes": 18,
+          "corridor": true,
+          "pedigree": "오쿠도고 온천 권역",
+          "twosome": "all-days",
+          "note": "평일 셀프 2사무 13,800엔 / 토·일·공휴일 캐디 동반 2사무 24,500엔 — 주말에도 2사무 가능",
+          "verified": true,
+          "greenFee": "평일 2사무 13,800엔 / 토·일 캐디 24,500엔",
+          "twosomeRank": 3,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E6%84%9B%E5%AA%9B%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E6%84%9B%E5%AA%9B%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "오카이도·긴텐가이 아케이드",
+        "note": "공항→시내 20분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 19
+    },
+    {
+      "iata": "FSZ",
+      "city": "시즈오카",
+      "airportName": "시즈오카공항",
+      "region": "주부",
+      "blockMinutes": 135,
+      "blockLabel": "2시간 15분",
+      "carriers": [
+        "아시아나",
+        "에어서울",
+        "티웨이"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:10",
+      "morningDepWindow": [
+        "09:10",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:45",
+      "latestDepForEarly": "07:45",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:25",
+      "slackMinutes": 35,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "이즈·하코네 명문 코스권. 3월 최적",
+        "courses": [
+          "가와나 호텔 GC",
+          "시즈오카 CC",
+          "닛케이 GC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "이즈 슈젠지",
+            "transitMin": 100
+          },
+          {
+            "name": "아타미",
+            "transitMin": 110
+          },
+          {
+            "name": "하코네",
+            "transitMin": 140
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "이즈 슈젠지",
+          "transitMin": 100
+        }
+      },
+      "weatherMarch": {
+        "highC": 15,
+        "lowC": 5
+      },
+      "accessNote": "가와나 후지코스 등 명문 접근. 골프+온천 품질 모두 상위",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "15:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "12:00",
+        "canRound": true,
+        "leisureHours": 3,
+        "rating": 1,
+        "label": "아침 온천만",
+        "word": "제한적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "13:25"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "FSZ",
+            "pref": "静岡県",
+            "ko": "시즈오카 CC 하마오카 코스",
+            "ja": "静岡カントリークラブ 浜岡コース",
+            "driveMin": 35,
+            "distanceKm": 25,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "토너먼트 개최",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E6%9D%B1%E6%B5%B7&prefecture=%E9%9D%99%E5%B2%A1%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [
+          {
+            "iata": "FSZ",
+            "pref": "静岡県",
+            "ko": "가와나 호텔 GC 후지 코스",
+            "ja": "川奈ホテルゴルフコース 富士コース",
+            "driveMin": 105,
+            "distanceKm": 75,
+            "holes": 18,
+            "corridor": false,
+            "pedigree": "일본 100대 코스 · 세계적 명문",
+            "twosome": "unknown",
+            "note": "50km 밖 — 이즈 반도 동안. 명문이지만 공항 축선 외",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E6%9D%B1%E6%B5%B7&prefecture=%E9%9D%99%E5%B2%A1%E7%9C%8C"
+          }
+        ],
+        "counts": {
+          "total": 2,
+          "inRadius": 1,
+          "corridor": 1,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 1
+        },
+        "best": null,
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E6%9D%B1%E6%B5%B7&prefecture=%E9%9D%99%E5%B2%A1%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "시즈오카 고후쿠초 / 고텐바 프리미엄 아웃렛",
+        "note": "고텐바 아웃렛 2시간"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 19
+    },
+    {
+      "iata": "KKJ",
+      "city": "기타큐슈",
+      "airportName": "기타큐슈공항",
+      "region": "규슈",
+      "blockMinutes": 85,
+      "blockLabel": "1시간 25분",
+      "carriers": [
+        "진에어",
+        "제주항공"
+      ],
+      "dailyFlights": 2,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "08:00",
+      "morningDepWindow": [
+        "08:00",
+        "10:00"
+      ],
+      "latestDepForCutoff": "10:35",
+      "latestDepForEarly": "08:35",
+      "beforeEarly": true,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "09:25",
+      "slackMinutes": 155,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 라운딩 가능. 코스 밀집도는 후쿠오카보다 낮음",
+        "courses": [
+          "기타큐슈 GC",
+          "고쿠라 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유후인",
+            "transitMin": 110
+          },
+          {
+            "name": "벳푸",
+            "transitMin": 120
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "유후인",
+          "transitMin": 110
+        }
+      },
+      "weatherMarch": {
+        "highC": 13,
+        "lowC": 4
+      },
+      "accessNote": "24시간 공항. 렌터카 필수에 가까움",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "16:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "13:00",
+        "canRound": true,
+        "leisureHours": 4,
+        "rating": 2,
+        "label": "온천 또는 쇼핑",
+        "word": "양호"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "여유",
+        "score": 3,
+        "teeOff": "11:25"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "KKJ",
+            "pref": "福岡県",
+            "ko": "기타큐슈 CC",
+            "ja": "北九州カントリー倶楽部",
+            "driveMin": 40,
+            "distanceKm": 30,
+            "holes": 27,
+            "corridor": true,
+            "pedigree": "27홀 대형 코스",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          },
+          {
+            "iata": "KKJ",
+            "pref": "福岡県",
+            "ko": "세이타노모리 기타큐슈 GC",
+            "ja": "瀬板の森北九州ゴルフコース",
+            "driveMin": 45,
+            "distanceKm": 35,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "야하타니시구 시영권",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 2,
+          "inRadius": 2,
+          "corridor": 2,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 2
+        },
+        "best": null,
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E7%A6%8F%E5%B2%A1%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "고쿠라 리버워크·우오마치",
+        "note": "공항→고쿠라 35분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 18
+    },
+    {
+      "iata": "KMI",
+      "city": "미야자키",
+      "airportName": "미야자키공항",
+      "region": "규슈",
+      "blockMinutes": 105,
+      "blockLabel": "1시간 45분",
+      "carriers": [
+        "제주항공",
+        "에어서울"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:00",
+      "morningDepWindow": [
+        "09:00",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:15",
+      "latestDepForEarly": "08:15",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:45",
+      "slackMinutes": 75,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "일본 골프 성지. 3월 최적, 토너먼트 코스 다수",
+        "courses": [
+          "피닉스 CC",
+          "미야자키 CC",
+          "톰 왓슨 GC",
+          "아오시마 GC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "시가이아 마쓰다케 온천",
+            "transitMin": 25
+          },
+          {
+            "name": "기리시마",
+            "transitMin": 110
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "시가이아 마쓰다케 온천",
+          "transitMin": 25
+        }
+      },
+      "weatherMarch": {
+        "highC": 17,
+        "lowC": 6
+      },
+      "accessNote": "공항-피닉스 CC 20분. 골프 중심 일정에 최적",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "11:45",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "08:45",
+        "canRound": false,
+        "leisureHours": 0,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:45"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "KMI",
+            "pref": "宮崎県",
+            "ko": "피닉스 CC",
+            "ja": "フェニックスカントリークラブ",
+            "driveMin": 25,
+            "distanceKm": 18,
+            "holes": 27,
+            "corridor": true,
+            "pedigree": "던롭 피닉스 토너먼트 개최 — 일본 최정상급",
+            "twosome": "available",
+            "note": "2사무 플레이 OK. 도착일·최종일 플레이에 최적이라고 명시된 코스",
+            "verified": true,
+            "twosomeRank": 1,
+            "twosomeUsable": true,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%AE%AE%E5%B4%8E%E7%9C%8C"
+          },
+          {
+            "iata": "KMI",
+            "pref": "宮崎県",
+            "ko": "미야자키 CC",
+            "ja": "宮崎カントリークラブ",
+            "driveMin": 25,
+            "distanceKm": 17,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "명문",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%AE%AE%E5%B4%8E%E7%9C%8C"
+          },
+          {
+            "iata": "KMI",
+            "pref": "宮崎県",
+            "ko": "톰 왓슨 GC",
+            "ja": "トム・ワトソンゴルフコース",
+            "driveMin": 30,
+            "distanceKm": 22,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "톰 왓슨 설계 링크스",
+            "twosome": "unknown",
+            "note": "시가이아 리조트 권역",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%AE%AE%E5%B4%8E%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 3,
+          "inRadius": 3,
+          "corridor": 3,
+          "twosomeUsable": 1,
+          "twosomeUnknown": 2
+        },
+        "best": {
+          "iata": "KMI",
+          "pref": "宮崎県",
+          "ko": "피닉스 CC",
+          "ja": "フェニックスカントリークラブ",
+          "driveMin": 25,
+          "distanceKm": 18,
+          "holes": 27,
+          "corridor": true,
+          "pedigree": "던롭 피닉스 토너먼트 개최 — 일본 최정상급",
+          "twosome": "available",
+          "note": "2사무 플레이 OK. 도착일·최종일 플레이에 최적이라고 명시된 코스",
+          "verified": true,
+          "twosomeRank": 1,
+          "twosomeUsable": true,
+          "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%AE%AE%E5%B4%8E%E7%9C%8C"
+        },
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&prefecture=%E5%AE%AE%E5%B4%8E%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "다치바나도리 / 이온몰",
+        "note": "공항→시내 15분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 17
+    },
+    {
+      "iata": "HIJ",
+      "city": "히로시마",
+      "airportName": "히로시마공항",
+      "region": "주고쿠",
+      "blockMinutes": 100,
+      "blockLabel": "1시간 40분",
+      "carriers": [
+        "아시아나",
+        "에어서울",
+        "제주항공"
+      ],
+      "dailyFlights": 2,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:20",
+      "morningDepWindow": [
+        "09:20",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:20",
+      "latestDepForEarly": "08:20",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:00",
+      "slackMinutes": 60,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호. 공항 인접 코스 다수",
+        "courses": [
+          "히로시마 CC",
+          "빈고 CC",
+          "세토내해 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "미야하마 온천",
+            "transitMin": 75
+          },
+          {
+            "name": "유키 온천",
+            "transitMin": 90
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "미야하마 온천",
+          "transitMin": 75
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 3
+      },
+      "accessNote": "공항이 시내에서 50분 떨어진 산간. 렌터카 유리",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "15:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "12:30",
+        "canRound": true,
+        "leisureHours": 3.5,
+        "rating": 1,
+        "label": "아침 온천만",
+        "word": "제한적"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "13:00"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [
+          {
+            "iata": "HIJ",
+            "pref": "広島県",
+            "ko": "히로시마 CC",
+            "ja": "広島カントリークラブ",
+            "driveMin": 35,
+            "distanceKm": 25,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "현 내 명문",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E5%BA%83%E5%B3%B6%E7%9C%8C"
+          },
+          {
+            "iata": "HIJ",
+            "pref": "広島県",
+            "ko": "빈고 CC",
+            "ja": "備後カントリークラブ",
+            "driveMin": 40,
+            "distanceKm": 30,
+            "holes": 18,
+            "corridor": true,
+            "pedigree": "",
+            "twosome": "unknown",
+            "note": "",
+            "twosomeRank": 0,
+            "twosomeUsable": false,
+            "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E5%BA%83%E5%B3%B6%E7%9C%8C"
+          }
+        ],
+        "outOfRadius": [],
+        "counts": {
+          "total": 2,
+          "inRadius": 2,
+          "corridor": 2,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 2
+        },
+        "best": null,
+        "verifyUrl": "https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B8%AD%E5%9B%BD%E3%83%BB%E5%9B%9B%E5%9B%BD&prefecture=%E5%BA%83%E5%B3%B6%E7%9C%8C"
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "혼도리·에디온 / 디 아웃렛 히로시마",
+        "note": "공항→시내 50분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 17
+    },
+    {
+      "iata": "SDJ",
+      "city": "센다이",
+      "airportName": "센다이공항",
+      "region": "도호쿠",
+      "blockMinutes": 150,
+      "blockLabel": "2시간 30분",
+      "carriers": [
+        "아시아나",
+        "티웨이",
+        "제주항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:30",
+      "morningDepWindow": [
+        "09:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:30",
+      "latestDepForEarly": "07:30",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "12:00",
+      "slackMinutes": 0,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 1,
+        "note": "3월 상순 휴장/동결 그린 가능. 하순 조건부",
+        "courses": [
+          "센다이 CC",
+          "이즈미 파크타운 GC"
+        ],
+        "word": "제한적"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "아키우 온천",
+            "transitMin": 55
+          },
+          {
+            "name": "나루코 온천",
+            "transitMin": 110
+          },
+          {
+            "name": "자오 온천",
+            "transitMin": 100
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "아키우 온천",
+          "transitMin": 55
+        }
+      },
+      "weatherMarch": {
+        "highC": 9,
+        "lowC": 0
+      },
+      "accessNote": "온천은 훌륭하나 3월 골프는 도박",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "16:00",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "13:00",
+        "canRound": true,
+        "leisureHours": 4,
+        "rating": 2,
+        "label": "온천 또는 쇼핑",
+        "word": "양호"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "타이트",
+        "score": 1,
+        "teeOff": "14:00",
+        "note": "일몰 전 종료 빠듯 — 하프 라운딩 대안"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "이치반초 아케이드·센다이역",
+        "note": "공항 액세스선 25분"
+      },
+      "verdict": {
+        "tier": "C",
+        "label": "조건부",
+        "reason": "3월 날씨 또는 접근성 리스크"
+      },
+      "score": 16
+    },
+    {
+      "iata": "CTS",
+      "city": "삿포로",
+      "airportName": "신치토세공항",
+      "region": "홋카이도",
+      "blockMinutes": 170,
+      "blockLabel": "2시간 50분",
+      "carriers": [
+        "대한항공",
+        "아시아나",
+        "제주항공",
+        "티웨이",
+        "진에어",
+        "에어부산"
+      ],
+      "dailyFlights": 6,
+      "confidence": "high",
+      "sourceNote": null,
+      "earliestDep": "07:40",
+      "morningDepWindow": [
+        "07:40",
+        "10:00"
+      ],
+      "latestDepForCutoff": "09:10",
+      "latestDepForEarly": "07:10",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:30",
+      "slackMinutes": 90,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 0,
+        "note": "3월 전 코스 적설 휴장(개장 4월 말~5월)",
+        "courses": [],
+        "word": "불가"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "노보리베쓰",
+            "transitMin": 65
+          },
+          {
+            "name": "조잔케이",
+            "transitMin": 90
+          },
+          {
+            "name": "유노카와",
+            "transitMin": 220
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "노보리베쓰",
+          "transitMin": 65
+        }
+      },
+      "weatherMarch": {
+        "highC": 4,
+        "lowC": -5
+      },
+      "accessNote": "골프 불가. 온천+스키 조합만 성립",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "18:30",
+        "derived": false,
+        "pattern": "all-day",
+        "lastActivity": "15:30",
+        "canRound": true,
+        "leisureHours": 6.5,
+        "rating": 3,
+        "label": "온천 + 쇼핑 모두",
+        "word": "최적"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 0,
+      "maxRounds": 0,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "삿포로 스스키노·다누키코지 / 치토세 아웃렛",
+        "note": "라라포트 공항 10분"
+      },
+      "verdict": {
+        "tier": "C",
+        "label": "온천 전용",
+        "reason": "3월 골프 코스 휴장 — 목·금 라운딩 불가"
+      },
+      "score": 14
+    },
+    {
+      "iata": "NGS",
+      "city": "나가사키",
+      "airportName": "나가사키공항",
+      "region": "규슈",
+      "blockMinutes": 90,
+      "blockLabel": "1시간 30분",
+      "carriers": [
+        "제주항공",
+        "티웨이"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:00",
+      "morningDepWindow": [
+        "09:00",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:30",
+      "latestDepForEarly": "08:30",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:30",
+      "slackMinutes": 90,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "해안 코스. 3월 바람 주의",
+        "courses": [
+          "나가사키 사이카이 GC",
+          "파사지 킨카이"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "운젠",
+            "transitMin": 90
+          },
+          {
+            "name": "오바마 온천",
+            "transitMin": 80
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "오바마 온천",
+          "transitMin": 80
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 6
+      },
+      "accessNote": "공항이 섬(오무라만)에 위치, 다리로 연결",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "11:30",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "08:30",
+        "canRound": false,
+        "leisureHours": 0,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:30"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "하마노마치 아케이드",
+        "note": "공항→시내 45분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 14
+    },
+    {
+      "iata": "HSG",
+      "city": "사가",
+      "airportName": "사가공항",
+      "region": "규슈",
+      "blockMinutes": 90,
+      "blockLabel": "1시간 30분",
+      "carriers": [
+        "티웨이"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:30",
+      "morningDepWindow": [
+        "09:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:30",
+      "latestDepForEarly": "08:30",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:00",
+      "slackMinutes": 60,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호, 저렴한 코스 다수",
+        "courses": [
+          "사가 로얄 GC",
+          "우레시노 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "우레시노 온천",
+            "transitMin": 60
+          },
+          {
+            "name": "다케오 온천",
+            "transitMin": 50
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "다케오 온천",
+          "transitMin": 50
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "운항편 적음(보통 1일 1편). 렌터카 필수",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:00",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:00",
+        "canRound": false,
+        "leisureHours": 0,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "13:00"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 0,
+        "areas": "대형 상업시설 없음",
+        "note": "우레시노 온천가 중심"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "유력 후보",
+        "reason": "골프 + 온천/쇼핑 한쪽 강점"
+      },
+      "score": 14
+    },
+    {
+      "iata": "OKJ",
+      "city": "오카야마",
+      "airportName": "오카야마공항",
+      "region": "주고쿠",
+      "blockMinutes": 105,
+      "blockLabel": "1시간 45분",
+      "carriers": [
+        "에어서울",
+        "제주항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:30",
+      "morningDepWindow": [
+        "09:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:15",
+      "latestDepForEarly": "08:15",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:15",
+      "slackMinutes": 45,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "일본 내 강수량 최저 지역. 3월 라운딩 안정적",
+        "courses": [
+          "오카야마 GC",
+          "도몬 CC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유바라 온천",
+            "transitMin": 80
+          },
+          {
+            "name": "오쿠쓰 온천",
+            "transitMin": 70
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "오쿠쓰 온천",
+          "transitMin": 70
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 3
+      },
+      "accessNote": "'하레노쿠니(맑음의 나라)' 3월 날씨 리스크 최소",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:15",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:15",
+        "canRound": false,
+        "leisureHours": 0.3,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "13:15"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "오모테초·구라시키 미관지구",
+        "note": "공항→시내 30분"
+      },
+      "verdict": {
+        "tier": "A",
+        "label": "최우선 후보",
+        "reason": "골프·온천 상위, 쇼핑 보통"
+      },
+      "score": 14
+    },
+    {
+      "iata": "KMQ",
+      "city": "고마쓰",
+      "airportName": "고마쓰공항",
+      "region": "호쿠리쿠",
+      "blockMinutes": 120,
+      "blockLabel": "2시간",
+      "carriers": [
+        "에어서울",
+        "대한항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "09:30",
+      "morningDepWindow": [
+        "09:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:00",
+      "latestDepForEarly": "08:00",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:30",
+      "slackMinutes": 30,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 1,
+        "note": "3월 초 저온·잔설 가능. 중하순 권장",
+        "courses": [
+          "가타야마즈 GC",
+          "고마쓰 CC"
+        ],
+        "word": "제한적"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "가가 온천(야마시로·야마나카)",
+            "transitMin": 35
+          },
+          {
+            "name": "와쿠라 온천",
+            "transitMin": 110
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "가가 온천(야마시로·야마나카)",
+          "transitMin": 35
+        }
+      },
+      "weatherMarch": {
+        "highC": 12,
+        "lowC": 3
+      },
+      "accessNote": "가가온천+골프 묶기 좋으나 3월 상순 눈 리스크",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:30",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:30",
+        "canRound": false,
+        "leisureHours": 0.5,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "13:30"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "가나자와 오미초·히가시차야",
+        "note": "공항→가나자와 50분"
+      },
+      "verdict": {
+        "tier": "C",
+        "label": "조건부",
+        "reason": "3월 날씨 또는 접근성 리스크"
+      },
+      "score": 14
+    },
+    {
+      "iata": "TAK",
+      "city": "다카마쓰",
+      "airportName": "다카마쓰공항",
+      "region": "시코쿠",
+      "blockMinutes": 105,
+      "blockLabel": "1시간 45분",
+      "carriers": [
+        "에어서울",
+        "제주항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "medium",
+      "sourceNote": null,
+      "earliestDep": "08:40",
+      "morningDepWindow": [
+        "08:40",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:15",
+      "latestDepForEarly": "08:15",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "10:25",
+      "slackMinutes": 95,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호. 강수 적은 지역",
+        "courses": [
+          "다카마쓰 GC",
+          "사누키 CC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "고토히라 온천",
+            "transitMin": 45
+          },
+          {
+            "name": "시오노에 온천",
+            "transitMin": 35
+          }
+        ],
+        "word": "제한적",
+        "nearest": {
+          "name": "시오노에 온천",
+          "transitMin": 35
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "온천 규모는 작지만 날씨가 안정적",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "11:25",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "08:25",
+        "canRound": false,
+        "leisureHours": 0,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "가능",
+        "score": 2,
+        "teeOff": "12:25"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "마루가메초 아케이드",
+        "note": "공항→시내 40분"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "골프 중심",
+        "reason": "토·일 쇼핑·온천 선택지 제한"
+      },
+      "score": 12
+    },
+    {
+      "iata": "UBJ",
+      "city": "야마구치 우베",
+      "airportName": "야마구치우베공항",
+      "region": "주고쿠",
+      "blockMinutes": 95,
+      "blockLabel": "1시간 35분",
+      "carriers": [
+        "에어부산"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "10:00",
+      "morningDepWindow": [
+        "10:00",
+        "11:00"
+      ],
+      "latestDepForCutoff": "10:25",
+      "latestDepForEarly": "08:25",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:35",
+      "slackMinutes": 25,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호",
+        "courses": [
+          "야마구치 GC",
+          "우베 72 CC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유다 온천",
+            "transitMin": 50
+          },
+          {
+            "name": "나가토유모토",
+            "transitMin": 100
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "유다 온천",
+          "transitMin": 50
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 3
+      },
+      "accessNote": "우베 72는 36홀 대형 퍼블릭",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:35",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:35",
+        "canRound": false,
+        "leisureHours": 0.6,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "타이트",
+        "score": 1,
+        "teeOff": "13:35",
+        "note": "일몰 전 종료 빠듯 — 하프 라운딩 대안"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 0,
+        "areas": "소규모",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "유력 후보",
+        "reason": "골프 + 온천/쇼핑 한쪽 강점"
+      },
+      "score": 10
+    },
+    {
+      "iata": "YGJ",
+      "city": "요나고",
+      "airportName": "요나고공항",
+      "region": "주고쿠",
+      "blockMinutes": 110,
+      "blockLabel": "1시간 50분",
+      "carriers": [
+        "에어서울"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "10:00",
+      "morningDepWindow": [
+        "10:00",
+        "10:30"
+      ],
+      "latestDepForCutoff": "10:10",
+      "latestDepForEarly": "08:10",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:50",
+      "slackMinutes": 10,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 1,
+        "note": "3월 초 잔설·저온 가능. 중순 이후 권장",
+        "courses": [
+          "다이센 CC",
+          "요나고 GC"
+        ],
+        "word": "제한적"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "가이케 온천",
+            "transitMin": 15
+          },
+          {
+            "name": "미사사 온천",
+            "transitMin": 70
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "가이케 온천",
+          "transitMin": 15
+        }
+      },
+      "weatherMarch": {
+        "highC": 12,
+        "lowC": 3
+      },
+      "accessNote": "공항-가이케온천 15분. 온천 접근성 최상이나 3월 날씨 변동",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:50",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:50",
+        "canRound": false,
+        "leisureHours": 0.8,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "타이트",
+        "score": 1,
+        "teeOff": "13:50",
+        "note": "일몰 전 종료 빠듯 — 하프 라운딩 대안"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 0,
+        "areas": "요나고 시내 소규모",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "C",
+        "label": "조건부",
+        "reason": "3월 날씨 또는 접근성 리스크"
+      },
+      "score": 10
+    },
+    {
+      "iata": "MMY",
+      "city": "미야코지마",
+      "airportName": "미야코공항",
+      "region": "오키나와",
+      "blockMinutes": 155,
+      "blockLabel": "2시간 35분",
+      "carriers": [
+        "제주항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "09:00",
+      "morningDepWindow": [
+        "09:00",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:25",
+      "latestDepForEarly": "07:25",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:35",
+      "slackMinutes": 25,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 3,
+        "note": "시사이드 코스. 3월 최적",
+        "courses": [
+          "미야코지마 에메랄드 코스",
+          "시기라 베이 CC"
+        ],
+        "word": "최적"
+      },
+      "onsen": {
+        "rating": 0,
+        "areas": [],
+        "word": "불가",
+        "nearest": null
+      },
+      "weatherMarch": {
+        "highC": 22,
+        "lowC": 17
+      },
+      "accessNote": "온천 없음. 골프 전용",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:35",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:35",
+        "canRound": false,
+        "leisureHours": 0.6,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "타이트",
+        "score": 1,
+        "teeOff": "13:35",
+        "note": "일몰 전 종료 빠듯 — 하프 라운딩 대안"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 0,
+        "areas": "없음",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "골프 중심",
+        "reason": "토·일 쇼핑·온천 선택지 제한"
+      },
+      "score": 8
+    },
+    {
+      "iata": "ISG",
+      "city": "이시가키",
+      "airportName": "이시가키공항",
+      "region": "오키나와",
+      "blockMinutes": 165,
+      "blockLabel": "2시간 45분",
+      "carriers": [
+        "제주항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "09:00",
+      "morningDepWindow": [
+        "09:00",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:15",
+      "latestDepForEarly": "07:15",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:45",
+      "slackMinutes": 15,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "코스 수 적음",
+        "courses": [
+          "이시가키지마 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 1,
+        "areas": [
+          {
+            "name": "이시가키지마 온천",
+            "transitMin": 25
+          }
+        ],
+        "word": "제한적",
+        "nearest": {
+          "name": "이시가키지마 온천",
+          "transitMin": 25
+        }
+      },
+      "weatherMarch": {
+        "highC": 23,
+        "lowC": 18
+      },
+      "accessNote": "계절·부정기 운항 많음",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:45",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:45",
+        "canRound": false,
+        "leisureHours": 0.8,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": true,
+        "quality": "타이트",
+        "score": 1,
+        "teeOff": "13:45",
+        "note": "일몰 전 종료 빠듯 — 하프 라운딩 대안"
+      },
+      "golfRounds": 2,
+      "maxRounds": 2,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 0,
+        "areas": "소규모",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "B",
+        "label": "골프 중심",
+        "reason": "토·일 쇼핑·온천 선택지 제한"
+      },
+      "score": 8
+    },
+    {
+      "iata": "HKD",
+      "city": "하코다테",
+      "airportName": "하코다테공항",
+      "region": "홋카이도",
+      "blockMinutes": 160,
+      "blockLabel": "2시간 40분",
+      "carriers": [
+        "대한항공",
+        "에어부산"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "09:10",
+      "morningDepWindow": [
+        "09:10",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:20",
+      "latestDepForEarly": "07:20",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "11:50",
+      "slackMinutes": 10,
+      "feasible": true,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 0,
+        "note": "3월 적설 휴장",
+        "courses": [],
+        "word": "불가"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "유노카와 온천",
+            "transitMin": 20
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "유노카와 온천",
+          "transitMin": 20
+        }
+      },
+      "weatherMarch": {
+        "highC": 5,
+        "lowC": -3
+      },
+      "accessNote": "골프 불가",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "12:50",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "09:50",
+        "canRound": false,
+        "leisureHours": 0.8,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 0,
+      "maxRounds": 0,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "하코다테 아침시장·베이",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "C",
+        "label": "온천 전용",
+        "reason": "3월 골프 코스 휴장 — 목·금 라운딩 불가"
+      },
+      "score": 6
+    },
+    {
+      "iata": "KIJ",
+      "city": "니가타",
+      "airportName": "니가타공항",
+      "region": "주부",
+      "blockMinutes": 130,
+      "blockLabel": "2시간 10분",
+      "carriers": [
+        "대한항공",
+        "에어서울"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "10:00",
+      "morningDepWindow": [
+        "10:00",
+        "11:00"
+      ],
+      "latestDepForCutoff": "09:50",
+      "latestDepForEarly": "07:50",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "12:10",
+      "slackMinutes": -10,
+      "feasible": false,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 1,
+        "note": "3월 상·중순 코스 휴장 가능",
+        "courses": [
+          "니가타 CC",
+          "조에쓰 GC"
+        ],
+        "word": "제한적"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "에치고 유자와",
+            "transitMin": 105
+          },
+          {
+            "name": "쓰키오카 온천",
+            "transitMin": 45
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "쓰키오카 온천",
+          "transitMin": 45
+        }
+      },
+      "weatherMarch": {
+        "highC": 10,
+        "lowC": 2
+      },
+      "accessNote": "골프 목적이면 비권장",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "13:10",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "10:10",
+        "canRound": false,
+        "leisureHours": 1.2,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 1,
+      "maxRounds": 1,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "니가타 반다이시티",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "X",
+        "label": "오전 도착 불가",
+        "reason": "12시 전 도착 가능한 직항편 없음"
+      },
+      "score": 0
+    },
+    {
+      "iata": "TOY",
+      "city": "도야마",
+      "airportName": "도야마공항",
+      "region": "호쿠리쿠",
+      "blockMinutes": 125,
+      "blockLabel": "2시간 5분",
+      "carriers": [
+        "에어서울"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "10:10",
+      "morningDepWindow": [
+        "10:10",
+        "11:00"
+      ],
+      "latestDepForCutoff": "09:55",
+      "latestDepForEarly": "07:55",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "12:15",
+      "slackMinutes": -15,
+      "feasible": false,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 1,
+        "note": "3월 상순 적설 가능성",
+        "courses": [
+          "도야마 GC",
+          "구로베 CC"
+        ],
+        "word": "제한적"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "우나즈키 온천",
+            "transitMin": 60
+          },
+          {
+            "name": "도나미",
+            "transitMin": 45
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "도나미",
+          "transitMin": 45
+        }
+      },
+      "weatherMarch": {
+        "highC": 11,
+        "lowC": 2
+      },
+      "accessNote": "3월 여행에는 날씨 리스크 큼",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "13:15",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "10:15",
+        "canRound": false,
+        "leisureHours": 1.3,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 1,
+      "maxRounds": 1,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "도야마 소가와",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "X",
+        "label": "오전 도착 불가",
+        "reason": "12시 전 도착 가능한 직항편 없음"
+      },
+      "score": 0
+    },
+    {
+      "iata": "AOJ",
+      "city": "아오모리",
+      "airportName": "아오모리공항",
+      "region": "도호쿠",
+      "blockMinutes": 145,
+      "blockLabel": "2시간 25분",
+      "carriers": [
+        "대한항공"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "10:00",
+      "morningDepWindow": [
+        "10:00",
+        "11:00"
+      ],
+      "latestDepForCutoff": "09:35",
+      "latestDepForEarly": "07:35",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "12:25",
+      "slackMinutes": -25,
+      "feasible": false,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 0,
+        "note": "3월 전 코스 적설 휴장",
+        "courses": [],
+        "word": "불가"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "스카유 온천",
+            "transitMin": 50
+          },
+          {
+            "name": "아오니 온천",
+            "transitMin": 80
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "스카유 온천",
+          "transitMin": 50
+        }
+      },
+      "weatherMarch": {
+        "highC": 6,
+        "lowC": -3
+      },
+      "accessNote": "온천 전용 일정만 가능",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "13:25",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "10:25",
+        "canRound": false,
+        "leisureHours": 1.4,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 0,
+      "maxRounds": 0,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "아오모리 아우가",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "X",
+        "label": "오전 도착 불가",
+        "reason": "12시 전 도착 가능한 직항편 없음"
+      },
+      "score": 0
+    },
+    {
+      "iata": "AKJ",
+      "city": "아사히카와",
+      "airportName": "아사히카와공항",
+      "region": "홋카이도",
+      "blockMinutes": 180,
+      "blockLabel": "3시간",
+      "carriers": [
+        "진에어",
+        "티웨이"
+      ],
+      "dailyFlights": 1,
+      "confidence": "low",
+      "sourceNote": null,
+      "earliestDep": "09:30",
+      "morningDepWindow": [
+        "09:30",
+        "10:30"
+      ],
+      "latestDepForCutoff": "09:00",
+      "latestDepForEarly": "07:00",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "12:30",
+      "slackMinutes": -30,
+      "feasible": false,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 0,
+        "note": "3월 적설 휴장",
+        "courses": [],
+        "word": "불가"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "소운쿄 온천",
+            "transitMin": 85
+          },
+          {
+            "name": "아사히다케 온천",
+            "transitMin": 60
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "아사히다케 온천",
+          "transitMin": 60
+        }
+      },
+      "weatherMarch": {
+        "highC": 2,
+        "lowC": -8
+      },
+      "accessNote": "골프 불가",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "13:30",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "10:30",
+        "canRound": false,
+        "leisureHours": 1.5,
+        "rating": 0,
+        "label": "이동만",
+        "word": "불가"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 0,
+      "maxRounds": 0,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 1,
+        "areas": "아사히카와 헤이와도리",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "X",
+        "label": "오전 도착 불가",
+        "reason": "12시 전 도착 가능한 직항편 없음"
+      },
+      "score": 0
+    },
+    {
+      "iata": "UKB",
+      "city": "고베",
+      "airportName": "고베공항",
+      "region": "간사이",
+      "blockMinutes": 115,
+      "blockLabel": "1시간 55분",
+      "carriers": [
+        "진에어"
+      ],
+      "dailyFlights": 1,
+      "confidence": "high",
+      "sourceNote": "2026-08-07 취항, 인천 13:30 출발 / 고베 15:30 도착 보도",
+      "earliestDep": "13:30",
+      "morningDepWindow": null,
+      "latestDepForCutoff": "10:05",
+      "latestDepForEarly": "08:05",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "15:25",
+      "slackMinutes": -205,
+      "feasible": false,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "롯코산 주변 코스. 3월 양호",
+        "courses": [
+          "고베 GC",
+          "롯코 국제 GC",
+          "한신 CC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 3,
+        "areas": [
+          {
+            "name": "아리마 온천",
+            "transitMin": 50
+          }
+        ],
+        "word": "최적",
+        "nearest": {
+          "name": "아리마 온천",
+          "transitMin": 50
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 5
+      },
+      "accessNote": "2025년 국제선 개항. 아리마온천 50분으로 간사이 최단",
+      "weeklyFrequency": "daily",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "16:25",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "13:25",
+        "canRound": true,
+        "leisureHours": 4.4,
+        "rating": 2,
+        "label": "온천 또는 쇼핑",
+        "word": "양호"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 1,
+      "maxRounds": 1,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 2,
+        "areas": "고베 산노미야·하버랜드",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "X",
+        "label": "오전 도착 불가",
+        "reason": "12시 전 도착 가능한 직항편 없음"
+      },
+      "score": 0
+    },
+    {
+      "iata": "TKS",
+      "city": "도쿠시마",
+      "airportName": "도쿠시마공항",
+      "region": "시코쿠",
+      "blockMinutes": 110,
+      "blockLabel": "1시간 50분",
+      "carriers": [
+        "에어서울"
+      ],
+      "dailyFlights": 1,
+      "confidence": "high",
+      "sourceNote": "공개 스케줄상 인천 13:45 출발(오후편 단독)",
+      "earliestDep": "13:45",
+      "morningDepWindow": null,
+      "latestDepForCutoff": "10:10",
+      "latestDepForEarly": "08:10",
+      "beforeEarly": false,
+      "earlyFlights": [],
+      "earlyCount": null,
+      "earliestArrival": "15:35",
+      "slackMinutes": -215,
+      "feasible": false,
+      "basis": "window",
+      "flights": [],
+      "qualifyingFlights": [],
+      "qualifyingCount": null,
+      "golf": {
+        "rating": 2,
+        "note": "3월 양호",
+        "courses": [
+          "도쿠시마 CC",
+          "아와 GC"
+        ],
+        "word": "양호"
+      },
+      "onsen": {
+        "rating": 2,
+        "areas": [
+          {
+            "name": "오보케·이야 온천",
+            "transitMin": 110
+          },
+          {
+            "name": "고토히라",
+            "transitMin": 70
+          }
+        ],
+        "word": "양호",
+        "nearest": {
+          "name": "고토히라",
+          "transitMin": 70
+        }
+      },
+      "weatherMarch": {
+        "highC": 14,
+        "lowC": 4
+      },
+      "accessNote": "운항편이 오후 출발 위주",
+      "weeklyFrequency": "limited",
+      "dowCheckNeeded": true,
+      "dowFiltered": false,
+      "departDowName": "목",
+      "returnDowName": "일",
+      "returnLeg": {
+        "depJST": "16:35",
+        "derived": true,
+        "pattern": "single-rotation",
+        "lastActivity": "13:35",
+        "canRound": true,
+        "leisureHours": 4.6,
+        "rating": 2,
+        "label": "온천 또는 쇼핑",
+        "word": "양호"
+      },
+      "arrivalRound": {
+        "possible": false,
+        "quality": "불가",
+        "score": 0,
+        "teeOff": null
+      },
+      "golfRounds": 1,
+      "maxRounds": 1,
+      "courses": {
+        "radiusKm": 50,
+        "inRadius": [],
+        "outOfRadius": [],
+        "counts": {
+          "total": 0,
+          "inRadius": 0,
+          "corridor": 0,
+          "twosomeUsable": 0,
+          "twosomeUnknown": 0
+        },
+        "best": null,
+        "verifyUrl": null
+      },
+      "shopping": {
+        "rating": 0,
+        "areas": "도쿠시마 소규모",
+        "note": "—"
+      },
+      "verdict": {
+        "tier": "X",
+        "label": "오전 도착 불가",
+        "reason": "12시 전 도착 가능한 직항편 없음"
+      },
+      "score": 0
+    }
+  ],
+  "warnings": []
+}
