@@ -54,22 +54,26 @@ function gdoTwosomeUrl(pref, stateMap) {
  * 공항 반경(기본 50km) + 공항↔도시 축선상의 코스만 추린다.
  * 플레이 요일이 평일(목·금)이면 'weekday' 2사무도 그대로 사용 가능하다.
  */
-function matchCourses(iata, courseData, { radiusKm, weekdayPlay }) {
+function matchCourses(iata, courseData, { radiusKm, hasWeekendRound }) {
   const all = (courseData?.courses ?? []).filter((c) => c.iata === iata);
   const stateMap = courseData?.meta?.gdoStateByPrefecture;
   const decorate = (c) => ({
     ...c,
     twosomeRank: TWOSOME_RANK[c.twosome] ?? 0,
-    twosomeUsable: weekdayPlay
-      ? ['all-days', 'weekday', 'available'].includes(c.twosome)
-      : ['all-days', 'available'].includes(c.twosome),
+    // 목·금(평일)에 2인 플레이 가능한가
+    twosomeWeekday: ['all-days', 'weekday', 'available'].includes(c.twosome),
+    // 일요일(주말)에 2인 플레이 가능한가 — '평일 한정' 플랜은 쓸 수 없다
+    twosomeWeekend: c.twosome === 'all-days' ? true : c.twosome === 'available' ? null : false,
     verifyUrl: gdoTwosomeUrl(c.pref, stateMap),
   });
 
   const inRadius = all.filter((c) => c.distanceKm <= radiusKm).map(decorate);
+  for (const c of inRadius) c.twosomeUsable = c.twosomeWeekday;
   const prestigeRe = /(명문|토너먼트|최고|最古|굴지|성지|100대)/;
   const corridor = inRadius.filter((c) => c.corridor);
-  const usable = inRadius.filter((c) => c.twosomeUsable);
+  const usable = inRadius.filter((c) => c.twosomeWeekday);
+  const weekendUsable = inRadius.filter((c) => c.twosomeWeekend === true);
+  const weekendMaybe = inRadius.filter((c) => c.twosomeWeekend === null);
 
   for (const c of inRadius) c.prestige = prestigeRe.test(c.pedigree ?? '');
   const sortKey = (a, b) => b.twosomeRank - a.twosomeRank || a.distanceKm - b.distanceKm;
@@ -82,6 +86,8 @@ function matchCourses(iata, courseData, { radiusKm, weekdayPlay }) {
       inRadius: inRadius.length,
       corridor: corridor.length,
       twosomeUsable: usable.length,
+      twosomeWeekend: weekendUsable.length,
+      twosomeWeekendMaybe: weekendMaybe.length,
       twosomeUnknown: inRadius.filter((c) => c.twosome === 'unknown').length,
       bookable: inRadius.filter((c) => c.bookable).length,
       gora: inRadius.filter((c) => c.booking?.gora).length,
@@ -91,6 +97,14 @@ function matchCourses(iata, courseData, { radiusKm, weekdayPlay }) {
       prestigeReady: inRadius.filter((c) => c.prestige && c.bookable && c.twosomeUsable).length,
     },
     best: [...usable].sort(sortKey)[0] ?? null,
+    bestWeekend: [...weekendUsable].sort(sortKey)[0] ?? null,
+    weekendNote: hasWeekendRound
+      ? (weekendUsable.length
+        ? `일요일 2인 플레이 가능 ${weekendUsable.length}곳 (전일 2사무)`
+        : weekendMaybe.length
+          ? `일요일 2인 플레이는 ${weekendMaybe.length}곳에서 조건 확인 필요`
+          : '일요일 2인 플레이 가능 코스 확인 안 됨 — 평일 한정 플랜만 있음')
+      : null,
     verifyUrl: all.length ? gdoTwosomeUrl(all[0].pref, stateMap) : null,
   };
 }
@@ -170,7 +184,8 @@ function evaluateReturn({ route, block, trip, returnDow }) {
 function verdictFor({ feasible, golf, onsen, shopping, rounds, twosome }) {
   if (!feasible) return { tier: 'X', label: '오전 도착 불가', reason: '12시 전 도착 가능한 직항편 없음' };
   if (golf === 0) return { tier: 'C', label: '온천 전용', reason: '3월 골프 코스 휴장 — 목·금 라운딩 불가' };
-  if (rounds < 2) return { tier: 'C', label: '라운딩 1회', reason: '도착이 늦어 목요일 라운딩 불가' };
+  if (rounds <= 1) return { tier: 'C', label: `라운딩 ${rounds}회`, reason: '도착이 늦거나 귀국편이 일러 라운딩 일수 부족' };
+  if (rounds === 2) return { tier: 'C', label: '라운딩 2회', reason: '목·금·일 3회 중 1회 불가 (도착 또는 귀국편 시각)' };
   if (golf >= 2 && onsen >= 2 && shopping >= 2 && twosome > 0) {
     return { tier: 'A', label: '최우선 후보', reason: '목·금 2라운딩 + 2인 플레이 가능 + 토·일 쇼핑·온천 모두 충족' };
   }
@@ -255,15 +270,21 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
     const golfClosed = ap.golfMarch.rating === 0;
 
     // 골프는 목·금 2일만. 도착일 라운딩 성립 여부가 횟수를 가른다.
-    const golfDows = trip.golfDows ?? [4, 5];
+    const golfDows = trip.golfDows ?? [4, 5, 7];
+    const hasWeekendRound = golfDows.some((d) => d >= 6);
     const arrivalRound = golfClosed || !feasible
       ? { possible: false, quality: '불가', score: 0, teeOff: null }
       : evaluateArrivalRound(earliestArrival);
-    const golfRounds = golfClosed ? 0 : (arrivalRound.possible ? golfDows.length : golfDows.length - 1);
+    // 목(도착일) + 금(종일) + 일(귀국일, 귀국편 조건 충족 시)
+    const returnDayRound = Boolean(ret?.canRound) && !golfClosed;
+    const midGolfDays = golfDows.filter((d) => d !== departDow && d !== returnDow).length;
+    const golfRounds = golfClosed
+      ? 0
+      : (arrivalRound.possible ? 1 : 0) + midGolfDays + (returnDayRound ? 1 : 0);
 
     const courses = matchCourses(route.iata, courseData, {
       radiusKm: trip.courseRadiusKm ?? 50,
-      weekdayPlay: golfDows.every((d) => d <= 5),
+      hasWeekendRound,
     });
 
     const golf = ap.golfMarch.rating;
@@ -277,6 +298,8 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
         + arrivalRound.score * 2
         + Math.min(3, courses.counts.twosomeUsable)
         + Math.min(2, courses.counts.prestigeBookable)
+        + (returnDayRound ? 4 : 0)
+        + (returnDayRound && courses.counts.twosomeWeekend > 0 ? 2 : 0)
         + Math.min(2, Math.floor((route.dailyFlights ?? 1) / 4))
         - (nearestOnsen && nearestOnsen.transitMin > 120 ? 1 : 0)
         + (ret ? ret.rating : 0)
@@ -318,7 +341,10 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       returnDowName: DOW_NAMES[returnDow],
       returnLeg: ret,
       arrivalRound,
+      returnDayRound,
+      hasWeekendRound,
       golfRounds,
+      plannedRounds: golfClosed ? 0 : golfDows.length,
       maxRounds: golfRounds,
       courses,
       shopping: ap.shopping ?? { rating: 0, areas: '—', note: '' },
@@ -359,7 +385,9 @@ export function analyze(schedule, airports, opts = {}, courseData = null) {
       twosomeReady: feasibleList.filter((r) => r.courses.counts.twosomeUsable > 0).length,
       bookableCourses: feasibleList.reduce((n, r) => n + r.courses.counts.bookable, 0),
       prestigeReady: feasibleList.reduce((n, r) => n + r.courses.counts.prestigeReady, 0),
-      sundayFull: feasibleList.filter((r) => (r.returnLeg?.rating ?? 0) >= 3).length,
+      sundayFull: feasibleList.filter((r) => r.returnDayRound).length,
+      threeRounds: feasibleList.filter((r) => r.golfRounds >= 3).length,
+      weekendTwosome: feasibleList.filter((r) => r.returnDayRound && r.courses.counts.twosomeWeekend > 0).length,
       itineraryBlocked: results.filter((r) => r.itineraryOk === false).length,
       maxRoundsBest: feasibleList.reduce((m, r) => Math.max(m, r.maxRounds ?? 0), 0),
       earliestArrival: feasibleList.reduce((min, r) => (!min || r.earliestArrival < min ? r.earliestArrival : min), null),

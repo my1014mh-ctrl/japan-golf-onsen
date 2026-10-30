@@ -53,7 +53,7 @@ function courseTable(a) {
       <td><strong>${esc(x.ko)}</strong><span class="ja">${esc(x.ja)}</span>${x.pedigree ? `<span class="ped">${esc(x.pedigree)}</span>` : ''}</td>
       <td class="num">${x.distanceKm}km<span class="muted"> / ${x.driveMin}분</span></td>
       <td class="num">${x.holes}H</td>
-      <td><span class="tsome ${t.cls}">${esc(t.label)}</span>${x.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}${x.greenFee ? `<span class="fee">${esc(x.greenFee)}</span>` : ''}</td>
+      <td><span class="tsome ${t.cls}">${esc(t.label)}</span>${x.twosomeWeekend === true ? '<span class="wkend">일요일 OK</span>' : x.twosomeWeekend === false ? '<span class="wkno">일요일 불가</span>' : ''}${x.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}${x.greenFee ? `<span class="fee">${esc(x.greenFee)}</span>` : ''}</td>
       <td class="bkcell">${bookingLinks(x)}</td>
     </tr>`;
   }).join('\n');
@@ -64,7 +64,7 @@ function courseTable(a) {
 
   return `<div class="coursebox">
     <div class="chead">
-      <span class="k">공항 ${c.radiusKm}km 내 ${c.counts.inRadius}곳 · 2인 플레이 <strong>${c.counts.twosomeUsable}곳</strong> · 예약사이트 게재 ${c.counts.bookable}곳${c.counts.prestige ? ` · 명문 ${c.counts.prestige}곳` : ''}</span>
+      <span class="k">공항 ${c.radiusKm}km 내 ${c.counts.inRadius}곳 · 평일 2인 <strong>${c.counts.twosomeUsable}곳</strong> / 일요일 2인 <strong>${c.counts.twosomeWeekend}곳</strong> · 예약 게재 ${c.counts.bookable}곳${c.counts.prestige ? ` · 명문 ${c.counts.prestige}곳` : ''}</span>
       ${c.verifyUrl ? `<a class="verify" href="${esc(c.verifyUrl)}" target="_blank" rel="noopener">GDO 2사무 검색 ↗</a>` : ''}
     </div>
     <table class="courses"><tbody>${rows}</tbody></table>
@@ -79,7 +79,7 @@ function card(a, early) {
     .map((o) => `<li>${esc(o.name)} <span class="muted">${o.transitMin === 0 ? '공항 내' : `${o.transitMin}분`}</span></li>`).join('');
   const courses = (a.golf.courses ?? []).slice(0, 4).map((c) => `<span class="chip">${esc(c)}</span>`).join('');
 
-  return `<article class="card tier-${a.verdict.tier}" data-region="${esc(a.region)}" data-golf="${a.golf.rating}" data-onsen="${a.onsen.rating}" data-arrmin="${a.slackMinutes == null ? '' : 720 - a.slackMinutes}" data-earliest="${esc(a.earliestArrival ?? '')}" data-score="${a.score}" data-iata="${esc(a.iata)}" data-early="${a.beforeEarly ? 1 : 0}" data-earlycount="${a.earlyCount ?? ''}" data-rounds="${a.golfRounds}" data-sunday="${(a.returnLeg?.rating ?? 0) >= 2 ? 1 : 0}" data-twosome="${a.courses.counts.twosomeUsable}" data-shopping="${a.shopping.rating}">
+  return `<article class="card tier-${a.verdict.tier}" data-region="${esc(a.region)}" data-golf="${a.golf.rating}" data-onsen="${a.onsen.rating}" data-arrmin="${a.slackMinutes == null ? '' : 720 - a.slackMinutes}" data-earliest="${esc(a.earliestArrival ?? '')}" data-score="${a.score}" data-iata="${esc(a.iata)}" data-early="${a.beforeEarly ? 1 : 0}" data-earlycount="${a.earlyCount ?? ''}" data-rounds="${a.golfRounds}" data-sunday="${a.returnDayRound ? 1 : 0}" data-twosome="${a.courses.counts.twosomeUsable}" data-wkend="${a.courses.counts.twosomeWeekend}" data-shopping="${a.shopping.rating}">
   <header>
     <div class="titleline">
       <h3>${esc(a.city)} <span class="iata">${esc(a.iata)}</span></h3>
@@ -103,21 +103,28 @@ function card(a, early) {
     <div class="day golfday">
       <span class="dn">금</span>
       <span class="dv">종일 골프</span>
-      <span class="dd on">2인 플레이 ${a.courses.counts.twosomeUsable}곳</span>
+      <span class="dd on">평일 2인 ${a.courses.counts.twosomeUsable}곳</span>
     </div>
     <div class="day">
       <span class="dn">토</span>
       <span class="dv">쇼핑 · 온천</span>
       <span class="dd">${esc(a.shopping.areas.split('·')[0])}</span>
     </div>
-    <div class="day">
+    <div class="day golfday${a.returnDayRound ? '' : ' dead'}">
       <span class="dn">일</span>
-      <span class="dv">${a.returnLeg ? `${esc(a.returnLeg.depJST)} 귀국` : '—'}</span>
-      <span class="dd ${(a.returnLeg?.rating ?? 0) >= 2 ? 'on' : 'off'}">${a.returnLeg ? `여유 ${a.returnLeg.leisureHours}h · ${esc(a.returnLeg.label)}` : '미상'}</span>
+      <span class="dv">${a.returnDayRound ? '조조 골프' : '골프 불가'}</span>
+      <span class="dd ${a.returnDayRound ? 'on' : 'off'}">${a.returnLeg ? `귀국 ${esc(a.returnLeg.depJST)}${a.returnDayRound ? ` · 마감 ${esc(a.returnLeg.lastActivity)}` : ' — 너무 이름'}` : '미상'}</span>
     </div>
   </div>
-  <div class="roundsline"><span class="k">목·금 라운딩</span><strong class="r${a.golfRounds}">${a.golfRounds}회</strong>${a.arrivalRound.note ? `<span class="muted">${esc(a.arrivalRound.note)}</span>` : ''}</div>
-  ${a.returnLeg ? `<p class="note ret">일요일 현지 활동은 <strong>${esc(a.returnLeg.lastActivity)}</strong>까지 (귀국편 ${esc(a.returnLeg.depJST)}${a.returnLeg.derived ? ' 역산' : ''} − 수속 2시간 − 공항이동 1시간). ${a.returnLeg.pattern === 'single-rotation' ? '1일 1왕복 노선이라 귀국편이 낮에 출발합니다.' : '저녁 귀국편이 있어 일요일을 온전히 씁니다.'}</p>` : ''}
+  <div class="roundsline">
+    <span class="k">목·금·일 라운딩</span>
+    <strong class="r${a.golfRounds}">${a.golfRounds}<span class="of">/${a.plannedRounds}</span>회</strong>
+    ${a.courses.weekendNote ? `<span class="muted">${esc(a.courses.weekendNote)}</span>` : ''}
+    ${a.arrivalRound.note ? `<span class="muted">${esc(a.arrivalRound.note)}</span>` : ''}
+  </div>
+  ${a.returnLeg ? `<p class="note ret">${a.returnDayRound
+      ? `<strong>일요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 ${esc(a.returnLeg.lastActivity)} (귀국편 ${esc(a.returnLeg.depJST)}${a.returnLeg.derived ? ' 역산' : ''} − 수속 2시간 − 공항이동 1시간).`
+      : `<strong>일요일 라운딩 불가</strong> — 귀국편이 ${esc(a.returnLeg.depJST)}에 떠서 활동 마감이 ${esc(a.returnLeg.lastActivity)}입니다. 조조 라운딩(07:00~12:00)을 넣을 수 없습니다.`}</p>` : ''}
   ${a.dowCheckNeeded ? `<p class="note warn">⚠ ${a.weeklyFrequency === 'limited' ? '주 3~5회 운항 노선 — ' : ''}${esc(a.departDowName)}요일 출발·${esc(a.returnDowName)}요일 귀국 운항 여부를 개별 확인해야 합니다.</p>` : ''}
 
   <dl class="specs">
@@ -150,7 +157,7 @@ function courseModal(analysis) {
         return `<tr class="${c.twosomeUsable ? 'usable' : 'nope'}" data-usable="${c.twosomeUsable ? 1 : 0}" data-bookable="${c.bookable ? 1 : 0}" data-prestige="${c.prestige ? 1 : 0}">
           <td class="cname"><strong>${esc(c.ko)}</strong>${c.prestige ? '<span class="pres">명문</span>' : ''}<span class="ja">${esc(c.ja)}</span></td>
           <td class="cdist">${c.distanceKm}km<span class="muted"> / ${c.driveMin}분</span></td>
-          <td class="cts"><span class="tsome ${t.cls}">${esc(t.label)}</span>${c.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}</td>
+          <td class="cts"><span class="tsome ${t.cls}">${esc(t.label)}</span>${c.twosomeWeekend === true ? '<span class="wkend">일요일 OK</span>' : c.twosomeWeekend === false ? '<span class="wkno">일요일 불가</span>' : ''}${c.noSurcharge ? '<span class="nosur">할증 없음</span>' : ''}</td>
           <td class="cbk">${bookingLinks(c)}</td>
           <td class="crem">${esc(remarks || '—')}</td>
         </tr>`;
@@ -343,6 +350,10 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
 .tsome{display:inline-block;font-size:10.5px;padding:2px 6px;border-radius:5px;white-space:nowrap;border:1px solid var(--line);color:var(--ink2)}
 .tsome.ok2{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:650}
 .tsome.ok{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 50%,transparent);font-weight:600}
+.wkend{display:block;font-size:10px;font-weight:650;color:var(--accent);margin-top:2px}
+.wkno{display:block;font-size:10px;color:var(--accent2);margin-top:2px}
+.day.dead{background:transparent;border-color:var(--line);opacity:.7}
+.roundsline .of{font-size:12px;font-weight:400;color:var(--ink2)}
 .nosur{display:block;font-size:10px;color:var(--accent);font-weight:650;margin-top:2px}
 .fee{display:block;font-size:10px;color:var(--ink2);margin-top:1px}
 .tsome.maybe{color:var(--b);border-color:color-mix(in srgb,var(--b) 45%,transparent)}
@@ -453,7 +464,7 @@ footer ul{padding-left:18px}
 <div class="wrap">
 <header class="top">
   <h1>${esc(tripLabel)} 일본 골프·온천 — 오전 도착 가능 공항</h1>
-  <p class="lede"><strong>목 출발 · 일 귀국 (3박 4일) · 목·금 골프 / 토·일 쇼핑·온천</strong> 기준. 인천공항 출발 <strong>직항</strong>으로 현지 <strong>${esc(analysis.cutoff)} 이전 도착</strong>이 가능한 공항. 골프장은 <strong>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 + 공항↔도시 축선</strong>의 코스만 추렸고, <strong>2인 플레이(2사무) 가능 여부</strong>를 코스별로 표기했습니다. 목·금 플레이라 <em>평일 2사무 보증</em> 플랜이 모두 유효합니다.</p>
+  <p class="lede"><strong>목 출발 · 일 귀국 (3박 4일) · 목·금·일 골프 / 토 쇼핑·온천</strong> 기준. 인천공항 출발 <strong>직항</strong>으로 현지 <strong>${esc(analysis.cutoff)} 이전 도착</strong>이 가능한 공항. 골프장은 <strong>공항 반경 ${analysis.trip.courseRadiusKm ?? 50}km 이내 + 공항↔도시 축선</strong>의 코스만 추렸고, <strong>2인 플레이(2사무) 가능 여부</strong>를 코스별로 표기했습니다. 목·금 플레이라 <em>평일 2사무 보증</em> 플랜이 모두 유효합니다.</p>
   <div class="metaline">
     <span>갱신 ${esc(fmt.format(new Date(analysis.generatedAt)))}</span>
     <span>데이터: ${esc(analysis.sourceLabel)}</span>
@@ -484,8 +495,8 @@ ${(analysis.trip.windows ?? []).map((w) => {
   <div class="stat accent"><b id="s-early">${analysis.stats.beforeEarly}</b><span>${esc(analysis.early)} 이전 도착</span></div>
   <div class="stat"><b id="s-golf">${analysis.stats.golfPlayable}</b><span>3월 골프 가능</span></div>
   <div class="stat"><b id="s-a">${analysis.stats.tierA}</b><span>최우선 후보</span></div>
-  <div class="stat accent"><b id="s-two">${analysis.stats.twosomeReady}</b><span>2인 플레이 코스 보유</span></div>
-  <div class="stat"><b id="s-sun">${analysis.stats.twoRounds}</b><span>목·금 2라운딩 가능</span></div>
+  <div class="stat accent"><b id="s-two">${analysis.stats.weekendTwosome}</b><span>일요일 2인 플레이 가능</span></div>
+  <div class="stat"><b id="s-sun">${analysis.stats.threeRounds}</b><span>목·금·일 3라운딩 가능</span></div>
 </section>
 
 <div class="controls">
@@ -508,7 +519,7 @@ ${(analysis.trip.windows ?? []).map((w) => {
     <label class="toggle"><input type="checkbox" id="golfonly">3월 골프 가능만</label>
     <label class="toggle"><input type="checkbox" id="onsenonly">온천 양호 이상만</label>
     <label class="toggle"><input type="checkbox" id="twosomeonly">2인 플레이 가능 코스 있는 곳만</label>
-    <label class="toggle"><input type="checkbox" id="sundayonly">일요일 여유 4시간+</label>
+    <label class="toggle"><input type="checkbox" id="sundayonly">일요일 라운딩 가능만</label>
     <label class="k" for="sort" style="margin-left:auto">정렬</label>
     <select id="sort">
       <option value="score">종합 추천순</option>
@@ -542,7 +553,9 @@ ${courseModal(analysis)}
     <li>홋카이도·도호쿠 공항은 3월 골프 코스가 적설 휴장이라 온천 전용으로 분류했습니다.</li>
     <li>골프장 티업은 보통 현지 도착 후 2시간 이상 필요합니다(수하물·렌터카·이동). 도착 12:00이면 오후 1~2시 티업이 현실적입니다.</li>
     <li><strong>목요일 티업</strong> = 도착 + 2시간(수하물·렌터카·이동). 12:00 이전이면 '여유', 13:30 이전 '가능', 14:30 이전 '타이트'(3월 일몰 18시 전후, 셀프 18홀 4시간 30분).</li>
-    <li><strong>2인 플레이</strong>: 일본은 3~4인 플레이가 기본이고 2사무는 1인당 500~2,200엔 할증이 붙습니다. <em>割増なし(할증 없음) 플랜은 평일 한정이 많고 토·일·공휴일은 2사무 대상 제외</em>가 흔합니다 — 목·금 플레이가 이 문제를 피합니다.</li>
+    <li><strong>일요일 라운딩</strong>은 조조 티업 07:00 + 18홀 5시간 = 12:00 종료, 여기에 공항이동 1시간·수속 2시간을 더해 <strong>귀국편이 15:00 이후</strong>여야 성립합니다.</li>
+    <li><strong>일요일은 주말입니다.</strong> '평일 2사무 보증' 플랜은 토·일·공휴일에 쓸 수 없으므로, 일요일 라운딩에는 <em>전일 2사무</em> 코스만 됩니다. 주말 그린피 할증도 붙습니다(오쿠도고 GC: 평일 13,800엔 → 토·일 캐디 동반 24,500엔).</li>
+    <li><strong>2인 플레이</strong>: 일본은 3~4인 플레이가 기본이고 2사무는 1인당 500~2,200엔 할증이 붙습니다. <em>割増なし(할증 없음) 플랜은 평일 한정이 많고 토·일·공휴일은 2사무 대상 제외</em>가 흔합니다 — 목·금은 문제없지만 <strong>일요일은 코스 선택이 좁아집니다</strong>.</li>
     <li>일요일 현지 활동 마감 = 귀국편 출발 − 수속 2시간 − 공항이동 1시간. 1일 1왕복 노선은 낮에 떠서 일요일이 거의 사라집니다.</li>
   </ul>
   <p>갱신: <code>npm run build</code> · 실제 스케줄 반영: <code>npm run build:api</code> · 주간 배치: <code>npm run weekly</code></p>
@@ -595,8 +608,8 @@ ${courseModal(analysis)}
     document.getElementById('s-feasible').textContent = visible.length;
     document.getElementById('s-early').textContent = visible.filter(el=>el.dataset.early==='1').length;
     document.getElementById('s-golf').textContent = visible.filter(el=>+el.dataset.golf>=2).length;
-    document.getElementById('s-sun').textContent = visible.filter(el=>+el.dataset.rounds>=2).length;
-    document.getElementById('s-two').textContent = visible.filter(el=>+el.dataset.twosome>0).length;
+    document.getElementById('s-sun').textContent = visible.filter(el=>+el.dataset.rounds>=3).length;
+    document.getElementById('s-two').textContent = visible.filter(el=>el.dataset.sunday==='1'&&+el.dataset.wkend>0).length;
     document.getElementById('s-a').textContent = visible.filter(el=>el.classList.contains('tier-A')).length;
   }
 
