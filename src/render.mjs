@@ -73,13 +73,13 @@ function courseTable(a) {
   </div>`;
 }
 
-function card(a, early) {
+function card(a, early, variant) {
   const win = a.morningDepWindow ? `${a.morningDepWindow[0]}~${a.morningDepWindow[1]}` : null;
   const onsenAreas = (a.onsen.areas ?? []).slice(0, 3)
     .map((o) => `<li>${esc(o.name)} <span class="muted">${o.transitMin === 0 ? '공항 내' : `${o.transitMin}분`}</span></li>`).join('');
   const courses = (a.golf.courses ?? []).slice(0, 4).map((c) => `<span class="chip">${esc(c)}</span>`).join('');
 
-  return `<article class="card tier-${a.verdict.tier}" data-region="${esc(a.region)}" data-golf="${a.golf.rating}" data-onsen="${a.onsen.rating}" data-arrmin="${a.slackMinutes == null ? '' : 720 - a.slackMinutes}" data-earliest="${esc(a.earliestArrival ?? '')}" data-score="${a.score}" data-iata="${esc(a.iata)}" data-early="${a.beforeEarly ? 1 : 0}" data-earlycount="${a.earlyCount ?? ''}" data-rounds="${a.golfRounds}" data-sunday="${a.returnDayRound ? 1 : 0}" data-twosome="${a.courses.counts.twosomeUsable}" data-wkend="${a.courses.counts.twosomeWeekend}" data-shopping="${a.shopping.rating}">
+  return `<article class="card tier-${a.verdict.tier}" data-region="${esc(a.region)}" data-golf="${a.golf.rating}" data-onsen="${a.onsen.rating}" data-arrmin="${a.slackMinutes == null ? '' : 720 - a.slackMinutes}" data-earliest="${esc(a.earliestArrival ?? '')}" data-score="${a.score}" data-iata="${esc(a.iata)}" data-early="${a.beforeEarly ? 1 : 0}" data-earlycount="${a.earlyCount ?? ''}" data-rounds="${a.golfRounds}" data-sunday="${a.returnDayRound ? 1 : 0}" data-twosome="${a.courses.counts.twosomeUsable}" data-wkend="${a.returnDayTwosome ?? 0}" data-shopping="${a.shopping.rating}">
   <header>
     <div class="titleline">
       <h3>${esc(a.city)} <span class="iata">${esc(a.iata)}</span></h3>
@@ -95,36 +95,54 @@ function card(a, early) {
   </div>
 
   <div class="dayplan">
-    <div class="day golfday">
-      <span class="dn">목</span>
-      <span class="dv">${esc(a.earliestArrival ?? '—')} 도착</span>
-      <span class="dd ${a.arrivalRound.possible ? 'on' : 'off'}">${a.arrivalRound.teeOff ? `티업 ${esc(a.arrivalRound.teeOff)} · ${esc(a.arrivalRound.quality)}` : '라운딩 불가'}</span>
-    </div>
-    <div class="day golfday">
-      <span class="dn">금</span>
-      <span class="dv">종일 골프</span>
-      <span class="dd on">평일 2인 ${a.courses.counts.twosomeUsable}곳</span>
-    </div>
-    <div class="day">
-      <span class="dn">토</span>
-      <span class="dv">쇼핑 · 온천</span>
-      <span class="dd">${esc(a.shopping.areas.split('·')[0])}</span>
-    </div>
-    <div class="day golfday${a.returnDayRound ? '' : ' dead'}">
-      <span class="dn">일</span>
-      <span class="dv">${a.returnDayRound ? '조조 골프' : '골프 불가'}</span>
-      <span class="dd ${a.returnDayRound ? 'on' : 'off'}">${a.returnLeg ? `귀국 ${esc(a.returnLeg.depJST)}${a.returnDayRound ? ` · 마감 ${esc(a.returnLeg.lastActivity)}` : ' — 너무 이름'}` : '미상'}</span>
-    </div>
+${(variant?.plan ?? []).map((d) => {
+    const acts = d.activities ?? [];
+    const isGolf = acts.includes('골프');
+    const isArrival = acts.includes('도착');
+    const isReturn = acts.includes('귀국');
+    const weekend = d.dow >= 6;
+    const twosomeN = weekend ? a.courses.counts.twosomeWeekend : a.courses.counts.twosomeUsable;
+    let cls = isGolf ? 'day golfday' : 'day';
+    let dv;
+    let dd;
+    let ddCls = '';
+    if (isArrival) {
+      dv = `${esc(a.earliestArrival ?? '—')} 도착`;
+      dd = a.arrivalRound.teeOff ? `티업 ${esc(a.arrivalRound.teeOff)} · ${esc(a.arrivalRound.quality)}` : '라운딩 불가';
+      ddCls = a.arrivalRound.possible ? 'on' : 'off';
+      if (!a.arrivalRound.possible) cls += ' dead';
+    } else if (isReturn) {
+      dv = isGolf ? (a.returnDayRound ? '조조 골프' : '골프 불가') : '귀국';
+      dd = a.returnLeg
+        ? `귀국 ${esc(a.returnLeg.depJST)}${a.returnDayRound ? ` · 마감 ${esc(a.returnLeg.lastActivity)}` : ' — 너무 이름'}`
+        : '미상';
+      ddCls = a.returnDayRound ? 'on' : 'off';
+      if (isGolf && !a.returnDayRound) cls += ' dead';
+    } else if (isGolf) {
+      dv = '종일 골프';
+      dd = `${weekend ? '주말' : '평일'} 2인 ${twosomeN}곳`;
+      ddCls = twosomeN > 0 ? 'on' : 'off';
+      if (twosomeN === 0) cls += ' thin';
+    } else {
+      dv = '쇼핑 · 온천';
+      dd = esc(a.shopping.areas.split('·')[0]);
+    }
+    return `    <div class="${cls}">
+      <span class="dn">${esc(d.name)}${weekend ? '<em>주말</em>' : ''}</span>
+      <span class="dv">${dv}</span>
+      <span class="dd ${ddCls}">${dd}</span>
+    </div>`;
+  }).join('\n')}
   </div>
   <div class="roundsline">
-    <span class="k">목·금·일 라운딩</span>
+    <span class="k">${esc((variant?.plan ?? []).filter((d) => (d.activities ?? []).includes('골프')).map((d) => d.name).join('·'))} 라운딩</span>
     <strong class="r${a.golfRounds}">${a.golfRounds}<span class="of">/${a.plannedRounds}</span>회</strong>
     ${a.courses.weekendNote ? `<span class="muted">${esc(a.courses.weekendNote)}</span>` : ''}
     ${a.arrivalRound.note ? `<span class="muted">${esc(a.arrivalRound.note)}</span>` : ''}
   </div>
   ${a.returnLeg ? `<p class="note ret">${a.returnDayRound
-      ? `<strong>일요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 ${esc(a.returnLeg.lastActivity)} (귀국편 ${esc(a.returnLeg.depJST)}${a.returnLeg.derived ? ' 역산' : ''} − 수속 2시간 − 공항이동 1시간).`
-      : `<strong>일요일 라운딩 불가</strong> — 귀국편이 ${esc(a.returnLeg.depJST)}에 떠서 활동 마감이 ${esc(a.returnLeg.lastActivity)}입니다. 조조 라운딩(07:00~12:00)을 넣을 수 없습니다.`}</p>` : ''}
+      ? `<strong>${esc(a.returnDowName)}요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 ${esc(a.returnLeg.lastActivity)} (귀국편 ${esc(a.returnLeg.depJST)}${a.returnLeg.derived ? ' 역산' : ''} − 수속 2시간 − 공항이동 1시간). ${a.returnDowIsWeekend ? '주말이라 <em>전일 2사무</em> 코스만 쓸 수 있습니다' : '평일이라 <em>평일 2사무 보증</em> 플랜을 그대로 쓸 수 있습니다'} — 해당 ${a.returnDayTwosome ?? 0}곳.`
+      : `<strong>${esc(a.returnDowName)}요일 라운딩 불가</strong> — 귀국편이 ${esc(a.returnLeg.depJST)}에 떠서 활동 마감이 ${esc(a.returnLeg.lastActivity)}입니다. 조조 라운딩(07:00~12:00)을 넣을 수 없습니다.`}</p>` : ''}
   ${a.dowCheckNeeded ? `<p class="note warn">⚠ ${a.weeklyFrequency === 'limited' ? '주 3~5회 운항 노선 — ' : ''}${esc(a.departDowName)}요일 출발·${esc(a.returnDowName)}요일 귀국 운항 여부를 개별 확인해야 합니다.</p>` : ''}
 
   <dl class="specs">
@@ -364,6 +382,8 @@ table.courses td.num{text-align:right;white-space:nowrap;font-variant-numeric:ta
 .wkend{display:block;font-size:10px;font-weight:650;color:var(--accent);margin-top:2px}
 .wkno{display:block;font-size:10px;color:var(--accent2);margin-top:2px}
 .day.dead{background:transparent;border-color:var(--line);opacity:.7}
+.day.thin{background:color-mix(in srgb,var(--accent) 3%,transparent)}
+.day .dn em{font-style:normal;font-size:9px;font-weight:600;color:var(--accent2);margin-left:4px;letter-spacing:.02em}
 .roundsline .of{font-size:12px;font-weight:400;color:var(--ink2)}
 .nosur{display:block;font-size:10px;color:var(--accent);font-weight:650;margin-top:2px}
 .fee{display:block;font-size:10px;color:var(--ink2);margin-top:1px}
@@ -552,7 +572,7 @@ ${(v.variant.windows ?? []).map((w) => `<div class="win${(w.tags ?? []).some((t)
 
   <h2 class="sec">일정 성립 (<span class="cnt">${feas.length}</span>)</h2>
   <div class="grid">
-${feas.map((a) => card(a, analysis.early)).join('\n')}
+${feas.map((a) => card(a, analysis.early, v.variant)).join('\n')}
   </div>
   <p class="empty noresult" style="display:none">조건에 맞는 공항이 없습니다. 필터를 해제하세요.</p>
 
@@ -572,8 +592,9 @@ ${courseModal(analysis)}
     <li>홋카이도·도호쿠 공항은 3월 골프 코스가 적설 휴장이라 온천 전용으로 분류했습니다.</li>
     <li>골프장 티업은 보통 현지 도착 후 2시간 이상 필요합니다(수하물·렌터카·이동). 도착 12:00이면 오후 1~2시 티업이 현실적입니다.</li>
     <li><strong>목요일 티업</strong> = 도착 + 2시간(수하물·렌터카·이동). 12:00 이전이면 '여유', 13:30 이전 '가능', 14:30 이전 '타이트'(3월 일몰 18시 전후, 셀프 18홀 4시간 30분).</li>
-    <li><strong>일요일 라운딩</strong>은 조조 티업 07:00 + 18홀 5시간 = 12:00 종료, 여기에 공항이동 1시간·수속 2시간을 더해 <strong>귀국편이 15:00 이후</strong>여야 성립합니다.</li>
-    <li><strong>일요일은 주말입니다.</strong> '평일 2사무 보증' 플랜은 토·일·공휴일에 쓸 수 없으므로, 일요일 라운딩에는 <em>전일 2사무</em> 코스만 됩니다. 주말 그린피 할증도 붙습니다(오쿠도고 GC: 평일 13,800엔 → 토·일 캐디 동반 24,500엔).</li>
+    <li><strong>귀국일 라운딩</strong>은 조조 티업 07:00 + 18홀 5시간 = 12:00 종료, 여기에 공항이동 1시간·수속 2시간을 더해 <strong>귀국편이 15:00 이후</strong>여야 성립합니다.</li>
+    <li><strong>두 일정의 결정적 차이는 귀국일 요일입니다.</strong> '평일 2사무 보증' 플랜은 토·일·공휴일에 쓸 수 없습니다. <em>목~일</em>은 귀국일이 일요일이라 <strong>전일 2사무</strong> 코스만 쓸 수 있고, <em>금~월</em>은 귀국일이 월요일이라 <strong>평일 2사무 보증 플랜을 그대로</strong> 쓸 수 있습니다. 주말 라운딩에는 그린피 할증도 붙습니다.</li>
+    <li>두 일정 모두 <strong>토요일은 온천·쇼핑</strong>으로 비웠고, 주말 라운딩은 일요일 1회뿐입니다.</li>
     <li><strong>2인 플레이</strong>: 일본은 3~4인 플레이가 기본이고 2사무는 1인당 500~2,200엔 할증이 붙습니다. <em>割増なし(할증 없음) 플랜은 평일 한정이 많고 토·일·공휴일은 2사무 대상 제외</em>가 흔합니다 — 목·금은 문제없지만 <strong>일요일은 코스 선택이 좁아집니다</strong>.</li>
     <li>일요일 현지 활동 마감 = 귀국편 출발 − 수속 2시간 − 공항이동 1시간. 1일 1왕복 노선은 낮에 떠서 일요일이 거의 사라집니다.</li>
   </ul>
