@@ -301,6 +301,7 @@ function itineraryPanel(it) {
       <span class="muted">${esc(l.why)}</span>${l.note ? `<span class="muted">${esc(l.note)}</span>` : ''}</div>
     </div>`).join('')}</div>` : ''}
     ${d.courseNote ? `<p class="dbase"><span class="k">주의</span>${esc(d.courseNote)}</p>` : ''}
+    ${it.lodgingNote ? `<p class="dbase"><span class="k">확인</span>${esc(it.lodgingNote)}</p>` : ''}
     ${d.rentalCar ? `<p class="dbase"><span class="k">렌터카</span>${esc(d.rentalCar)}</p>` : ''}
     <div class="dates">
       ${(d.dateOptions ?? []).map((o) => {
@@ -314,6 +315,17 @@ function itineraryPanel(it) {
       }).join('')}
     </div>
   </div>
+  ${(it.lodgingOptions ?? []).length ? `<div class="lopts">
+    <h4>숙소 배치 비교 — 4일 총 운전시간</h4>
+    <div class="loptgrid">
+${it.lodgingOptions.map((o) => `      <div class="lopt${o.chosen ? ' on' : ''}">
+        <div class="lohead"><strong>${esc(o.label)}</strong><span class="lodrive">${Math.floor(o.driveMin / 60)}시간 ${o.driveMin % 60}분</span></div>
+        ${o.chosen ? '<span class="lobadge">선택</span>' : ''}
+        <ul class="lopros">${(o.pros ?? []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+        <ul class="locons">${(o.cons ?? []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+      </div>`).join('\n')}
+    </div>
+  </div>` : ''}
   <div class="dgrid">
 ${(it.days ?? []).map(day).join('\n')}
   </div>
@@ -471,6 +483,19 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .dlodging span{display:inline-block;color:var(--ink2);min-width:34px;font-size:10.5px}
 .dbase{margin:9px 0 0;font-size:12px;color:var(--ink2);line-height:1.5}
 .dbase .k{display:inline-block;min-width:48px;font-size:11px;color:var(--accent);font-weight:600}
+.lopts{margin:0 0 16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow)}
+.lopts h4{margin:0 0 11px;font-size:12.5px;color:var(--ink2);font-weight:600}
+.loptgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.lopt{border:1px solid var(--line);border-radius:11px;padding:11px 12px;position:relative;font-size:12px}
+.lopt.on{border-color:color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.lohead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.lohead strong{font-size:12.5px;line-height:1.4}
+.lodrive{font-family:var(--mono);font-size:13px;font-weight:650;color:var(--ink2);white-space:nowrap}
+.lopt.on .lodrive{color:var(--accent)}
+.lobadge{display:inline-block;font-size:9.5px;font-weight:700;color:var(--bg);background:var(--accent);border-radius:4px;padding:1px 6px;margin-top:6px}
+.lopros,.locons{margin:8px 0 0;padding-left:15px;font-size:11.5px;line-height:1.5}
+.lopros li{color:var(--ink)}
+.locons li{color:var(--accent2)}
 .dgrid{display:grid;gap:12px}
 .dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
 .dcard.outline{opacity:.75;padding:13px 16px}

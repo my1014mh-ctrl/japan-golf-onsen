@@ -143,6 +143,19 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .dlodging span{display:inline-block;color:var(--ink2);min-width:34px;font-size:10.5px}
 .dbase{margin:9px 0 0;font-size:12px;color:var(--ink2);line-height:1.5}
 .dbase .k{display:inline-block;min-width:48px;font-size:11px;color:var(--accent);font-weight:600}
+.lopts{margin:0 0 16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow)}
+.lopts h4{margin:0 0 11px;font-size:12.5px;color:var(--ink2);font-weight:600}
+.loptgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.lopt{border:1px solid var(--line);border-radius:11px;padding:11px 12px;position:relative;font-size:12px}
+.lopt.on{border-color:color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.lohead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.lohead strong{font-size:12.5px;line-height:1.4}
+.lodrive{font-family:var(--mono);font-size:13px;font-weight:650;color:var(--ink2);white-space:nowrap}
+.lopt.on .lodrive{color:var(--accent)}
+.lobadge{display:inline-block;font-size:9.5px;font-weight:700;color:var(--bg);background:var(--accent);border-radius:4px;padding:1px 6px;margin-top:6px}
+.lopros,.locons{margin:8px 0 0;padding-left:15px;font-size:11.5px;line-height:1.5}
+.lopros li{color:var(--ink)}
+.locons li{color:var(--accent2)}
 .dgrid{display:grid;gap:12px}
 .dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
 .dcard.outline{opacity:.75;padding:13px 16px}
@@ -354,7 +367,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>인천 출발 3박 4일 · 토요일은 온천·쇼핑</strong>으로 비우고 나머지 3일을 라운딩에 씁니다. 두 일정(<strong>목~일</strong> / <strong>금~월</strong>)을 탭으로 비교하세요. 범위는 <strong>규슈 전역 + 히로시마</strong>이며, 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸습니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 11. 3. 오전 10:16</span>
+    <span>갱신 2026. 11. 3. 오전 10:24</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>후보 9개 공항</span>
@@ -401,21 +414,22 @@ footer ul{padding-left:18px}
       <span class="muted">미나미아소무라 가와요 4369-1 · 공항 35분</span></div>
       <span class="dctee">08:00</span>
     </div></div>
-    <p class="dbase"><span class="k">숙소</span>아소 1박 + 시내 2박. 아소 1박은 금요일 — 코스기 리조트가 골프장·온천·숙박 복합시설이라 라운딩 후 이동 0분</p>
+    <p class="dbase"><span class="k">숙소</span>시내 2박(금·토) + 리조트 1박(일, 트라이얼 ASO 인접). 일·월 같은 코스 08:00 티업이라 마지막 밤을 코스 옆에 두면 귀국일 아침 이동이 사라진다</p>
     <div class="dlodge"><div class="lodge">
       <span class="lnight">금</span>
-      <div><strong>코스기 리조트 (아소시 오토히메)</strong><span class="ltype">아소 리조트 1박</span>
-      <span class="muted">금요일 라운딩 코스와 같은 부지. 온천·노천·사우나 보유. 토요일 아소 관광의 출발점으로도 최적</span><span class="muted">글램핑·트레일러하우스·코티지·롯지 중 선택. 승마·도그런·애견동반 객실도 있음</span></div>
+      <div><strong>구마모토 시내</strong><span class="ltype">시내 1박</span>
+      <span class="muted">코스기 아소 하이랜드 라운딩 종료 17:20 → 시내 1시간 하행. 야간 산길 운전 구간</span><span class="muted">시모토리·가라시마초 도보권이 금·토 저녁과 월요일 쇼핑에 모두 유리</span></div>
     </div><div class="lodge">
       <span class="lnight">토</span>
       <div><strong>구마모토 시내</strong><span class="ltype">시내 1박</span>
-      <span class="muted">아소 관광을 마치고 아소 신사에서 시내까지 1시간 하행. 도착 17:00이면 아케이드·쓰루야가 아직 영업 중이라 저녁 쇼핑 가능</span></div>
+      <span class="muted">아소 관광을 마치고 아소 신사에서 시내로 1시간 하행. 17:00 도착이라 쓰루야(토 19:30)·아케이드 저녁 쇼핑 가능</span></div>
     </div><div class="lodge">
       <span class="lnight">일</span>
-      <div><strong>구마모토 시내</strong><span class="ltype">시내 1박</span>
-      <span class="muted">월요일 라운딩 후 시내 쇼핑 → 공항 동선과 연결. 짐을 시내에 두고 다닐 수 있음</span></div>
+      <div><strong>아소 캐니언 테라스 &amp; 롯지 (트라이얼 ASO 인접)</strong><span class="ltype">리조트 1박</span>
+      <span class="muted">월요일도 같은 코스 08:00 티업 — 코스 옆에 자면 귀국일 아침 이동이 0분이 되고 3월 산간 결빙 리스크도 사라진다</span><span class="muted">객실(트윈·더블·일본식)·大浴場·테라스·카페테리아. 숙박 패키지는 전화 예약 0967-67-1616. 그룹 제휴로 롯지 도라노유·호텔 Tsmart도 있음</span></div>
     </div></div>
     <p class="dbase"><span class="k">주의</span>트라이얼 골프&amp;리조트에는 ASO COURSE와 南阿蘇(미나미아소) COURSE가 별도로 있다. 예약한 곳은 ASO COURSE (구 아소도큐GC, 미나미아소무라 가와요 4369-1)</p>
+    <p class="dbase"><span class="k">확인</span>driveMin은 4일간 총 운전시간 추정(분). 시내 2박 조건에서는 chosen 안이 귀국일 리스크가 가장 낮다.</p>
     <p class="dbase"><span class="k">렌터카</span>공항 수령 → 월요일 시내 쇼핑 후 공항 반납. 아소 권역은 렌터카 없이 이동 불가</p>
     <div class="dates">
       <div class="dateopt">
@@ -437,11 +451,40 @@ footer ul{padding-left:18px}
         </div>
     </div>
   </div>
+  <div class="lopts">
+    <h4>숙소 배치 비교 — 4일 총 운전시간</h4>
+    <div class="loptgrid">
+      <div class="lopt on">
+        <div class="lohead"><strong>시내 2박(금·토) + 트라이얼 ASO 옆 1박(일)</strong><span class="lodrive">9시간 15분</span></div>
+        <span class="lobadge">선택</span>
+        <ul class="lopros"><li>월요일 귀국일 아침 이동 0분 — 3월 산간 결빙·안개 리스크 제거</li><li>월요일 기상을 06:40로 늦출 수 있음</li><li>시내 2연박으로 금·토 저녁 쇼핑·식사 활용</li></ul>
+        <ul class="locons"><li>금요일 라운딩 후 시내까지 1시간 야간 운전</li><li>토요일 아침 시내→아소 1시간 50분 (07:10 출발)</li></ul>
+      </div>
+      <div class="lopt">
+        <div class="lohead"><strong>코스기 리조트 1박(금) + 시내 2박(토·일)</strong><span class="lodrive">8시간 50분</span></div>
+        
+        <ul class="lopros"><li>금요일 라운딩 후 이동 0분 (코스=숙소)</li><li>토요일 아소 관광 출발점이 가까움 (50분)</li></ul>
+        <ul class="locons"><li>월요일 아침 시내→코스 50분 — 귀국일에 산간 도로</li><li>일요일 저녁 미나미아소→시내 1시간 복귀</li></ul>
+      </div>
+      <div class="lopt">
+        <div class="lohead"><strong>시내 2박(금·토) + 코스기 리조트 1박(일)</strong><span class="lodrive">10시간 20분</span></div>
+        
+        <ul class="lopros"><li>마지막 밤 온천 리조트</li></ul>
+        <ul class="locons"><li>코스기(북부 아소)와 월요일 코스(미나미아소)가 달라 월요일 아침 40분 이동</li><li>총 운전시간 최장</li></ul>
+      </div>
+      <div class="lopt">
+        <div class="lohead"><strong>리조트 2박(금 코스기 + 일 트라이얼) + 시내 1박(토)</strong><span class="lodrive">7시간 15분</span></div>
+        
+        <ul class="lopros"><li>운전시간 최소 — 두 라운딩 모두 숙소가 코스 옆</li><li>토요일 아소 관광 출발점도 가까움</li></ul>
+        <ul class="locons"><li>시내 1박뿐 — 시내 2박 조건에 맞지 않음</li><li>시내 저녁·쇼핑 시간이 토요일 하루로 줄어듦</li></ul>
+      </div>
+    </div>
+  </div>
   <div class="dgrid">
 <div class="dcard">
-      <div class="dhead"><span class="dname on">금</span><span class="dlabel">도착 + 아소 하이랜드 12:30 → 코스기 리조트 1박</span><span class="dtag done">상세</span></div>
-      <p class="dsum">09:25 도착 → 렌터카 → 코스기 리조트 아소 하이랜드 12:30 티업 → 같은 부지 리조트에 체크인 (이동 0분)</p>
-      <p class="dlodging"><span>숙박</span>코스기 리조트 (아소시 오토히메) — 아소 1박</p>
+      <div class="dhead"><span class="dname on">금</span><span class="dlabel">도착 + 아소 하이랜드 12:30 → 시내</span><span class="dtag done">상세</span></div>
+      <p class="dsum">09:25 도착 → 렌터카 → 코스기 리조트 아소 하이랜드 12:30 티업 → 시내로 1시간 하행</p>
+      <p class="dlodging"><span>숙박</span>구마모토 시내 (2박 중 첫째)</p>
       <ol class="timeline"><li class="tblock k-move">
         <div class="btime"><span>07:50</span><span class="bend">09:25</span></div>
         <div class="bbody">
@@ -487,47 +530,47 @@ footer ul{padding-left:18px}
           <p class="btip">3월 아소는 표고 500m대로 시내보다 3~5도 낮다. 방풍 레이어 필수</p>
         </div>
       </li>
-<li class="tblock k-onsen">
-        <div class="btime"><span>17:20</span><span class="bend">17:40</span></div>
+<li class="tblock k-move">
+        <div class="btime"><span>17:20</span><span class="bend">18:30</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">온천</span><strong>리조트 체크인</strong></div>
-          <p class="bdetail">골프장과 같은 부지라 이동이 사실상 없다. 글램핑·트레일러·코티지·롯지 중 예약한 타입으로</p>
-          <div class="bmetas"><span class="bmeta">소요 20분</span></div>
-          
+          <div class="btitle"><span class="bkind">이동</span><strong>코스 → 구마모토 시내</strong></div>
+          <p class="bdetail">국도 57호선 하행. 3월 17:20이면 이미 해가 기울어 산길 야간 운전 구간 — 라운딩 직후라 피로 주의</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 10분</span></div>
+          <p class="btip">아소 권역 숙박을 금요일로 돌리면 이 구간이 없어지지만, 그러면 리조트 1박을 금요일에 써야 한다</p>
         </div>
       </li>
-<li class="tblock k-onsen">
-        <div class="btime"><span>17:40</span><span class="bend">19:30</span></div>
+<li class="tblock k-meal">
+        <div class="btime"><span>18:30</span><span class="bend">20:00</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">온천</span><strong>리조트 온천 · 저녁</strong></div>
-          <p class="bdetail">리조트 내 온천·노천탕·사우나. 저녁은 리조트 레스토랑 또는 BBQ. 아카우시(붉은소)가 아소 명물</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간 50분</span></div>
-          <p class="btip">다음 날은 09:00 나베가타키 입장이라 08:10 출발 — 조식 시간 확인</p>
+          <div class="btitle"><span class="bkind">식사</span><strong>시내 체크인 · 저녁</strong></div>
+          <p class="bdetail">바사시·구마모토 라멘. 아케이드가 숙소 도보권이면 가볍게 둘러볼 수 있다</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 30분</span></div>
+          
         </div>
       </li></ol>
       
-      <div class="decbox"><h4>정해야 할 것</h4><ul><li>렌터카 차급 — 골프백 2개 적재 가능 여부 확인</li><li>코스기 리조트 객실 타입 선택 (글램핑/트레일러/코티지/롯지)</li></ul></div>
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>렌터카 차급 — 골프백 2개 적재 가능 여부</li><li>시내 호텔 위치 — 시모토리·가라시마초 도보권 권장</li></ul></div>
     </div>
 <div class="dcard">
-      <div class="dhead"><span class="dname on">토</span><span class="dlabel">아소 일주 드라이브 → 시내 하행</span><span class="dtag done">상세</span></div>
-      <p class="dsum">코스기 리조트에서 출발해 북부 아소를 반시계로 돌고 아소 신사에서 시내로 1시간 하행. 시내 도착 17:00이면 저녁 쇼핑까지 가능</p>
-      <p class="dlodging"><span>숙박</span>구마모토 시내 — 시내 1박 (2박 중 첫째)</p>
+      <div class="dhead"><span class="dname on">토</span><span class="dlabel">아소 일주 드라이브 (시내 왕복)</span><span class="dtag done">상세</span></div>
+      <p class="dsum">시내에서 아소 북부까지 1시간 50분. 나베가타키 09:00 입장에 맞추려면 07:10 출발 — 이른 하루가 된다</p>
+      <p class="dlodging"><span>숙박</span>구마모토 시내 (2박 중 둘째)</p>
       <ol class="timeline"><li class="tblock k-meal">
-        <div class="btime"><span>07:40</span><span class="bend">08:10</span></div>
+        <div class="btime"><span>06:40</span><span class="bend">07:10</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">식사</span><strong>리조트 조식 · 체크아웃</strong></div>
-          <p class="bdetail">짐을 모두 차에 싣는다 — 저녁에 시내로 내려가므로 리조트로 돌아오지 않는다</p>
+          <div class="btitle"><span class="bkind">식사</span><strong>조식 · 출발 준비</strong></div>
+          <p class="bdetail">호텔 조식이 07:00 이후면 전날 간편식 준비</p>
           <div class="bmetas"><span class="bmeta">소요 30분</span></div>
           
         </div>
       </li>
 <li class="tblock k-move">
-        <div class="btime"><span>08:10</span><span class="bend">09:00</span></div>
+        <div class="btime"><span>07:10</span><span class="bend">09:00</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">이동</span><strong>코스기 리조트 → 나베가타키</strong></div>
-          <p class="bdetail">아소시 오토히메에서 오구니초 방면. 밀크로드 경유 산길</p>
-          <div class="bmetas"><span class="bmeta">소요 50분</span></div>
-          
+          <div class="btitle"><span class="bkind">이동</span><strong>구마모토 시내 → 나베가타키</strong></div>
+          <p class="bdetail">국도 57호 → 밀크로드 또는 국도 212 경유. 시내 기점이라 아소 숙박 대비 1시간 더 걸린다</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 50분</span></div>
+          <p class="btip">이 1시간이 금요일 리조트 숙박을 포기한 대가다. 나베가타키 예약을 09:30으로 잡으면 20분 여유가 생긴다</p>
         </div>
       </li>
 <li class="tblock k-sight">
@@ -606,7 +649,7 @@ footer ul{padding-left:18px}
         <div class="btime"><span>16:00</span><span class="bend">17:00</span></div>
         <div class="bbody">
           <div class="btitle"><span class="bkind">이동</span><strong>아소 신사 → 구마모토 시내</strong></div>
-          <p class="bdetail">국도 57호선 하행. 시내 호텔 체크인</p>
+          <p class="bdetail">국도 57호선 하행</p>
           <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
           
         </div>
@@ -614,10 +657,10 @@ footer ul{padding-left:18px}
 <li class="tblock k-shop">
         <div class="btime"><span>17:00</span><span class="bend">19:30</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">쇼핑</span><strong>시내 저녁 + 쇼핑 (보너스)</strong><span class="bja">下通・上通 / 鶴屋百貨店</span></div>
-          <p class="bdetail">토요일 쓰루야 백화점은 19:30까지, 시모토리·가미토리 아케이드는 더 늦게까지 영업. 월요일 쇼핑 부담을 여기서 미리 덜 수 있다</p>
+          <div class="btitle"><span class="bkind">쇼핑</span><strong>시내 저녁 + 쇼핑</strong><span class="bja">下通・上通 / 鶴屋百貨店</span></div>
+          <p class="bdetail">토요일 쓰루야 백화점 19:30까지, 시모토리·가미토리 아케이드는 더 늦게까지. 월요일 쇼핑 부담을 여기서 덜어둔다</p>
           <div class="bmetas"><span class="bmeta">소요 2시간 30분</span><span class="bmeta">운영 쓰루야 토요일 10:00~19:30</span></div>
-          <p class="btip">월요일에 또 쇼핑 시간이 있으니 토요일은 가볍게 둘러보고 저녁에 집중해도 된다</p>
+          
         </div>
       </li></ol>
       <div class="altbox"><h4>대안 · 추가 선택지</h4><div class="alt">
@@ -633,17 +676,17 @@ footer ul{padding-left:18px}
       <span class="altwhen">월요일 오후로 이동 권장</span>
       <p>아소에서 구마모토 시내는 왕복 2시간. 다음 날 08:00 티업을 감안하면 관광과 쇼핑 둘 다 쫓긴다. 월요일 라운딩 후 공항까지 5시간 이상 여유가 있으므로 쇼핑은 월요일로 넘기는 편이 낫다</p>
     </div></div>
-      <div class="decbox"><h4>정해야 할 것</h4><ul><li>나베가타키 웹 사전예약 — 토요일 첫 블록이 여기에 걸려 있다</li><li>시내 호텔 위치 — 아케이드 도보권(시모토리·가라시마초)이 토·일 저녁과 월요일 쇼핑에 모두 유리</li></ul></div>
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>나베가타키 웹 사전예약 — 09:00 또는 09:30 슬롯</li><li>토요일만 아소 숙박으로 바꾸면 아침 1시간을 아낄 수 있으나 리조트 1박을 일요일에서 빼야 한다</li></ul></div>
     </div>
 <div class="dcard">
-      <div class="dhead"><span class="dname on">일</span><span class="dlabel">트라이얼 ASO 08:00 (시내 왕복)</span><span class="dtag done">상세</span></div>
-      <p class="dsum">시내에서 트라이얼 ASO까지 약 50분. 08:00 티업 → 13:00 종료 → 미나미아소 관광 → 시내 복귀</p>
-      <p class="dlodging"><span>숙박</span>구마모토 시내 — 시내 1박 (2박 중 둘째)</p>
+      <div class="dhead"><span class="dname on">일</span><span class="dlabel">트라이얼 ASO 08:00 → 코스 옆 리조트 1박</span><span class="dtag done">상세</span></div>
+      <p class="dsum">시내 체크아웃 → 트라이얼 ASO 50분 → 08:00 티업 → 오후 미나미아소 관광 → 코스 인접 리조트 체크인 (월요일 아침 이동 0분)</p>
+      <p class="dlodging"><span>숙박</span>아소 캐니언 테라스 &amp; 롯지 — 리조트 1박</p>
       <ol class="timeline"><li class="tblock k-meal">
         <div class="btime"><span>06:00</span><span class="bend">06:40</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">식사</span><strong>기상 · 조식</strong></div>
-          <p class="bdetail">호텔 조식이 06:30 이후면 전날 편의점에서 간편식 준비</p>
+          <div class="btitle"><span class="bkind">식사</span><strong>기상 · 조식 · 시내 체크아웃</strong></div>
+          <p class="bdetail">짐을 모두 차에 싣는다 — 시내로 돌아오지 않는다</p>
           <div class="bmetas"><span class="bmeta">소요 40분</span></div>
           
         </div>
@@ -652,9 +695,9 @@ footer ul{padding-left:18px}
         <div class="btime"><span>06:50</span><span class="bend">07:40</span></div>
         <div class="bbody">
           <div class="btitle"><span class="bkind">이동</span><strong>시내 → 트라이얼 골프 &amp; 리조트 ASO</strong></div>
-          <p class="bdetail">국도 57호 → 히고오즈 경유. 시내에서 약 50분 (공항IC 기준 35분)</p>
+          <p class="bdetail">국도 57호 → 히고오즈 경유. 시내에서 약 50분</p>
           <div class="bmetas"><span class="bmeta">소요 50분</span></div>
-          <p class="btip">3월 아소는 아침 안개·노면 결빙 가능. 여유 10~15분 추가</p>
+          <p class="btip">3월 아소는 아침 안개 가능. 여유 10~15분 추가</p>
         </div>
       </li>
 <li class="tblock k-golf">
@@ -688,26 +731,26 @@ footer ul{padding-left:18px}
         <div class="btime"><span>14:00</span><span class="bend">16:00</span></div>
         <div class="bbody">
           <div class="btitle"><span class="bkind">관광</span><strong>미나미아소 권역 관광</strong><span class="bja">白川水源・南阿蘇</span></div>
-          <p class="bdetail">시라카와 수원(일본 명수 100선)은 코스와 같은 미나미아소무라. 아소 외륜산 전망, 미나미아소 수원역 등. 라운딩 후 동선상 가깝다</p>
+          <p class="bdetail">시라카와 수원(일본 명수 100선)은 코스와 같은 미나미아소무라. 아소 외륜산 전망·미나미아소 수원역. 숙소가 코스 옆이라 복귀 이동이 없다</p>
           <div class="bmetas"><span class="bmeta">소요 2시간</span></div>
           
         </div>
       </li>
 <li class="tblock k-move">
-        <div class="btime"><span>16:00</span><span class="bend">17:00</span></div>
+        <div class="btime"><span>16:00</span><span class="bend">16:20</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">이동</span><strong>미나미아소 → 시내 복귀</strong></div>
-          
-          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          <div class="btitle"><span class="bkind">이동</span><strong>리조트 체크인</strong></div>
+          <p class="bdetail">아소 캐니언 테라스 &amp; 롯지 — 코스 인접</p>
+          <div class="bmetas"><span class="bmeta">소요 20분</span></div>
           
         </div>
       </li>
-<li class="tblock k-meal">
-        <div class="btime"><span>17:00</span><span class="bend">19:30</span></div>
+<li class="tblock k-onsen">
+        <div class="btime"><span>16:20</span><span class="bend">19:30</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">식사</span><strong>시내 저녁 · 휴식</strong></div>
-          <p class="bdetail">다음 날도 06:50 출발이라 일찍 정리. 바사시·구마모토 라멘</p>
-          <div class="bmetas"><span class="bmeta">소요 2시간 30분</span></div>
+          <div class="btitle"><span class="bkind">온천</span><strong>大浴場 · 저녁 · 휴식</strong></div>
+          <p class="bdetail">다음 날 티업까지 이동이 없어 기상을 06:40까지 늦출 수 있다</p>
+          <div class="bmetas"><span class="bmeta">소요 3시간 10분</span></div>
           
         </div>
       </li></ol>
@@ -716,27 +759,27 @@ footer ul{padding-left:18px}
       <span class="altwhen">일요일 오후 대체</span>
       <p>미나미아소 코스에서 아소산상 방면으로 올라갈 수 있다. 나카다케 화구 견학은 분화경계레벨 2로 폐쇄(2026-10 기준)이나 구사센리 초원은 이용 가능</p>
     </div></div>
-      <div class="decbox"><h4>정해야 할 것</h4><ul><li>일요일 주말 2사무 가능 여부·할증 확인</li><li>오후 관광을 넣을지, 시내로 바로 복귀해 쇼핑할지</li></ul></div>
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>리조트 숙박 패키지 전화 예약 (0967-67-1616) — 직영/제휴 여부와 大浴場 온천 여부 확인</li><li>일요일 주말 2사무 가능 여부·할증 확인</li></ul></div>
     </div>
 <div class="dcard">
-      <div class="dhead"><span class="dname on">월</span><span class="dlabel">트라이얼 ASO 08:00 + 시내 쇼핑 + 귀국</span><span class="dtag done">상세</span></div>
-      <p class="dsum">시내 체크아웃 → 트라이얼 ASO 08:00 → 13:00 종료 → 시내 쇼핑 → 공항 → KE2156 19:35</p>
+      <div class="dhead"><span class="dname on">월</span><span class="dlabel">트라이얼 ASO 08:00 (이동 0분) + 시내 쇼핑 + 귀국</span><span class="dtag done">상세</span></div>
+      <p class="dsum">코스 옆 숙소라 아침 이동 없음 → 08:00 티업 → 13:00 종료 → 시내 쇼핑 → 공항 → KE2156 19:35</p>
       <p class="dlodging"><span>숙박</span>— (귀국)</p>
       <ol class="timeline"><li class="tblock k-meal">
-        <div class="btime"><span>06:00</span><span class="bend">06:40</span></div>
+        <div class="btime"><span>06:40</span><span class="bend">07:20</span></div>
         <div class="bbody">
           <div class="btitle"><span class="bkind">식사</span><strong>기상 · 조식 · 체크아웃</strong></div>
-          <p class="bdetail">짐을 모두 차에 싣는다 — 라운딩 후 시내 쇼핑을 거쳐 공항으로 직행</p>
+          <p class="bdetail">코스가 옆이라 전날 대비 40분 늦게 일어나도 된다. 짐을 차에 싣고 라운딩 후 바로 시내로</p>
           <div class="bmetas"><span class="bmeta">소요 40분</span></div>
           
         </div>
       </li>
 <li class="tblock k-move">
-        <div class="btime"><span>06:50</span><span class="bend">07:40</span></div>
+        <div class="btime"><span>07:30</span><span class="bend">07:45</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">이동</span><strong>시내 → 트라이얼 ASO</strong></div>
-          
-          <div class="bmetas"><span class="bmeta">소요 50분</span></div>
+          <div class="btitle"><span class="bkind">이동</span><strong>리조트 → 코스</strong></div>
+          <p class="bdetail">인접 — 도보 또는 차로 5~10분. 3월 산간 결빙 리스크를 안고 50분 운전하지 않아도 된다</p>
+          <div class="bmetas"><span class="bmeta">소요 15분</span></div>
           
         </div>
       </li>
