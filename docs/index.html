@@ -109,6 +109,66 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .tab.on .tlabel{color:var(--accent)}
 .tab:hover:not(.on){color:var(--ink)}
 .vpanel{display:none}
+.decided{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);margin:18px 0 16px}
+.dtop{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.dkicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--bg);background:var(--accent);border-radius:4px;padding:2px 7px;margin-bottom:6px}
+.decided h2{margin:0;font-size:19px;letter-spacing:-.02em}
+.dflights{display:grid;gap:4px;font-size:12.5px}
+.dflights .k{display:inline-block;min-width:32px;font-size:11px;color:var(--ink2)}
+.dflights strong{font-family:var(--mono);font-size:12px}
+.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:14px}
+.dateopt{border:1px solid var(--line);border-radius:10px;padding:9px 11px;display:flex;flex-direction:column;gap:2px}
+.dateopt.good{border-color:color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.dateopt.bad{border-color:color-mix(in srgb,var(--accent2) 45%,transparent);background:color-mix(in srgb,var(--accent2) 6%,transparent);opacity:.85}
+.dateopt strong{font-family:var(--mono);font-size:14px;letter-spacing:-.01em}
+.satday{font-size:11px;color:var(--ink2);font-family:var(--mono)}
+.datetag{font-size:11px;color:var(--ink2)}
+.dateopt.good .datetag{color:var(--accent)}
+.dateopt.bad .datetag{color:var(--accent2)}
+.dgrid{display:grid;gap:12px}
+.dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.dcard.outline{opacity:.75;padding:13px 16px}
+.dhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.dname{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink2);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.dname.on{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+.dlabel{font-size:15px;font-weight:650;letter-spacing:-.01em}
+.dtag{font-size:10.5px;color:var(--ink2);border:1px dashed var(--line);border-radius:5px;padding:1px 6px;margin-left:auto}
+.dtag.done{color:var(--accent);border-style:solid;border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.dsum{margin:7px 0 0;font-size:12.5px;color:var(--ink2)}
+.timeline{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:2px}
+.tblock{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:10px 0;border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.tblock:first-child{border-top:0}
+.btime{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;line-height:1.35;display:flex;flex-direction:column}
+.btime .bend{font-size:10.5px;color:var(--ink2)}
+.btitle{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.btitle strong{font-size:14px;letter-spacing:-.01em}
+.bkind{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;color:var(--bg)}
+.k-sight .bkind{background:var(--accent)}
+.k-shop .bkind{background:var(--b)}
+.k-meal .bkind{background:var(--accent2)}
+.k-move .bkind{background:var(--x)}
+.k-golf .bkind{background:var(--c)}
+.bja{font-size:11px;color:var(--ink2)}
+.bdetail{margin:5px 0 0;font-size:12.5px;line-height:1.55}
+.bmetas{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.bmeta{font-size:10.5px;color:var(--ink2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-variant-numeric:tabular-nums}
+.btip{margin:6px 0 0;font-size:11.5px;color:var(--accent2)}
+.tblock.needs{background:color-mix(in srgb,var(--accent2) 6%,transparent);border-radius:8px;padding-left:8px}
+.altbox,.decbox{margin-top:16px;padding-top:13px;border-top:1px solid var(--line)}
+.altbox h4,.decbox h4{margin:0 0 9px;font-size:12px;color:var(--ink2);font-weight:600;letter-spacing:.02em}
+.alt{margin-bottom:11px;font-size:12.5px}
+.alt strong{font-size:13px}
+.altwhen{font-size:10.5px;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);border-radius:5px;padding:1px 6px;margin-left:6px}
+.alt p{margin:4px 0 0;color:var(--ink2);line-height:1.55}
+.decbox ul{margin:0;padding-left:17px;font-size:12.5px;color:var(--ink)}
+.decbox li{margin-bottom:5px}
+@media (max-width:680px){
+  .tblock{grid-template-columns:52px 1fr;gap:9px}
+  .btime{font-size:12px}
+  .dtop{gap:12px}
+  .decided{padding:14px}
+  .dates{grid-template-columns:1fr 1fr}
+}
 .vpanel.on{display:block}
 .vsummary{margin:18px 0 16px;padding:12px 14px;border-radius:12px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);font-size:13px;display:flex;flex-direction:column;gap:3px}
 .vsummary strong{font-size:14px;letter-spacing:-.01em}
@@ -273,7 +333,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>인천 출발 3박 4일 · 토요일은 온천·쇼핑</strong>으로 비우고 나머지 3일을 라운딩에 씁니다. 두 일정(<strong>목~일</strong> / <strong>금~월</strong>)을 탭으로 비교하세요. 범위는 <strong>규슈 전역 + 히로시마</strong>이며, 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸습니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 10. 30. 오후 5:33</span>
+    <span>갱신 2026. 11. 3. 오전 10:04</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>후보 9개 공항</span>
@@ -283,17 +343,178 @@ footer ul{padding-left:18px}
 <p class="banner"><strong>후보 9개 공항 전부 공항 공식 시간표로 확인됨.</strong> 확인 과정에서 <strong>가고시마·기타큐슈는 3월 오전편이 없고, 나가사키는 목·화·월·토만, 사가는 월·수·금·일만 운항</strong>한다는 사실이 드러나 일정별로 가능 여부가 갈립니다.</p>
 
 <div class="tabs" role="tablist">
-<button type="button" class="tab on" role="tab" aria-selected="true" data-tab="A">
-    <span class="tlabel">목~일</span>
+<button type="button" class="tab on" role="tab" aria-selected="true" data-tab="ITIN">
+    <span class="tlabel">상세 일정</span>
+    <span class="tmeta">구마모토 · 금~월 확정</span>
+  </button>
+<button type="button" class="tab" role="tab" aria-selected="false" data-tab="A">
+    <span class="tlabel">목~일 비교</span>
     <span class="tmeta">3곳 3라운딩 · 5곳 가능</span>
   </button>
 <button type="button" class="tab" role="tab" aria-selected="false" data-tab="B">
-    <span class="tlabel">금~월</span>
+    <span class="tlabel">금~월 비교</span>
     <span class="tmeta">3곳 3라운딩 · 6곳 가능</span>
   </button>
 </div>
 
-<section class="vpanel on" id="v-A" data-vid="A">
+<section class="vpanel on" id="v-ITIN" data-vid="ITIN">
+  <div class="decided">
+    <div class="dtop">
+      <div>
+        <span class="dkicker">확정</span>
+        <h2>구마모토 <span class="iata">KMJ</span> · 금~월 3박 4일</h2>
+      </div>
+      <div class="dflights">
+        <div><span class="k">출발</span><strong>TW287</strong> 인천 07:50 → 09:25 <span class="muted">매일</span></div>
+        <div><span class="k">귀국</span><strong>KE2156</strong> 구마모토 19:35 → 21:20 <span class="muted">매일</span></div>
+      </div>
+    </div>
+    <div class="dates">
+      <div class="dateopt">
+          <strong>03/05 → 03/08</strong>
+          <span class="satday">토 03/06</span>
+          <span class="datetag">최저가·한산</span>
+        </div><div class="dateopt good">
+          <strong>03/12 → 03/15</strong>
+          <span class="satday">토 03/13</span>
+          <span class="datetag">권장 — 공휴일 없음</span>
+        </div><div class="dateopt bad">
+          <strong>03/19 → 03/22</strong>
+          <span class="satday">토 03/20</span>
+          <span class="datetag">비권장 — 3/22(월) 대체휴일</span>
+        </div><div class="dateopt">
+          <strong>03/26 → 03/29</strong>
+          <span class="satday">토 03/27</span>
+          <span class="datetag">벚꽃·시즌변경</span>
+        </div>
+    </div>
+  </div>
+  <div class="dgrid">
+<div class="dcard outline">
+        <div class="dhead"><span class="dname">금</span><span class="dlabel">도착 + 라운딩</span><span class="dtag">개요</span></div>
+        <p class="dsum">09:25 도착 → 구마모토공항 CC 라운딩(공항 3km)</p>
+      </div>
+<div class="dcard">
+      <div class="dhead"><span class="dname on">토</span><span class="dlabel">오전 관광 · 오후 쇼핑</span><span class="dtag done">상세</span></div>
+      <p class="dsum">구마모토성 중심 시내 관광 → 시모토리·가미토리 쇼핑. 전부 도보·시전 권역이라 렌터카 없이 소화 가능</p>
+      <ol class="timeline"><li class="tblock k-move">
+        <div class="btime"><span>08:15</span><span class="bend">08:55</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>숙소 → 구마모토성</strong></div>
+          <p class="bdetail">시내 숙박이면 도보·시전 10~15분. 공항권 숙박이면 차로 45분 — 08:10 출발 필요</p>
+          <div class="bmetas"><span class="bmeta">요금 시전 1회 180엔</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-sight">
+        <div class="btime"><span>09:00</span><span class="bend">11:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">관광</span><strong>구마모토성</strong><span class="bja">熊本城</span></div>
+          <p class="bdetail">09:00 개장과 동시 입장해 혼잡을 피한다. 특별견학통로에서 지진 피해·복구 현장을 내려다본 뒤 천수각으로. 천수각은 전면 복구 완료, 최상층 전망 가능</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 30분~2시간</span><span class="bmeta">운영 09:00~17:00 (최종입장 16:00)</span><span class="bmeta">요금 고교생 이상 800엔</span></div>
+          <p class="btip">성 전체 복구는 2052년 예정이라 공사 구역이 남아 있다</p>
+        </div>
+      </li>
+<li class="tblock k-sight">
+        <div class="btime"><span>11:00</span><span class="bend">11:45</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">관광</span><strong>사쿠라노바바 조사이엔</strong><span class="bja">桜の馬場 城彩苑</span></div>
+          <p class="bdetail">성 바로 아래 에도풍 거리. 입장 무료. 기념품점(9:00~18:00)에서 구마몬 굿즈·마쓰리 과자. 와쿠와쿠자(역사체험관, 300엔)는 시간 여유 있을 때만</p>
+          <div class="bmetas"><span class="bmeta">소요 40분</span><span class="bmeta">운영 기념품 9:00~18:00 / 식당 11:00~18:00</span><span class="bmeta">요금 무료 (와쿠와쿠자 300엔)</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-meal">
+        <div class="btime"><span>11:45</span><span class="bend">12:45</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>점심 — 바사시 또는 구마모토 라멘</strong></div>
+          <p class="bdetail">조사이엔 사쿠라노코지 식당가에서 바로 먹거나, 시내로 내려가 아케이드 주변에서. 구마모토 명물은 바사시(말고기회)와 돈코쓰 베이스 구마모토 라멘</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>12:45</span><span class="bend">13:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>구마모토성 → 사쿠라마치</strong></div>
+          <p class="bdetail">도보 10~15분. 또는 시전 가라시마초 하차 도보 1분</p>
+          <div class="bmetas"><span class="bmeta">요금 도보 또는 시전 180엔</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-shop">
+        <div class="btime"><span>13:00</span><span class="bend">14:45</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">쇼핑</span><strong>사쿠라마치 구마모토</strong><span class="bja">サクラマチ クマモト</span></div>
+          <p class="bdetail">2019년 개업 복합상업시설. 패션·잡화·식품에 버스터미널 병설. 비 와도 전부 실내</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 45분</span><span class="bmeta">운영 쇼핑 10:00~20:00 / 레스토랑 10:00~22:00</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-shop">
+        <div class="btime"><span>14:45</span><span class="bend">16:30</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">쇼핑</span><strong>시모토리 · 가미토리 아케이드</strong><span class="bja">下通・上通アーケード</span></div>
+          <p class="bdetail">서일본 최대급 상점가. 시모토리는 대형 체인·드러그스토어, 가미토리는 개인숍·카페가 많다. 아케이드라 우천 무관</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 45분</span></div>
+          <p class="btip">면세는 여권 지참. 드러그스토어(마쓰모토키요시·코쿠민)가 아케이드에 밀집</p>
+        </div>
+      </li>
+<li class="tblock k-shop">
+        <div class="btime"><span>16:30</span><span class="bend">18:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">쇼핑</span><strong>쓰루야 백화점</strong><span class="bja">鶴屋百貨店</span></div>
+          <p class="bdetail">1952년 개업 구마모토 향토 백화점. 본관·동관·New-S·Wing 4관 약 7만㎡. 지하 식품관에서 귀국 선물용 과자·주류</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 30분</span><span class="bmeta">운영 10:00~19:00 (금·토는 19:30)</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-meal">
+        <div class="btime"><span>18:00</span><span class="bend">19:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>저녁</strong></div>
+          <p class="bdetail">아케이드 주변 이자카야 또는 숙소 이동 후 온천 숙소 식사</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move needs">
+        <div class="btime"><span>19:00</span><span class="bend">20:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>온천 숙소 이동</strong></div>
+          <p class="bdetail">일요일 조조 라운딩을 감안하면 시내보다 공항·코스 방면 온천이 유리. 기쿠치 온천 시내 40분 / 아소 우치노마키 공항 55분 / 구로카와 온천 공항 75분</p>
+          
+          
+        </div>
+      </li></ol>
+      <div class="altbox"><h4>대안 · 추가 선택지</h4><div class="alt">
+      <strong>스이젠지 조주엔 추가</strong><span class="bja">水前寺成趣園</span>
+      <span class="altwhen">오전 또는 쇼핑 전</span>
+      <p>모모야마식 회유 정원. 시전 水前寺公園前 하차 도보 3분, 일주 30분. 8:30~17:00(최종입장 16:30), 500엔. 오전에 구마모토성 전 또는 후에 끼울 수 있다</p>
+    </div><div class="alt">
+      <strong>아소 방면 종일 관광 — 비권장</strong><span class="bja">阿蘇</span>
+      <span class="altwhen">오후 쇼핑을 포기할 경우에만</span>
+      <p>나카다케 화구 견학은 분화경계레벨 2로 폐쇄, 화구 1km 진입 금지·셔틀버스 중단(2026-10 기준). 구사센리·다이칸보·아소산상터미널만 가능. 왕복 이동 2시간 이상이라 오후 쇼핑과 충돌</p>
+    </div><div class="alt">
+      <strong>나베가타키 폭포</strong><span class="bja">鍋ヶ滝</span>
+      <span class="altwhen">구로카와 온천 숙박 선택 시</span>
+      <p>폭포 뒤쪽에서 커튼처럼 보는 명소. 구로카와 온천 근처. 사전 예약제. 공항에서 1시간 20분 — 토요일 밤 구로카와 숙박과 묶을 때만 성립</p>
+    </div></div>
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>토요일 밤 숙소를 시내에 둘지 온천지에 둘지 — 일요일 조조 라운딩 접근성과 직결</li><li>렌터카 유무: 토요일 일정은 시전·도보로 완결되지만 금·일·월 골프는 렌터카가 사실상 필수</li></ul></div>
+    </div>
+<div class="dcard outline">
+        <div class="dhead"><span class="dname">일</span><span class="dlabel">라운딩</span><span class="dtag">개요</span></div>
+        <p class="dsum">조조 티업 라운딩. 주말이라 2인 플레이 가능 코스 제한</p>
+      </div>
+<div class="dcard outline">
+        <div class="dhead"><span class="dname">월</span><span class="dlabel">라운딩 + 귀국</span><span class="dtag">개요</span></div>
+        <p class="dsum">조조 티업 → 12:00 종료 → 공항 이동 → KE2156 19:35 귀국. 평일이라 평일 2사무 플랜 사용 가능</p>
+      </div>
+  </div>
+  <p class="note src">※ 운영시간·요금은 2026-11-03 기준 공개 정보입니다. 2027년 3월 방문 전 재확인하세요.</p>
+</section>
+
+<section class="vpanel" id="v-A" data-vid="A">
   <p class="vsummary"><strong>목 도착+골프 / 금 골프 / 토 온천·쇼핑 / 일 골프+귀국</strong><span>귀국일 라운딩이 일요일(주말)이라 &#39;전일 2사무&#39; 코스만 쓸 수 있다.</span></p>
 
   <div class="wgrid">

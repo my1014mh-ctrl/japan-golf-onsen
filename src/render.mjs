@@ -221,6 +221,90 @@ function courseModal(analysis) {
 </dialog>`;
 }
 
+const KIND = {
+  sight: { label: '관광', cls: 'k-sight' },
+  shop: { label: '쇼핑', cls: 'k-shop' },
+  meal: { label: '식사', cls: 'k-meal' },
+  move: { label: '이동', cls: 'k-move' },
+  golf: { label: '골프', cls: 'k-golf' },
+};
+
+function itineraryPanel(it) {
+  if (!it?.decided) return '';
+  const d = it.decided;
+  const day = (x) => {
+    if (x.status !== 'detailed') {
+      return `<div class="dcard outline">
+        <div class="dhead"><span class="dname">${esc(x.name)}</span><span class="dlabel">${esc(x.label)}</span><span class="dtag">개요</span></div>
+        <p class="dsum">${esc(x.summary)}</p>
+      </div>`;
+    }
+    const blocks = (x.blocks ?? []).map((b) => {
+      const k = KIND[b.kind] ?? KIND.move;
+      const meta = [
+        b.duration ? `소요 ${esc(b.duration)}` : null,
+        b.hours ? `운영 ${esc(b.hours)}` : null,
+        b.cost ? `요금 ${esc(b.cost)}` : null,
+      ].filter(Boolean).map((m) => `<span class="bmeta">${m}</span>`).join('');
+      return `<li class="tblock ${k.cls}${b.decision ? ' needs' : ''}">
+        <div class="btime"><span>${esc(b.start)}</span><span class="bend">${esc(b.end)}</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">${esc(k.label)}</span><strong>${esc(b.title)}</strong>${b.placeJa ? `<span class="bja">${esc(b.placeJa)}</span>` : ''}</div>
+          ${b.detail ? `<p class="bdetail">${esc(b.detail)}</p>` : ''}
+          ${meta ? `<div class="bmetas">${meta}</div>` : ''}
+          ${b.tip ? `<p class="btip">${esc(b.tip)}</p>` : ''}
+        </div>
+      </li>`;
+    }).join('\n');
+
+    const alts = (x.alternatives ?? []).map((a) => `<div class="alt">
+      <strong>${esc(a.title)}</strong>${a.placeJa ? `<span class="bja">${esc(a.placeJa)}</span>` : ''}
+      ${a.when ? `<span class="altwhen">${esc(a.when)}</span>` : ''}
+      <p>${esc(a.detail)}</p>
+    </div>`).join('');
+
+    const decs = (x.decisions ?? []).map((t) => `<li>${esc(t)}</li>`).join('');
+
+    return `<div class="dcard">
+      <div class="dhead"><span class="dname on">${esc(x.name)}</span><span class="dlabel">${esc(x.label)}</span><span class="dtag done">상세</span></div>
+      <p class="dsum">${esc(x.summary)}</p>
+      <ol class="timeline">${blocks}</ol>
+      ${alts ? `<div class="altbox"><h4>대안 · 추가 선택지</h4>${alts}</div>` : ''}
+      ${decs ? `<div class="decbox"><h4>정해야 할 것</h4><ul>${decs}</ul></div>` : ''}
+    </div>`;
+  };
+
+  return `<section class="vpanel on" id="v-ITIN" data-vid="ITIN">
+  <div class="decided">
+    <div class="dtop">
+      <div>
+        <span class="dkicker">확정</span>
+        <h2>${esc(d.city)} <span class="iata">${esc(d.iata)}</span> · ${esc(d.variantLabel)} 3박 4일</h2>
+      </div>
+      <div class="dflights">
+        <div><span class="k">출발</span><strong>${esc(d.outbound.flightNo)}</strong> 인천 ${esc(d.outbound.dep)} → ${esc(d.outbound.arr)} <span class="muted">${esc(d.outbound.days)}</span></div>
+        <div><span class="k">귀국</span><strong>${esc(d.inbound.flightNo)}</strong> 구마모토 ${esc(d.inbound.dep)} → ${esc(d.inbound.arr)} <span class="muted">${esc(d.inbound.days)}</span></div>
+      </div>
+    </div>
+    <div class="dates">
+      ${(d.dateOptions ?? []).map((o) => {
+        const bad = o.tag.includes('비권장');
+        const good = o.tag.includes('권장') && !bad;
+        return `<div class="dateopt${good ? ' good' : ''}${bad ? ' bad' : ''}">
+          <strong>${esc(o.depart.slice(5).replace('-', '/'))} → ${esc(o.return.slice(5).replace('-', '/'))}</strong>
+          <span class="satday">토 ${esc(o.saturday.slice(5).replace('-', '/'))}</span>
+          <span class="datetag">${esc(o.tag)}</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>
+  <div class="dgrid">
+${(it.days ?? []).map(day).join('\n')}
+  </div>
+  <p class="note src">※ 운영시간·요금은 ${esc(it.meta?.updated ?? '')} 기준 공개 정보입니다. 2027년 3월 방문 전 재확인하세요.</p>
+</section>`;
+}
+
 export function renderHtml(analysis, opts = {}) {
   const tripLabel = opts.tripLabel ?? '2027년 3월';
   const variants = analysis.variants ?? [analysis];
@@ -337,6 +421,66 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .tab.on .tlabel{color:var(--accent)}
 .tab:hover:not(.on){color:var(--ink)}
 .vpanel{display:none}
+.decided{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);margin:18px 0 16px}
+.dtop{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.dkicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--bg);background:var(--accent);border-radius:4px;padding:2px 7px;margin-bottom:6px}
+.decided h2{margin:0;font-size:19px;letter-spacing:-.02em}
+.dflights{display:grid;gap:4px;font-size:12.5px}
+.dflights .k{display:inline-block;min-width:32px;font-size:11px;color:var(--ink2)}
+.dflights strong{font-family:var(--mono);font-size:12px}
+.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:14px}
+.dateopt{border:1px solid var(--line);border-radius:10px;padding:9px 11px;display:flex;flex-direction:column;gap:2px}
+.dateopt.good{border-color:color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.dateopt.bad{border-color:color-mix(in srgb,var(--accent2) 45%,transparent);background:color-mix(in srgb,var(--accent2) 6%,transparent);opacity:.85}
+.dateopt strong{font-family:var(--mono);font-size:14px;letter-spacing:-.01em}
+.satday{font-size:11px;color:var(--ink2);font-family:var(--mono)}
+.datetag{font-size:11px;color:var(--ink2)}
+.dateopt.good .datetag{color:var(--accent)}
+.dateopt.bad .datetag{color:var(--accent2)}
+.dgrid{display:grid;gap:12px}
+.dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.dcard.outline{opacity:.75;padding:13px 16px}
+.dhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.dname{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink2);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.dname.on{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+.dlabel{font-size:15px;font-weight:650;letter-spacing:-.01em}
+.dtag{font-size:10.5px;color:var(--ink2);border:1px dashed var(--line);border-radius:5px;padding:1px 6px;margin-left:auto}
+.dtag.done{color:var(--accent);border-style:solid;border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.dsum{margin:7px 0 0;font-size:12.5px;color:var(--ink2)}
+.timeline{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:2px}
+.tblock{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:10px 0;border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.tblock:first-child{border-top:0}
+.btime{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;line-height:1.35;display:flex;flex-direction:column}
+.btime .bend{font-size:10.5px;color:var(--ink2)}
+.btitle{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.btitle strong{font-size:14px;letter-spacing:-.01em}
+.bkind{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;color:var(--bg)}
+.k-sight .bkind{background:var(--accent)}
+.k-shop .bkind{background:var(--b)}
+.k-meal .bkind{background:var(--accent2)}
+.k-move .bkind{background:var(--x)}
+.k-golf .bkind{background:var(--c)}
+.bja{font-size:11px;color:var(--ink2)}
+.bdetail{margin:5px 0 0;font-size:12.5px;line-height:1.55}
+.bmetas{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.bmeta{font-size:10.5px;color:var(--ink2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-variant-numeric:tabular-nums}
+.btip{margin:6px 0 0;font-size:11.5px;color:var(--accent2)}
+.tblock.needs{background:color-mix(in srgb,var(--accent2) 6%,transparent);border-radius:8px;padding-left:8px}
+.altbox,.decbox{margin-top:16px;padding-top:13px;border-top:1px solid var(--line)}
+.altbox h4,.decbox h4{margin:0 0 9px;font-size:12px;color:var(--ink2);font-weight:600;letter-spacing:.02em}
+.alt{margin-bottom:11px;font-size:12.5px}
+.alt strong{font-size:13px}
+.altwhen{font-size:10.5px;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);border-radius:5px;padding:1px 6px;margin-left:6px}
+.alt p{margin:4px 0 0;color:var(--ink2);line-height:1.55}
+.decbox ul{margin:0;padding-left:17px;font-size:12.5px;color:var(--ink)}
+.decbox li{margin-bottom:5px}
+@media (max-width:680px){
+  .tblock{grid-template-columns:52px 1fr;gap:9px}
+  .btime{font-size:12px}
+  .dtop{gap:12px}
+  .decided{padding:14px}
+  .dates{grid-template-columns:1fr 1fr}
+}
 .vpanel.on{display:block}
 .vsummary{margin:18px 0 16px;padding:12px 14px;border-radius:12px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);font-size:13px;display:flex;flex-direction:column;gap:3px}
 .vsummary strong{font-size:14px;letter-spacing:-.01em}
@@ -511,11 +655,17 @@ footer ul{padding-left:18px}
 ${analysis.source !== 'api' ? `<p class="banner"><strong>후보 9개 공항 전부 공항 공식 시간표로 확인됨.</strong> 확인 과정에서 <strong>가고시마·기타큐슈는 3월 오전편이 없고, 나가사키는 목·화·월·토만, 사가는 월·수·금·일만 운항</strong>한다는 사실이 드러나 일정별로 가능 여부가 갈립니다.</p>` : ''}
 
 <div class="tabs" role="tablist">
-${variants.map((v, i) => `<button type="button" class="tab${i === 0 ? ' on' : ''}" role="tab" aria-selected="${i === 0}" data-tab="${esc(v.variant.id)}">
-    <span class="tlabel">${esc(v.variant.label)}</span>
+${analysis.itinerary?.decided ? `<button type="button" class="tab on" role="tab" aria-selected="true" data-tab="ITIN">
+    <span class="tlabel">상세 일정</span>
+    <span class="tmeta">${esc(analysis.itinerary.decided.city)} · ${esc(analysis.itinerary.decided.variantLabel)} 확정</span>
+  </button>` : ''}
+${variants.map((v) => `<button type="button" class="tab" role="tab" aria-selected="false" data-tab="${esc(v.variant.id)}">
+    <span class="tlabel">${esc(v.variant.label)} 비교</span>
     <span class="tmeta">${v.stats.threeRounds}곳 3라운딩 · ${v.stats.feasible}곳 가능</span>
   </button>`).join('\n')}
 </div>
+
+${analysis.itinerary ? itineraryPanel(analysis.itinerary) : ''}
 
 ${variants.map((v, i) => {
   const feas = v.airports.filter((a) => a.feasible);
@@ -523,7 +673,7 @@ ${variants.map((v, i) => {
   const regions = [...new Set(v.airports.map((a) => a.region))];
   const vid = esc(v.variant.id);
   const d = (iso) => { const [, m, dd] = iso.split('-'); return `${Number(m)}/${Number(dd)}`; };
-  return `<section class="vpanel${i === 0 ? ' on' : ''}" id="v-${vid}" data-vid="${vid}">
+  return `<section class="vpanel${analysis.itinerary?.decided ? '' : (i === 0 ? ' on' : '')}" id="v-${vid}" data-vid="${vid}">
   <p class="vsummary"><strong>${esc(v.variant.summary)}</strong><span>${esc(v.variant.note)}</span></p>
 
   <div class="wgrid">

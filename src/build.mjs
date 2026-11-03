@@ -1,7 +1,7 @@
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { loadAirports, loadTrip, loadCourses, analyze } from './analyze.mjs';
+import { loadAirports, loadTrip, loadCourses, loadItinerary, analyze } from './analyze.mjs';
 import { loadBaseline } from './sources/baseline.mjs';
 import { fetchIcnSchedules, fetchIcnArrivals } from './sources/icnOpenApi.mjs';
 import { renderHtml } from './render.mjs';
@@ -35,6 +35,7 @@ async function main() {
   const airports = await loadAirports();
   const trip = await loadTrip();
   const courseData = await loadCourses();
+  const itinerary = await loadItinerary();
   const DOW = { 1: '월', 2: '화', 3: '수', 4: '목', 5: '금', 6: '토', 7: '일' };
   for (const v of trip.variants ?? []) {
     v.departDowName = DOW[v.departDow];
@@ -89,6 +90,7 @@ async function main() {
     ...variants[0],
     variants,
     multiVariant: variants.length > 1,
+    itinerary,
   };
   analysis.warnings = warnings;
 
@@ -99,6 +101,15 @@ async function main() {
   await writeFile(jsonPath, JSON.stringify(analysis, null, 2));
   await writeFile(htmlPath, renderHtml(analysis, { tripLabel: args.trip ?? '2027년 3월' }));
 
+  if (itinerary?.decided) {
+    const dd = itinerary.decided;
+    console.log('');
+    console.log(`확정: ${dd.city}(${dd.iata}) · ${dd.variantLabel} · ${dd.outbound.flightNo} ${dd.outbound.dep}→${dd.outbound.arr} / ${dd.inbound.flightNo} ${dd.inbound.dep}→${dd.inbound.arr}`);
+    for (const d of itinerary.days) {
+      const n = d.blocks?.length ?? 0;
+      console.log(`  ${d.name} ${d.label.padEnd(16)} ${d.status === 'detailed' ? `상세 ${n}블록` : '개요만'}`);
+    }
+  }
   console.log('');
   console.log(`범위: ${(trip.includeRegions ?? []).join('·') || '전체'}${(trip.includeIata ?? []).length ? ' + ' + trip.includeIata.join('·') : ''}`);
   for (const v of variants) {

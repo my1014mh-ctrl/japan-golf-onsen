@@ -24,6 +24,13 @@ export async function loadCourses() {
   return data;
 }
 
+export async function loadItinerary() {
+  try {
+    const raw = await readFile(new URL('../data/itinerary.json', import.meta.url), 'utf8');
+    return JSON.parse(raw);
+  } catch { return null; }
+}
+
 export async function loadTrip() {
   const raw = await readFile(new URL('../data/trip.json', import.meta.url), 'utf8');
   return JSON.parse(raw).trip;

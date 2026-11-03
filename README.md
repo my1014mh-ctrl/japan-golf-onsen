@@ -22,6 +22,20 @@ bash scripts/setup-github-pages.sh   # 저장소 생성 + push + Pages 활성화
 `.env`의 `PUBLISH_TARGET=github` 때문에 `scripts/run-weekly.sh`가 끝날 때 자동으로
 commit + push 하고, GitHub Pages가 1~2분 내 반영한다. `surge`로 바꾸면 surge.sh로 배포한다.
 
+## 확정 일정 — 구마모토 금~월
+
+`data/itinerary.json` 에 일자별 상세 스케줄을 담는다. 페이지의 **상세 일정** 탭이 첫 화면.
+
+| 항목 | 내용 |
+|---|---|
+| 공항 | 아소쿠마모토공항 (KMJ) |
+| 출발 | TW287 인천 07:50 → 구마모토 09:25 (매일) |
+| 귀국 | KE2156 구마모토 19:35 → 인천 21:20 (매일) |
+| 권장 날짜 | 3/12(금) → 3/15(월) — 공휴일 없음 |
+| 비권장 | 3/19→3/22 — 3/22(월)이 대체휴일이라 월요일 평일 2사무 이점 소멸 |
+
+일자별 `status`: `detailed`(타임라인 작성됨) / `outline`(개요만). 토요일부터 상세화했다.
+
 ## 판정 로직
 
 한국(KST)과 일본(JST)은 **시차가 없다**. 따라서:
