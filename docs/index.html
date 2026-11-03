@@ -125,6 +125,15 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .datetag{font-size:11px;color:var(--ink2)}
 .dateopt.good .datetag{color:var(--accent)}
 .dateopt.bad .datetag{color:var(--accent2)}
+.dcourses{display:grid;gap:7px;margin-top:14px}
+.dcourse{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12.5px}
+.dcourse > div{flex:1;min-width:0}
+.dcourse strong{display:block;font-size:13px}
+.dcourse .muted{display:block;font-size:11px}
+.dcday{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--c);border-radius:5px;padding:2px 7px;white-space:nowrap}
+.dctee{font-family:var(--mono);font-size:16px;font-weight:650;color:var(--accent);white-space:nowrap}
+.dbase{margin:9px 0 0;font-size:12px;color:var(--ink2);line-height:1.5}
+.dbase .k{display:inline-block;min-width:48px;font-size:11px;color:var(--accent);font-weight:600}
 .dgrid{display:grid;gap:12px}
 .dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
 .dcard.outline{opacity:.75;padding:13px 16px}
@@ -148,6 +157,9 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .k-meal .bkind{background:var(--accent2)}
 .k-move .bkind{background:var(--x)}
 .k-golf .bkind{background:var(--c)}
+.k-onsen .bkind{background:#a8572f}
+:root:not([data-theme="light"]) .k-onsen .bkind{background:#d98a5a}
+:root[data-theme="dark"] .k-onsen .bkind{background:#d98a5a}
 .bja{font-size:11px;color:var(--ink2)}
 .bdetail{margin:5px 0 0;font-size:12.5px;line-height:1.55}
 .bmetas{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
@@ -333,7 +345,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>인천 출발 3박 4일 · 토요일은 온천·쇼핑</strong>으로 비우고 나머지 3일을 라운딩에 씁니다. 두 일정(<strong>목~일</strong> / <strong>금~월</strong>)을 탭으로 비교하세요. 범위는 <strong>규슈 전역 + 히로시마</strong>이며, 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸습니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 11. 3. 오전 10:04</span>
+    <span>갱신 2026. 11. 3. 오전 10:11</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>후보 9개 공항</span>
@@ -369,6 +381,19 @@ footer ul{padding-left:18px}
         <div><span class="k">귀국</span><strong>KE2156</strong> 구마모토 19:35 → 21:20 <span class="muted">매일</span></div>
       </div>
     </div>
+    <div class="dcourses"><div class="dcourse">
+      <span class="dcday">금</span>
+      <div><strong>코스기 리조트 아소 하이랜드</strong><span class="bja">コスギリゾート阿蘇ハイランドゴルフコース</span>
+      <span class="muted">아소시 오토히메 2052 · 공항 40분</span></div>
+      <span class="dctee">12:30</span>
+    </div><div class="dcourse">
+      <span class="dcday">일·월</span>
+      <div><strong>트라이얼 골프 &amp; 리조트 ASO</strong><span class="bja">トライアルゴルフ＆リゾート ASO COURSE</span>
+      <span class="muted">미나미아소무라 가와요 4369-1 · 공항 35분</span></div>
+      <span class="dctee">08:00</span>
+    </div></div>
+    <p class="dbase"><span class="k">베이스</span>아소시 우치노마키 온천 (내牧) — 금요일 코스에서 차로 5~10분, 아소 관광 동선의 중심</p>
+    <p class="dbase"><span class="k">렌터카</span>공항 수령 → 월요일 시내 쇼핑 후 공항 반납. 아소 권역은 렌터카 없이 이동 불가</p>
     <div class="dates">
       <div class="dateopt">
           <strong>03/05 → 03/08</strong>
@@ -390,126 +415,370 @@ footer ul{padding-left:18px}
     </div>
   </div>
   <div class="dgrid">
-<div class="dcard outline">
-        <div class="dhead"><span class="dname">금</span><span class="dlabel">도착 + 라운딩</span><span class="dtag">개요</span></div>
-        <p class="dsum">09:25 도착 → 구마모토공항 CC 라운딩(공항 3km)</p>
-      </div>
 <div class="dcard">
-      <div class="dhead"><span class="dname on">토</span><span class="dlabel">오전 관광 · 오후 쇼핑</span><span class="dtag done">상세</span></div>
-      <p class="dsum">구마모토성 중심 시내 관광 → 시모토리·가미토리 쇼핑. 전부 도보·시전 권역이라 렌터카 없이 소화 가능</p>
+      <div class="dhead"><span class="dname on">금</span><span class="dlabel">도착 + 아소 하이랜드 12:30</span><span class="dtag done">상세</span></div>
+      <p class="dsum">09:25 도착 → 렌터카 → 공항 40분 거리 코스기 리조트 아소 하이랜드 12:30 티업 → 우치노마키 온천 숙박</p>
       <ol class="timeline"><li class="tblock k-move">
-        <div class="btime"><span>08:15</span><span class="bend">08:55</span></div>
+        <div class="btime"><span>07:50</span><span class="bend">09:25</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">이동</span><strong>숙소 → 구마모토성</strong></div>
-          <p class="bdetail">시내 숙박이면 도보·시전 10~15분. 공항권 숙박이면 차로 45분 — 08:10 출발 필요</p>
-          <div class="bmetas"><span class="bmeta">요금 시전 1회 180엔</span></div>
-          
-        </div>
-      </li>
-<li class="tblock k-sight">
-        <div class="btime"><span>09:00</span><span class="bend">11:00</span></div>
-        <div class="bbody">
-          <div class="btitle"><span class="bkind">관광</span><strong>구마모토성</strong><span class="bja">熊本城</span></div>
-          <p class="bdetail">09:00 개장과 동시 입장해 혼잡을 피한다. 특별견학통로에서 지진 피해·복구 현장을 내려다본 뒤 천수각으로. 천수각은 전면 복구 완료, 최상층 전망 가능</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간 30분~2시간</span><span class="bmeta">운영 09:00~17:00 (최종입장 16:00)</span><span class="bmeta">요금 고교생 이상 800엔</span></div>
-          <p class="btip">성 전체 복구는 2052년 예정이라 공사 구역이 남아 있다</p>
-        </div>
-      </li>
-<li class="tblock k-sight">
-        <div class="btime"><span>11:00</span><span class="bend">11:45</span></div>
-        <div class="bbody">
-          <div class="btitle"><span class="bkind">관광</span><strong>사쿠라노바바 조사이엔</strong><span class="bja">桜の馬場 城彩苑</span></div>
-          <p class="bdetail">성 바로 아래 에도풍 거리. 입장 무료. 기념품점(9:00~18:00)에서 구마몬 굿즈·마쓰리 과자. 와쿠와쿠자(역사체험관, 300엔)는 시간 여유 있을 때만</p>
-          <div class="bmetas"><span class="bmeta">소요 40분</span><span class="bmeta">운영 기념품 9:00~18:00 / 식당 11:00~18:00</span><span class="bmeta">요금 무료 (와쿠와쿠자 300엔)</span></div>
-          
-        </div>
-      </li>
-<li class="tblock k-meal">
-        <div class="btime"><span>11:45</span><span class="bend">12:45</span></div>
-        <div class="bbody">
-          <div class="btitle"><span class="bkind">식사</span><strong>점심 — 바사시 또는 구마모토 라멘</strong></div>
-          <p class="bdetail">조사이엔 사쿠라노코지 식당가에서 바로 먹거나, 시내로 내려가 아케이드 주변에서. 구마모토 명물은 바사시(말고기회)와 돈코쓰 베이스 구마모토 라멘</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          <div class="btitle"><span class="bkind">이동</span><strong>TW287 인천 → 아소쿠마모토공항</strong></div>
+          <p class="bdetail">한일 시차 없음. 운항시간 95분, 매일 운항</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 35분</span><span class="bmeta">요금 —</span></div>
           
         </div>
       </li>
 <li class="tblock k-move">
-        <div class="btime"><span>12:45</span><span class="bend">13:00</span></div>
+        <div class="btime"><span>09:25</span><span class="bend">10:10</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">이동</span><strong>구마모토성 → 사쿠라마치</strong></div>
-          <p class="bdetail">도보 10~15분. 또는 시전 가라시마초 하차 도보 1분</p>
-          <div class="bmetas"><span class="bmeta">요금 도보 또는 시전 180엔</span></div>
+          <div class="btitle"><span class="bkind">이동</span><strong>입국 · 수하물 · 렌터카 수령</strong></div>
+          <p class="bdetail">공항 렌터카 카운터. 골프백 2개 + 캐리어가 들어가는 차급(왜건/SUV) 필요</p>
+          <div class="bmetas"><span class="bmeta">소요 45분</span></div>
+          <p class="btip">사전 예약 시 &#39;골프백 2개&#39; 명시. 공항 터미널 바로 앞 또는 셔틀 5분</p>
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>10:10</span><span class="bend">10:50</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>공항 → 코스기 리조트 아소 하이랜드</strong></div>
+          <p class="bdetail">국도 57호선 아소 방면. 클럽하우스가 국도에 면해 있어 찾기 쉽다</p>
+          <div class="bmetas"><span class="bmeta">소요 40분</span><span class="bmeta">요금 택시 기준 9,000엔 구간</span></div>
           
         </div>
       </li>
-<li class="tblock k-shop">
-        <div class="btime"><span>13:00</span><span class="bend">14:45</span></div>
+<li class="tblock k-golf">
+        <div class="btime"><span>10:50</span><span class="bend">12:20</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">쇼핑</span><strong>사쿠라마치 구마모토</strong><span class="bja">サクラマチ クマモト</span></div>
-          <p class="bdetail">2019년 개업 복합상업시설. 패션·잡화·식품에 버스터미널 병설. 비 와도 전부 실내</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간 45분</span><span class="bmeta">운영 쇼핑 10:00~20:00 / 레스토랑 10:00~22:00</span></div>
+          <div class="btitle"><span class="bkind">골프</span><strong>체크인 · 점심 · 연습</strong></div>
+          <p class="bdetail">티업 1시간 40분 전 도착이라 여유. 클럽하우스 식사 후 퍼팅 연습</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 30분</span></div>
           
         </div>
       </li>
-<li class="tblock k-shop">
-        <div class="btime"><span>14:45</span><span class="bend">16:30</span></div>
+<li class="tblock k-golf">
+        <div class="btime"><span>12:30</span><span class="bend">17:20</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">쇼핑</span><strong>시모토리 · 가미토리 아케이드</strong><span class="bja">下通・上通アーケード</span></div>
-          <p class="bdetail">서일본 최대급 상점가. 시모토리는 대형 체인·드러그스토어, 가미토리는 개인숍·카페가 많다. 아케이드라 우천 무관</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간 45분</span></div>
-          <p class="btip">면세는 여권 지참. 드러그스토어(마쓰모토키요시·코쿠민)가 아케이드에 밀집</p>
+          <div class="btitle"><span class="bkind">골프</span><strong>라운딩 — 아소 하이랜드 18홀</strong></div>
+          <p class="bdetail">아소 5악과 외륜산이 일망되는 고원 코스. 3월 고원이라 아침·저녁 기온차 크다</p>
+          <div class="bmetas"><span class="bmeta">소요 약 4시간 50분</span></div>
+          <p class="btip">3월 아소는 표고 500m대로 시내보다 3~5도 낮다. 방풍 레이어 필수</p>
         </div>
       </li>
-<li class="tblock k-shop">
-        <div class="btime"><span>16:30</span><span class="bend">18:00</span></div>
+<li class="tblock k-move">
+        <div class="btime"><span>17:20</span><span class="bend">17:40</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">쇼핑</span><strong>쓰루야 백화점</strong><span class="bja">鶴屋百貨店</span></div>
-          <p class="bdetail">1952년 개업 구마모토 향토 백화점. 본관·동관·New-S·Wing 4관 약 7만㎡. 지하 식품관에서 귀국 선물용 과자·주류</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간 30분</span><span class="bmeta">운영 10:00~19:00 (금·토는 19:30)</span></div>
+          <div class="btitle"><span class="bkind">이동</span><strong>코스 → 우치노마키 온천 숙소</strong></div>
+          <p class="bdetail">JR 우치노마키역 기준 택시 3분 거리 — 코스에서 매우 가깝다</p>
+          <div class="bmetas"><span class="bmeta">소요 20분</span></div>
           
+        </div>
+      </li>
+<li class="tblock k-onsen">
+        <div class="btime"><span>17:40</span><span class="bend">19:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">온천</span><strong>온천 · 저녁</strong></div>
+          <p class="bdetail">우치노마키 온천은 아소 최대 온천가. 아카우시(붉은소) 요리가 명물</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 20분</span></div>
+          
+        </div>
+      </li></ol>
+      
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>렌터카 차급 — 골프백 2개 적재 가능 여부 확인</li><li>우치노마키 온천 숙소 예약 (코스 인접)</li></ul></div>
+    </div>
+<div class="dcard">
+      <div class="dhead"><span class="dname on">토</span><span class="dlabel">아소 일주 드라이브 관광</span><span class="dtag done">상세</span></div>
+      <p class="dsum">우치노마키를 베이스로 반시계 일주 — 나베가타키 → 구로카와 온천 → 다이칸보 → 아소 신사. 숙소에서 출발해 숙소로 돌아오는 고리형 동선이라 야간 이동이 없다</p>
+      <ol class="timeline"><li class="tblock k-meal">
+        <div class="btime"><span>07:40</span><span class="bend">08:10</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>조식 · 출발 준비</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 30분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>08:10</span><span class="bend">09:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>우치노마키 → 나베가타키</strong></div>
+          <p class="bdetail">오구니초 방면. 밀크로드 경유 산길</p>
+          <div class="bmetas"><span class="bmeta">소요 50분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-sight">
+        <div class="btime"><span>09:00</span><span class="bend">09:50</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">관광</span><strong>나베가타키 폭포</strong><span class="bja">鍋ヶ滝公園</span></div>
+          <p class="bdetail">폭포 뒤쪽으로 들어가 물 커튼을 안에서 보는 명소. 09:00 개장 직후가 가장 한산하고 아침 광선이 좋다</p>
+          <div class="bmetas"><span class="bmeta">소요 50분</span><span class="bmeta">운영 09:00~17:00 (최종입장 16:30)</span><span class="bmeta">요금 고교생 이상 300엔 / 초중생 150엔</span></div>
+          <p class="btip">웹 사전예약제 — 연휴에는 완전예약제. 계단·흙길이라 운동화 필수. 예약을 못 하면 이 블록을 건너뛰고 구로카와를 앞당긴다</p>
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>09:50</span><span class="bend">10:10</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>나베가타키 → 구로카와 온천</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 20분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-onsen">
+        <div class="btime"><span>10:10</span><span class="bend">11:40</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">온천</span><strong>구로카와 온천 — 노천 순례</strong><span class="bja">黒川温泉</span></div>
+          <p class="bdetail">입유수형(入湯手形)으로 25개 료칸 노천 중 3곳을 고른다. 3곳 중 1곳은 식사·기념품으로 대체 가능. 수건 지참하면 대여료 절약</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 30분</span><span class="bmeta">요금 입유수형 1,500엔 (어린이 700엔)</span></div>
+          <p class="btip">온천가 전체가 걸어서 돌 수 있는 규모. 차는 지쿠고가와 주변 주차장에 두고 도보</p>
         </div>
       </li>
 <li class="tblock k-meal">
-        <div class="btime"><span>18:00</span><span class="bend">19:00</span></div>
+        <div class="btime"><span>11:40</span><span class="bend">12:50</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">식사</span><strong>저녁</strong></div>
-          <p class="bdetail">아케이드 주변 이자카야 또는 숙소 이동 후 온천 숙소 식사</p>
-          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          <div class="btitle"><span class="bkind">식사</span><strong>구로카와 온천가 점심</strong></div>
+          <p class="bdetail">온천가 식당 또는 입유수형 1장을 식음으로 사용. 단고지루·아카우시 메뉴</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 10분</span></div>
           
         </div>
       </li>
-<li class="tblock k-move needs">
-        <div class="btime"><span>19:00</span><span class="bend">20:00</span></div>
+<li class="tblock k-move">
+        <div class="btime"><span>12:50</span><span class="bend">13:30</span></div>
         <div class="bbody">
-          <div class="btitle"><span class="bkind">이동</span><strong>온천 숙소 이동</strong></div>
-          <p class="bdetail">일요일 조조 라운딩을 감안하면 시내보다 공항·코스 방면 온천이 유리. 기쿠치 온천 시내 40분 / 아소 우치노마키 공항 55분 / 구로카와 온천 공항 75분</p>
+          <div class="btitle"><span class="bkind">이동</span><strong>구로카와 → 다이칸보</strong></div>
+          <p class="bdetail">밀크로드(외륜산 능선 파노라마 도로) 진입 구간</p>
+          <div class="bmetas"><span class="bmeta">소요 40분</span></div>
+          <p class="btip">밀크로드는 전 구간 45km·주행만 70~100분. 다이칸보까지 일부만 타고 간다</p>
+        </div>
+      </li>
+<li class="tblock k-sight">
+        <div class="btime"><span>13:30</span><span class="bend">14:10</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">관광</span><strong>다이칸보 전망대</strong><span class="bja">大観峰</span></div>
+          <p class="bdetail">아소 칼데라와 아소 5악을 한눈에. 능선이 누운 부처(涅槃像) 형상으로 보이는 대표 전망점. 매점·화장실 있음</p>
+          <div class="bmetas"><span class="bmeta">소요 40분</span><span class="bmeta">요금 무료 (주차 무료)</span></div>
+          <p class="btip">표고 936m, 외륜산 북쪽 가장자리라 바람이 강하다</p>
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>14:10</span><span class="bend">14:40</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>다이칸보 → 아소 신사</strong></div>
           
+          <div class="bmetas"><span class="bmeta">소요 30분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-sight">
+        <div class="btime"><span>14:40</span><span class="bend">16:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">관광</span><strong>아소 신사 · 몬젠초 수원 순례</strong><span class="bja">阿蘇神社・門前町商店街</span></div>
+          <p class="bdetail">2016 구마모토 지진으로 전파됐던 중요문화재 로몬(楼門)이 2023년 12월 복구, 2024년 12월 담장·어찰소까지 완료되어 8년 8개월 만에 전면 복구를 마쳤다. 신사 앞 몬젠초는 길마다 솟는 수원(水基)을 따라 걷는 산책로 겸 식도락 거리</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 20분</span><span class="bmeta">요금 참배 무료</span></div>
+          <p class="btip">기념품·식도락은 여기서. 아소권에 대형 쇼핑 시설은 없으므로 쇼핑은 월요일 시내에서</p>
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>16:00</span><span class="bend">16:20</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>아소 신사 → 우치노마키 숙소</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 20분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-onsen">
+        <div class="btime"><span>16:20</span><span class="bend">19:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">온천</span><strong>온천 · 저녁 · 휴식</strong></div>
+          <p class="bdetail">다음 날 08:00 티업이라 일찍 정리. 05:30 기상 역산</p>
+          <div class="bmetas"><span class="bmeta">소요 2시간 40분</span></div>
           
         </div>
       </li></ol>
       <div class="altbox"><h4>대안 · 추가 선택지</h4><div class="alt">
-      <strong>스이젠지 조주엔 추가</strong><span class="bja">水前寺成趣園</span>
-      <span class="altwhen">오전 또는 쇼핑 전</span>
-      <p>모모야마식 회유 정원. 시전 水前寺公園前 하차 도보 3분, 일주 30분. 8:30~17:00(최종입장 16:30), 500엔. 오전에 구마모토성 전 또는 후에 끼울 수 있다</p>
+      <strong>구사센리 · 아소산상</strong><span class="bja">草千里・阿蘇山上</span>
+      <span class="altwhen">다이칸보 대체</span>
+      <p>나카다케 화구 견학은 분화경계레벨 2로 폐쇄(화구 1km 진입 금지·셔틀버스 중단, 2026-10 기준). 구사센리 초원과 아소산상터미널은 정상 이용 가능. 다이칸보 대신 또는 추가로 넣을 수 있으나 칼데라 남쪽이라 동선이 길어진다</p>
     </div><div class="alt">
-      <strong>아소 방면 종일 관광 — 비권장</strong><span class="bja">阿蘇</span>
-      <span class="altwhen">오후 쇼핑을 포기할 경우에만</span>
-      <p>나카다케 화구 견학은 분화경계레벨 2로 폐쇄, 화구 1km 진입 금지·셔틀버스 중단(2026-10 기준). 구사센리·다이칸보·아소산상터미널만 가능. 왕복 이동 2시간 이상이라 오후 쇼핑과 충돌</p>
+      <strong>시라카와 수원</strong><span class="bja">白川水源</span>
+      <span class="altwhen">일요일 오후 권장</span>
+      <p>미나미아소무라의 일본 명수 100선. 일·월 코스(트라이얼 ASO)와 같은 권역이라 일요일 라운딩 후 오후에 넣는 게 효율적</p>
     </div><div class="alt">
-      <strong>나베가타키 폭포</strong><span class="bja">鍋ヶ滝</span>
-      <span class="altwhen">구로카와 온천 숙박 선택 시</span>
-      <p>폭포 뒤쪽에서 커튼처럼 보는 명소. 구로카와 온천 근처. 사전 예약제. 공항에서 1시간 20분 — 토요일 밤 구로카와 숙박과 묶을 때만 성립</p>
+      <strong>토요일 오후 시내 쇼핑 — 비권장</strong><span class="bja">熊本市街</span>
+      <span class="altwhen">월요일 오후로 이동 권장</span>
+      <p>아소에서 구마모토 시내는 왕복 2시간. 다음 날 08:00 티업을 감안하면 관광과 쇼핑 둘 다 쫓긴다. 월요일 라운딩 후 공항까지 5시간 이상 여유가 있으므로 쇼핑은 월요일로 넘기는 편이 낫다</p>
     </div></div>
-      <div class="decbox"><h4>정해야 할 것</h4><ul><li>토요일 밤 숙소를 시내에 둘지 온천지에 둘지 — 일요일 조조 라운딩 접근성과 직결</li><li>렌터카 유무: 토요일 일정은 시전·도보로 완결되지만 금·일·월 골프는 렌터카가 사실상 필수</li></ul></div>
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>나베가타키 웹 사전예약 — 미리 잡아야 09:00 입장 가능</li><li>토요일 밤 숙소를 우치노마키로 유지할지, 구로카와에 1박 끼울지 (구로카와 숙박 시 일요일 아침 코스까지 1시간 10분)</li></ul></div>
     </div>
-<div class="dcard outline">
-        <div class="dhead"><span class="dname">일</span><span class="dlabel">라운딩</span><span class="dtag">개요</span></div>
-        <p class="dsum">조조 티업 라운딩. 주말이라 2인 플레이 가능 코스 제한</p>
-      </div>
-<div class="dcard outline">
-        <div class="dhead"><span class="dname">월</span><span class="dlabel">라운딩 + 귀국</span><span class="dtag">개요</span></div>
-        <p class="dsum">조조 티업 → 12:00 종료 → 공항 이동 → KE2156 19:35 귀국. 평일이라 평일 2사무 플랜 사용 가능</p>
-      </div>
+<div class="dcard">
+      <div class="dhead"><span class="dname on">일</span><span class="dlabel">트라이얼 ASO 08:00 + 미나미아소</span><span class="dtag done">상세</span></div>
+      <p class="dsum">우치노마키 → 미나미아소 40분 이동, 08:00 티업. 오후는 미나미아소 권역 관광 또는 온천</p>
+      <ol class="timeline"><li class="tblock k-meal">
+        <div class="btime"><span>05:40</span><span class="bend">06:30</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>기상 · 조식</strong></div>
+          <p class="bdetail">숙소 조식이 06:30 이후면 전날 간편식 준비 필요</p>
+          <div class="bmetas"><span class="bmeta">소요 50분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>06:40</span><span class="bend">07:25</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>우치노마키 → 트라이얼 골프 &amp; 리조트 ASO</strong></div>
+          <p class="bdetail">칼데라 북쪽에서 남쪽 가와요로 이동</p>
+          <div class="bmetas"><span class="bmeta">소요 45분</span></div>
+          <p class="btip">3월 아소는 아침 안개·노면 결빙 가능. 여유 15분 추가 권장</p>
+        </div>
+      </li>
+<li class="tblock k-golf">
+        <div class="btime"><span>07:25</span><span class="bend">08:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">골프</span><strong>체크인 · 준비</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 35분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-golf">
+        <div class="btime"><span>08:00</span><span class="bend">13:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">골프</span><strong>라운딩 — 트라이얼 ASO 18홀</strong></div>
+          <p class="bdetail">구 아소도큐 골프클럽. 일요일(주말)이라 2사무 조건이 평일과 다를 수 있다</p>
+          <div class="bmetas"><span class="bmeta">소요 약 5시간</span></div>
+          <p class="btip">주말 2사무 가능 여부와 할증을 예약 시 확인. 주말 그린피 할증 적용</p>
+        </div>
+      </li>
+<li class="tblock k-meal">
+        <div class="btime"><span>13:00</span><span class="bend">14:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>클럽하우스 점심</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-sight">
+        <div class="btime"><span>14:00</span><span class="bend">16:30</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">관광</span><strong>미나미아소 권역 관광</strong></div>
+          <p class="bdetail">시라카와 수원(일본 명수 100선), 미나미아소 수원역, 아소 외륜산 전망. 또는 구사센리 초원</p>
+          <div class="bmetas"><span class="bmeta">소요 2시간 30분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-onsen">
+        <div class="btime"><span>16:30</span><span class="bend">19:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">온천</span><strong>온천 · 저녁</strong></div>
+          <p class="bdetail">미나미아소 또는 우치노마키 복귀 후 온천</p>
+          <div class="bmetas"><span class="bmeta">소요 2시간 30분</span></div>
+          
+        </div>
+      </li></ol>
+      
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>일요일 밤 숙소 — 미나미아소로 옮길지 우치노마키 유지할지 (월요일도 같은 코스 08:00)</li><li>주말 2사무 가능 여부·할증 확인</li></ul></div>
+    </div>
+<div class="dcard">
+      <div class="dhead"><span class="dname on">월</span><span class="dlabel">트라이얼 ASO 08:00 + 시내 쇼핑 + 귀국</span><span class="dtag done">상세</span></div>
+      <p class="dsum">08:00 티업 → 13:00 종료 → 구마모토 시내 쇼핑 → 공항 → KE2156 19:35. 라운딩 후 공항까지 6시간 반이 남아 쇼핑이 그대로 들어간다</p>
+      <ol class="timeline"><li class="tblock k-meal">
+        <div class="btime"><span>05:40</span><span class="bend">06:30</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>기상 · 조식 · 체크아웃</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 50분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>06:40</span><span class="bend">07:25</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>숙소 → 트라이얼 ASO</strong></div>
+          <p class="bdetail">짐을 모두 차에 싣고 출발 — 라운딩 후 바로 시내로 내려간다</p>
+          <div class="bmetas"><span class="bmeta">소요 45분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-golf">
+        <div class="btime"><span>08:00</span><span class="bend">13:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">골프</span><strong>라운딩 — 트라이얼 ASO 18홀</strong></div>
+          <p class="bdetail">월요일(평일)이라 평일 2사무 보증 플랜을 그대로 쓸 수 있다. 할증 없는 플랜을 노릴 수 있는 날</p>
+          <div class="bmetas"><span class="bmeta">소요 약 5시간</span></div>
+          <p class="btip">금~월 일정을 택한 핵심 이유가 이 날이다. 평일 2사무 플랜으로 예약</p>
+        </div>
+      </li>
+<li class="tblock k-meal">
+        <div class="btime"><span>13:00</span><span class="bend">13:40</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">식사</span><strong>점심 · 정리 · 샤워</strong></div>
+          
+          <div class="bmetas"><span class="bmeta">소요 40분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>13:40</span><span class="bend">14:40</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>미나미아소 → 구마모토 시내</strong></div>
+          <p class="bdetail">국도 57호 또는 다와라야마 터널 경유</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-shop">
+        <div class="btime"><span>14:40</span><span class="bend">16:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">쇼핑</span><strong>사쿠라마치 구마모토</strong><span class="bja">サクラマチ クマモト</span></div>
+          <p class="bdetail">복합상업시설. 가라시마초 전차역 1분, 주차장 병설. 전부 실내라 우천 무관</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 20분</span><span class="bmeta">운영 쇼핑 10:00~20:00</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-shop">
+        <div class="btime"><span>16:00</span><span class="bend">17:00</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">쇼핑</span><strong>시모토리 · 가미토리 아케이드 / 쓰루야 백화점</strong><span class="bja">下通・上通アーケード / 鶴屋百貨店</span></div>
+          <p class="bdetail">서일본 최대급 상점가. 드러그스토어 밀집. 쓰루야 지하 식품관에서 선물용 과자·주류</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간</span><span class="bmeta">운영 쓰루야 10:00~19:00 (금·토 19:30)</span></div>
+          <p class="btip">면세는 여권 지참. 시간이 부족하면 사쿠라마치만으로도 선물 구매는 충분</p>
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>17:00</span><span class="bend">17:50</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>시내 → 공항 · 렌터카 반납</strong></div>
+          <p class="bdetail">공항 렌터카 반납 후 터미널 셔틀</p>
+          <div class="bmetas"><span class="bmeta">소요 50분</span></div>
+          <p class="btip">반납 시 주유 필요 — 공항 가는 길에 급유</p>
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>17:50</span><span class="bend">19:35</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>체크인 · 출국 수속</strong></div>
+          <p class="bdetail">국제선 2시간 전 권장이나 지방공항이라 1시간 30분이면 충분</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 45분</span></div>
+          
+        </div>
+      </li>
+<li class="tblock k-move">
+        <div class="btime"><span>19:35</span><span class="bend">21:20</span></div>
+        <div class="bbody">
+          <div class="btitle"><span class="bkind">이동</span><strong>KE2156 구마모토 → 인천</strong></div>
+          <p class="bdetail">대한항공, 매일 운항</p>
+          <div class="bmetas"><span class="bmeta">소요 1시간 45분</span></div>
+          
+        </div>
+      </li></ol>
+      <div class="altbox"><h4>대안 · 추가 선택지</h4><div class="alt">
+      <strong>쇼핑 축소 — 공항 직행</strong>
+      <span class="altwhen">시간 부족 시</span>
+      <p>라운딩이 길어지거나 비가 오면 시내를 건너뛰고 공항으로 직행. 공항 매점·면세에서 간단히</p>
+    </div></div>
+      <div class="decbox"><h4>정해야 할 것</h4><ul><li>렌터카 반납 시각 — 공항 반납 17:30 기준으로 예약</li><li>월요일 평일 2사무 플랜 예약 (할증 없는 플랜 우선)</li></ul></div>
+    </div>
   </div>
   <p class="note src">※ 운영시간·요금은 2026-11-03 기준 공개 정보입니다. 2027년 3월 방문 전 재확인하세요.</p>
 </section>
@@ -693,7 +962,7 @@ footer ul{padding-left:18px}
 <tr data-arr="560" class="early"><td>대한항공</td><td>KE787</td><td>08:00</td><td class="arr">09:20<span class="mark">10시 전</span></td><td>매일</td></tr>
 </tbody></table>
 </article>
-<article class="card tier-A" data-region="규슈" data-golf="3" data-onsen="3" data-arrmin="565" data-earliest="09:25" data-score="31" data-iata="KMJ" data-early="1" data-earlycount="1" data-rounds="3" data-sunday="1" data-twosome="1" data-wkend="0" data-shopping="2">
+<article class="card tier-A" data-region="규슈" data-golf="3" data-onsen="3" data-arrmin="565" data-earliest="09:25" data-score="33" data-iata="KMJ" data-early="1" data-earlycount="1" data-rounds="3" data-sunday="1" data-twosome="3" data-wkend="0" data-shopping="2">
   <header>
     <div class="titleline">
       <h3>구마모토 <span class="iata">KMJ</span></h3>
@@ -717,7 +986,7 @@ footer ul{padding-left:18px}
     <div class="day golfday">
       <span class="dn">금</span>
       <span class="dv">종일 골프</span>
-      <span class="dd on">평일 2인 1곳</span>
+      <span class="dd on">평일 2인 3곳</span>
     </div>
     <div class="day">
       <span class="dn">토<em>주말</em></span>
@@ -733,7 +1002,7 @@ footer ul{padding-left:18px}
   <div class="roundsline">
     <span class="k">목·금·일 라운딩</span>
     <strong class="r3">3<span class="of">/3</span>회</strong>
-    <span class="muted">주말 라운딩 2인은 1곳에서 조건 확인 필요</span>
+    <span class="muted">주말 라운딩 2인은 3곳에서 조건 확인 필요</span>
     
   </div>
   <p class="note ret"><strong>일요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 16:35 (귀국편 19:35 − 수속 2시간 − 공항이동 1시간). 주말이라 <em>전일 2사무</em> 코스만 쓸 수 있습니다 — 해당 0곳.</p>
@@ -755,7 +1024,7 @@ footer ul{padding-left:18px}
   <p class="note src">※ 구마모토공항 국제선 공식 시간표 (2026-10)</p>
   <div class="coursebox">
     <div class="chead">
-      <span class="k">공항 50km 내 2곳 · 평일 2인 <strong>1곳</strong> / 일요일 2인 <strong>0곳</strong> · 예약 게재 1곳 · 명문 1곳</span>
+      <span class="k">공항 50km 내 4곳 · 평일 2인 <strong>3곳</strong> / 일요일 2인 <strong>0곳</strong> · 예약 게재 3곳 · 명문 1곳</span>
       <a class="verify" href="https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&amp;prefecture=%E7%86%8A%E6%9C%AC%E7%9C%8C" target="_blank" rel="noopener">GDO 2사무 검색 ↗</a>
     </div>
     <table class="courses"><tbody><tr class="usable">
@@ -764,6 +1033,20 @@ footer ul{padding-left:18px}
       <td class="num">18H</td>
       <td><span class="tsome maybe">2인 플랜 있음</span></td>
       <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02431/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">자란넷</a><span class="tnote">⚠ 확인된 2사무 보증 플랜이 「月・火限定」 셀프데이(총 9,500엔) — 금·일·월 등 실제 플레이 요일에 적용되는지 반드시 확인해야 함</span></td>
+    </tr>
+<tr class="usable">
+      <td><strong>트라이얼 골프 &amp; 리조트 ASO</strong><span class="ja">トライアルゴルフ＆リゾート ASO COURSE</span><span class="ped">구 아소도큐 골프클럽</span></td>
+      <td class="num">27km<span class="muted"> / 35분</span></td>
+      <td class="num">18H</td>
+      <td><span class="tsome maybe">2인 플랜 있음</span></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430004/" target="_blank" rel="noopener" title="トライアルゴルフ＆リゾート ASO COURSE">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02439/" target="_blank" rel="noopener" title="トライアルゴルフ＆リゾート ASO COURSE（阿蘇東急）">자란넷</a></td>
+    </tr>
+<tr class="usable">
+      <td><strong>코스기 리조트 아소 하이랜드</strong><span class="ja">コスギリゾート阿蘇ハイランドゴルフコース</span><span class="ped">아소 5악·외륜산 일망 고원 코스</span></td>
+      <td class="num">30km<span class="muted"> / 40분</span></td>
+      <td class="num">18H</td>
+      <td><span class="tsome maybe">2인 플랜 있음</span></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430005/" target="_blank" rel="noopener" title="コスギリゾート阿蘇ハイランドゴルフコース">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02432/" target="_blank" rel="noopener" title="コスギリゾート阿蘇ハイランドゴルフコース">자란넷</a></td>
     </tr>
 <tr class="">
       <td><strong>아소 GC</strong><span class="ja">阿蘇ゴルフクラブ</span><span class="ped">아소 고원 코스</span></td>
@@ -1248,7 +1531,7 @@ footer ul{padding-left:18px}
 <tr data-arr="560" class="early"><td>대한항공</td><td>KE787</td><td>08:00</td><td class="arr">09:20<span class="mark">10시 전</span></td><td>매일</td></tr>
 </tbody></table>
 </article>
-<article class="card tier-A" data-region="규슈" data-golf="3" data-onsen="3" data-arrmin="565" data-earliest="09:25" data-score="34" data-iata="KMJ" data-early="1" data-earlycount="1" data-rounds="3" data-sunday="1" data-twosome="1" data-wkend="1" data-shopping="2">
+<article class="card tier-A" data-region="규슈" data-golf="3" data-onsen="3" data-arrmin="565" data-earliest="09:25" data-score="36" data-iata="KMJ" data-early="1" data-earlycount="1" data-rounds="3" data-sunday="1" data-twosome="3" data-wkend="3" data-shopping="2">
   <header>
     <div class="titleline">
       <h3>구마모토 <span class="iata">KMJ</span></h3>
@@ -1288,10 +1571,10 @@ footer ul{padding-left:18px}
   <div class="roundsline">
     <span class="k">금·일·월 라운딩</span>
     <strong class="r3">3<span class="of">/3</span>회</strong>
-    <span class="muted">주말 라운딩 2인은 1곳에서 조건 확인 필요</span>
+    <span class="muted">주말 라운딩 2인은 3곳에서 조건 확인 필요</span>
     
   </div>
-  <p class="note ret"><strong>월요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 16:35 (귀국편 19:35 − 수속 2시간 − 공항이동 1시간). 평일이라 <em>평일 2사무 보증</em> 플랜을 그대로 쓸 수 있습니다 — 해당 1곳.</p>
+  <p class="note ret"><strong>월요일 라운딩 성립</strong> — 07:00 티업 → 12:00 종료, 현지 활동 마감 16:35 (귀국편 19:35 − 수속 2시간 − 공항이동 1시간). 평일이라 <em>평일 2사무 보증</em> 플랜을 그대로 쓸 수 있습니다 — 해당 3곳.</p>
   
 
   <dl class="specs">
@@ -1310,7 +1593,7 @@ footer ul{padding-left:18px}
   <p class="note src">※ 구마모토공항 국제선 공식 시간표 (2026-10)</p>
   <div class="coursebox">
     <div class="chead">
-      <span class="k">공항 50km 내 2곳 · 평일 2인 <strong>1곳</strong> / 일요일 2인 <strong>0곳</strong> · 예약 게재 1곳 · 명문 1곳</span>
+      <span class="k">공항 50km 내 4곳 · 평일 2인 <strong>3곳</strong> / 일요일 2인 <strong>0곳</strong> · 예약 게재 3곳 · 명문 1곳</span>
       <a class="verify" href="https://reserve.golfdigest.co.jp/s/category/2some/r/?state=%E4%B9%9D%E5%B7%9E%E3%83%BB%E6%B2%96%E7%B8%84&amp;prefecture=%E7%86%8A%E6%9C%AC%E7%9C%8C" target="_blank" rel="noopener">GDO 2사무 검색 ↗</a>
     </div>
     <table class="courses"><tbody><tr class="usable">
@@ -1319,6 +1602,20 @@ footer ul{padding-left:18px}
       <td class="num">18H</td>
       <td><span class="tsome maybe">2인 플랜 있음</span></td>
       <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02431/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">자란넷</a><span class="tnote">⚠ 확인된 2사무 보증 플랜이 「月・火限定」 셀프데이(총 9,500엔) — 금·일·월 등 실제 플레이 요일에 적용되는지 반드시 확인해야 함</span></td>
+    </tr>
+<tr class="usable">
+      <td><strong>트라이얼 골프 &amp; 리조트 ASO</strong><span class="ja">トライアルゴルフ＆リゾート ASO COURSE</span><span class="ped">구 아소도큐 골프클럽</span></td>
+      <td class="num">27km<span class="muted"> / 35분</span></td>
+      <td class="num">18H</td>
+      <td><span class="tsome maybe">2인 플랜 있음</span></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430004/" target="_blank" rel="noopener" title="トライアルゴルフ＆リゾート ASO COURSE">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02439/" target="_blank" rel="noopener" title="トライアルゴルフ＆リゾート ASO COURSE（阿蘇東急）">자란넷</a></td>
+    </tr>
+<tr class="usable">
+      <td><strong>코스기 리조트 아소 하이랜드</strong><span class="ja">コスギリゾート阿蘇ハイランドゴルフコース</span><span class="ped">아소 5악·외륜산 일망 고원 코스</span></td>
+      <td class="num">30km<span class="muted"> / 40분</span></td>
+      <td class="num">18H</td>
+      <td><span class="tsome maybe">2인 플랜 있음</span></td>
+      <td class="bkcell"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430005/" target="_blank" rel="noopener" title="コスギリゾート阿蘇ハイランドゴルフコース">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02432/" target="_blank" rel="noopener" title="コスギリゾート阿蘇ハイランドゴルフコース">자란넷</a></td>
     </tr>
 <tr class="">
       <td><strong>아소 GC</strong><span class="ja">阿蘇ゴルフクラブ</span><span class="ped">아소 고원 코스</span></td>
@@ -1693,7 +1990,7 @@ footer ul{padding-left:18px}
   <div class="mhead">
     <div>
       <h2 id="cmtitle">2인 플레이 가능 골프장</h2>
-      <p>공항 반경 50km 이내 · 전체 23곳 중 <strong>10곳</strong> 2인 플레이 · <strong>20곳</strong> 楽天GORA/じゃらん 게재</p>
+      <p>공항 반경 50km 이내 · 전체 25곳 중 <strong>12곳</strong> 2인 플레이 · <strong>22곳</strong> 楽天GORA/じゃらん 게재</p>
     </div>
     <div class="mactions">
       <label class="toggle"><input type="checkbox" id="mfilter" checked>2인 가능만</label>
@@ -1763,7 +2060,7 @@ footer ul{padding-left:18px}
             <span class="apcode">KMJ</span>
             <span class="apcity">구마모토</span>
             <span class="apmeta">도착 09:25 · 목 티업 11:25 · 온천 아소 우치노마키 55분</span>
-            <span class="apcount on">2인 1/2곳</span>
+            <span class="apcount on">2인 3/4곳</span>
           </th>
         </tr>
         <tr class="usable" data-usable="1" data-bookable="1" data-prestige="1">
@@ -1772,6 +2069,20 @@ footer ul{padding-left:18px}
           <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
           <td class="cbk"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430018/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02431/" target="_blank" rel="noopener" title="熊本空港カントリークラブ">자란넷</a></td>
           <td class="crem">1974년 개장 명문 · 공항 인접<span class="tnote">⚠ 확인된 2사무 보증 플랜이 「月・火限定」 셀프데이(총 9,500엔) — 금·일·월 등 실제 플레이 요일에 적용되는지 반드시 확인해야 함</span></td>
+        </tr>
+<tr class="usable" data-usable="1" data-bookable="1" data-prestige="0">
+          <td class="cname"><strong>트라이얼 골프 &amp; 리조트 ASO</strong><span class="ja">トライアルゴルフ＆リゾート ASO COURSE</span></td>
+          <td class="cdist">27km<span class="muted"> / 35분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="cbk"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430004/" target="_blank" rel="noopener" title="トライアルゴルフ＆リゾート ASO COURSE">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02439/" target="_blank" rel="noopener" title="トライアルゴルフ＆リゾート ASO COURSE（阿蘇東急）">자란넷</a></td>
+          <td class="crem">구 아소도큐 골프클럽</td>
+        </tr>
+<tr class="usable" data-usable="1" data-bookable="1" data-prestige="0">
+          <td class="cname"><strong>코스기 리조트 아소 하이랜드</strong><span class="ja">コスギリゾート阿蘇ハイランドゴルフコース</span></td>
+          <td class="cdist">30km<span class="muted"> / 40분</span></td>
+          <td class="cts"><span class="tsome maybe">2인 플랜 있음</span></td>
+          <td class="cbk"><a class="bk gora" href="https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430005/" target="_blank" rel="noopener" title="コスギリゾート阿蘇ハイランドゴルフコース">GORA</a><a class="bk jalan" href="https://golf-jalan.net/gc02432/" target="_blank" rel="noopener" title="コスギリゾート阿蘇ハイランドゴルフコース">자란넷</a></td>
+          <td class="crem">아소 5악·외륜산 일망 고원 코스</td>
         </tr>
 <tr class="nope" data-usable="0" data-bookable="0" data-prestige="0">
           <td class="cname"><strong>아소 GC</strong><span class="ja">阿蘇ゴルフクラブ</span></td>

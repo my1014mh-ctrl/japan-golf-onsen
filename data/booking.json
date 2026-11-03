@@ -202,6 +202,18 @@
       "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/120149/",
       "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/120149/",
       "verified": true
+    },
+    "コスギリゾート阿蘇ハイランドゴルフコース": {
+      "id": "430005",
+      "name": "コスギリゾート阿蘇ハイランドゴルフコース",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/430005/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430005/"
+    },
+    "トライアルゴルフ＆リゾート ASO COURSE": {
+      "id": "430004",
+      "name": "トライアルゴルフ＆リゾート ASO COURSE",
+      "url": "https://booking.gora.golf.rakuten.co.jp/guide/disp/c_id/430004/",
+      "calendar": "https://search.gora.golf.rakuten.co.jp/cal/disp/c_id/430004/"
     }
   },
   "jalan": {
@@ -330,6 +342,16 @@
       "name": "三河カントリークラブ",
       "url": "https://golf-jalan.net/gc01627/",
       "verified": true
+    },
+    "コスギリゾート阿蘇ハイランドゴルフコース": {
+      "id": "gc02432",
+      "name": "コスギリゾート阿蘇ハイランドゴルフコース",
+      "url": "https://golf-jalan.net/gc02432/"
+    },
+    "トライアルゴルフ＆リゾート ASO COURSE": {
+      "id": "gc02439",
+      "name": "トライアルゴルフ＆リゾート ASO COURSE（阿蘇東急）",
+      "url": "https://golf-jalan.net/gc02439/"
     }
   },
   "missing": [],

@@ -587,6 +587,36 @@
       "pedigree": "아쿠아라인 경유",
       "twosome": "unknown",
       "note": ""
+    },
+    {
+      "iata": "KMJ",
+      "pref": "熊本県",
+      "ko": "코스기 리조트 아소 하이랜드",
+      "ja": "コスギリゾート阿蘇ハイランドゴルフコース",
+      "driveMin": 40,
+      "distanceKm": 30,
+      "holes": 18,
+      "corridor": false,
+      "pedigree": "아소 5악·외륜산 일망 고원 코스",
+      "twosome": "available",
+      "verified": true,
+      "note": "아소시 오토히메 2052. 국도 57호선 연변, 클럽하우스가 국도에 면해 있다. 공항에서 40분(택시 9,000엔). JR 우치노마키역 택시 3분 — 우치노마키 온천 숙박과 직결",
+      "booked": "금요일 12:30 티업"
+    },
+    {
+      "iata": "KMJ",
+      "pref": "熊本県",
+      "ko": "트라이얼 골프 & 리조트 ASO",
+      "ja": "トライアルゴルフ＆リゾート ASO COURSE",
+      "driveMin": 35,
+      "distanceKm": 27,
+      "holes": 18,
+      "corridor": false,
+      "pedigree": "구 아소도큐 골프클럽",
+      "twosome": "available",
+      "verified": true,
+      "note": "미나미아소무라 가와요 4369-1. JR 히고오즈역에서 차로 15분, 구마모토IC 25km 이내. 2사무 보증·2사무 예약 가능 플랜 있음",
+      "booked": "일·월요일 08:00 티업"
     }
   ]
 }

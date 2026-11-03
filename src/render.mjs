@@ -227,6 +227,7 @@ const KIND = {
   meal: { label: '식사', cls: 'k-meal' },
   move: { label: '이동', cls: 'k-move' },
   golf: { label: '골프', cls: 'k-golf' },
+  onsen: { label: '온천', cls: 'k-onsen' },
 };
 
 function itineraryPanel(it) {
@@ -286,6 +287,14 @@ function itineraryPanel(it) {
         <div><span class="k">귀국</span><strong>${esc(d.inbound.flightNo)}</strong> 구마모토 ${esc(d.inbound.dep)} → ${esc(d.inbound.arr)} <span class="muted">${esc(d.inbound.days)}</span></div>
       </div>
     </div>
+    ${d.courses ? `<div class="dcourses">${d.courses.map((c) => `<div class="dcourse">
+      <span class="dcday">${esc(c.day)}</span>
+      <div><strong>${esc(c.name)}</strong><span class="bja">${esc(c.ja)}</span>
+      <span class="muted">${esc(c.place)} · 공항 ${esc(c.fromAirport)}</span></div>
+      <span class="dctee">${esc(c.tee)}</span>
+    </div>`).join('')}</div>` : ''}
+    ${d.base ? `<p class="dbase"><span class="k">베이스</span>${esc(d.base)}</p>` : ''}
+    ${d.rentalCar ? `<p class="dbase"><span class="k">렌터카</span>${esc(d.rentalCar)}</p>` : ''}
     <div class="dates">
       ${(d.dateOptions ?? []).map((o) => {
         const bad = o.tag.includes('비권장');
@@ -437,6 +446,15 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .datetag{font-size:11px;color:var(--ink2)}
 .dateopt.good .datetag{color:var(--accent)}
 .dateopt.bad .datetag{color:var(--accent2)}
+.dcourses{display:grid;gap:7px;margin-top:14px}
+.dcourse{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12.5px}
+.dcourse > div{flex:1;min-width:0}
+.dcourse strong{display:block;font-size:13px}
+.dcourse .muted{display:block;font-size:11px}
+.dcday{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--c);border-radius:5px;padding:2px 7px;white-space:nowrap}
+.dctee{font-family:var(--mono);font-size:16px;font-weight:650;color:var(--accent);white-space:nowrap}
+.dbase{margin:9px 0 0;font-size:12px;color:var(--ink2);line-height:1.5}
+.dbase .k{display:inline-block;min-width:48px;font-size:11px;color:var(--accent);font-weight:600}
 .dgrid{display:grid;gap:12px}
 .dcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
 .dcard.outline{opacity:.75;padding:13px 16px}
@@ -460,6 +478,9 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .k-meal .bkind{background:var(--accent2)}
 .k-move .bkind{background:var(--x)}
 .k-golf .bkind{background:var(--c)}
+.k-onsen .bkind{background:#a8572f}
+:root:not([data-theme="light"]) .k-onsen .bkind{background:#d98a5a}
+:root[data-theme="dark"] .k-onsen .bkind{background:#d98a5a}
 .bja{font-size:11px;color:var(--ink2)}
 .bdetail{margin:5px 0 0;font-size:12.5px;line-height:1.55}
 .bmetas{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
