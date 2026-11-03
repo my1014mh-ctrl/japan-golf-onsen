@@ -301,6 +301,11 @@ function itineraryPanel(it) {
       <span class="muted">${esc(l.why)}</span>${l.note ? `<span class="muted">${esc(l.note)}</span>` : ''}</div>
     </div>`).join('')}</div>` : ''}
     ${d.courseNote ? `<p class="dbase"><span class="k">주의</span>${esc(d.courseNote)}</p>` : ''}
+    ${d.cityStayType ? `<p class="dbase"><span class="k">시내</span>${esc(d.cityStayType)}</p>` : ''}
+    ${d.meals ? `<div class="dmeals"><span class="k">저녁</span>${d.meals.map((m) => `<div class="meal">
+      <span class="mday">${esc(m.day)}</span>
+      <div><strong>${esc(m.plan)}</strong><span class="muted">${esc(m.detail)}</span></div>
+    </div>`).join('')}</div>` : ''}
     ${it.lodgingNote ? `<p class="dbase"><span class="k">확인</span>${esc(it.lodgingNote)}</p>` : ''}
     ${d.rentalCar ? `<p class="dbase"><span class="k">렌터카</span>${esc(d.rentalCar)}</p>` : ''}
     <div class="dates">
@@ -479,6 +484,14 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .ltype{font-size:10.5px;color:var(--accent);font-weight:600}
 .lodge .muted{font-size:11px;line-height:1.45}
 .lnight{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--ink2);border-radius:5px;padding:2px 8px;white-space:nowrap}
+.dmeals{margin-top:12px}
+.dmeals > .k{display:block;font-size:11px;color:var(--accent);font-weight:600;margin-bottom:6px}
+.meal{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent);font-size:12px}
+.meal:first-of-type{border-top:0}
+.meal > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.meal strong{font-size:12.5px}
+.meal .muted{font-size:11px;line-height:1.45}
+.mday{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--accent2);border-radius:5px;padding:2px 8px;white-space:nowrap}
 .dlodging{margin:6px 0 0;font-size:11.5px;color:var(--accent)}
 .dlodging span{display:inline-block;color:var(--ink2);min-width:34px;font-size:10.5px}
 .dbase{margin:9px 0 0;font-size:12px;color:var(--ink2);line-height:1.5}
