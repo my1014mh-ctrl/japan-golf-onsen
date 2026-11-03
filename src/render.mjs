@@ -269,6 +269,7 @@ function itineraryPanel(it) {
     return `<div class="dcard">
       <div class="dhead"><span class="dname on">${esc(x.name)}</span><span class="dlabel">${esc(x.label)}</span><span class="dtag done">상세</span></div>
       <p class="dsum">${esc(x.summary)}</p>
+      ${x.lodging ? `<p class="dlodging"><span>숙박</span>${esc(x.lodging)}</p>` : ''}
       <ol class="timeline">${blocks}</ol>
       ${alts ? `<div class="altbox"><h4>대안 · 추가 선택지</h4>${alts}</div>` : ''}
       ${decs ? `<div class="decbox"><h4>정해야 할 것</h4><ul>${decs}</ul></div>` : ''}
@@ -293,7 +294,13 @@ function itineraryPanel(it) {
       <span class="muted">${esc(c.place)} · 공항 ${esc(c.fromAirport)}</span></div>
       <span class="dctee">${esc(c.tee)}</span>
     </div>`).join('')}</div>` : ''}
-    ${d.base ? `<p class="dbase"><span class="k">베이스</span>${esc(d.base)}</p>` : ''}
+    ${d.base ? `<p class="dbase"><span class="k">숙소</span>${esc(d.base)}</p>` : ''}
+    ${d.lodging ? `<div class="dlodge">${d.lodging.map((l) => `<div class="lodge">
+      <span class="lnight">${esc(l.night)}</span>
+      <div><strong>${esc(l.place)}</strong><span class="ltype">${esc(l.type)}</span>
+      <span class="muted">${esc(l.why)}</span>${l.note ? `<span class="muted">${esc(l.note)}</span>` : ''}</div>
+    </div>`).join('')}</div>` : ''}
+    ${d.courseNote ? `<p class="dbase"><span class="k">주의</span>${esc(d.courseNote)}</p>` : ''}
     ${d.rentalCar ? `<p class="dbase"><span class="k">렌터카</span>${esc(d.rentalCar)}</p>` : ''}
     <div class="dates">
       ${(d.dateOptions ?? []).map((o) => {
@@ -453,6 +460,15 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .dcourse .muted{display:block;font-size:11px}
 .dcday{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--c);border-radius:5px;padding:2px 7px;white-space:nowrap}
 .dctee{font-family:var(--mono);font-size:16px;font-weight:650;color:var(--accent);white-space:nowrap}
+.dlodge{display:grid;gap:6px;margin-top:12px}
+.lodge{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12px}
+.lodge > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.lodge strong{font-size:13px}
+.ltype{font-size:10.5px;color:var(--accent);font-weight:600}
+.lodge .muted{font-size:11px;line-height:1.45}
+.lnight{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--ink2);border-radius:5px;padding:2px 8px;white-space:nowrap}
+.dlodging{margin:6px 0 0;font-size:11.5px;color:var(--accent)}
+.dlodging span{display:inline-block;color:var(--ink2);min-width:34px;font-size:10.5px}
 .dbase{margin:9px 0 0;font-size:12px;color:var(--ink2);line-height:1.5}
 .dbase .k{display:inline-block;min-width:48px;font-size:11px;color:var(--accent);font-weight:600}
 .dgrid{display:grid;gap:12px}
