@@ -22,6 +22,23 @@ bash scripts/setup-github-pages.sh   # 저장소 생성 + push + Pages 활성화
 `.env`의 `PUBLISH_TARGET=github` 때문에 `scripts/run-weekly.sh`가 끝날 때 자동으로
 commit + push 하고, GitHub Pages가 1~2분 내 반영한다. `surge`로 바꾸면 surge.sh로 배포한다.
 
+## 숙소 결제 할인 (KB카드 × 아고다)
+
+페이지 런타임에서는 외부 조회가 불가하므로(아티팩트 CSP·CORS) **빌드/배치 시점에 확인해 구워 넣는다.**
+
+```bash
+node scripts/check-promos.mjs    # 프로모션 상태 확인 → data/promos.json
+```
+
+- **아고다 KB 전용 페이지**(`agoda.com/ko-kr/kbcard`)와 **KB카드 이벤트 페이지**는 SPA·동적 로드라
+  본문 추출이 불가 → **HTTP 접근 가능 여부만** 확인한다
+- 혜택 내용은 정적 추출이 되는 제3자 정리 페이지에서 파싱하고, 요율·기간·확인일을 기록한다
+- 페이지 상단 패널에 **일본 적용 요율**과 **마지막 확인일**을 표시하고, 30일이 지나면 경고로 바뀐다
+- 주간 배치(`run-weekly.sh`)가 월요일마다 재확인한다
+
+**일본은 지정 지역(태국·미국·말레이시아)이 아니라 「그 외 지역」 요율이 적용된다.**
+선결제 조건이고 별도 할인코드는 없으며, 결제 직전 화면에서 할인액 표시를 확인해야 한다.
+
 ## 확정 일정 — 구마모토 금~월
 
 `data/itinerary.json` 에 일자별 상세 스케줄을 담는다. 페이지의 **상세 일정** 탭이 첫 화면.

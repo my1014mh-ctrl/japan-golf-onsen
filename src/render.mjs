@@ -230,6 +230,38 @@ const KIND = {
   onsen: { label: '온천', cls: 'k-onsen' },
 };
 
+function promoPanel(promos) {
+  if (!promos?.headline) return '';
+  const h = promos.headline;
+  const checked = promos.meta.checkedAt;
+  const days = Math.floor((Date.now() - new Date(checked)) / 86400000);
+  const stale = days > (promos.meta.staleAfterDays ?? 30);
+  return `<section class="promo${stale ? ' stale' : ''}">
+  <div class="phead">
+    <div>
+      <span class="pkicker">숙소 결제 할인</span>
+      <h3>${esc(h.card)} × ${esc(h.ota)} — 일본 <strong>${esc(h.japanRate ?? '—')}</strong></h3>
+    </div>
+    <div class="pcheck">
+      <span class="pdate">확인 ${esc(checked.slice(0, 10))}</span>
+      <span class="pago${stale ? ' warn' : ''}">${days === 0 ? '오늘' : `${days}일 전`}</span>
+    </div>
+  </div>
+  <p class="psum">${esc(h.summary ?? '')}</p>
+  <dl class="pdl">
+    <div><dt>적용 방법</dt><dd>${esc(h.howTo ?? '')}</dd></div>
+    <div><dt>주의</dt><dd class="pcaveat">${esc(h.caveat ?? '')}</dd></div>
+    ${h.officialConfirmedAt ? `<div><dt>공식 안내</dt><dd>${esc(h.officialConfirmedAt)} 기준${h.bookFrom ? ` · 예약기간 ${esc(h.bookFrom)}~` : ''}</dd></div>` : ''}
+  </dl>
+  <div class="plinks">
+    <a class="cta" href="${esc(h.applyUrl)}" target="_blank" rel="noopener">아고다 KB 전용 페이지 열기 →</a>
+    ${(promos.sources ?? []).filter((x) => x.id !== 'agoda-kb-official').map((x) => `<a class="plink${x.ok ? '' : ' dead'}" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}${x.ok ? '' : ` (HTTP ${x.status})`}</a>`).join('')}
+  </div>
+  ${stale ? `<p class="pstale">⚠ 확인한 지 ${days}일 지났습니다. 프로모션은 분기 단위로 갱신되니 예약 전 전용 페이지에서 직접 확인하세요.</p>`
+    : `<p class="pnote">주간 배치가 월요일마다 재확인합니다. 예약 직전에는 전용 페이지에서 할인액 표시를 직접 확인하세요.</p>`}
+</section>`;
+}
+
 function itineraryPanel(it) {
   if (!it?.decided) return '';
   const d = it.decided;
@@ -454,6 +486,29 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .tab.on .tlabel{color:var(--accent)}
 .tab:hover:not(.on){color:var(--ink)}
 .vpanel{display:none}
+.promo{background:var(--panel);border:1px solid color-mix(in srgb,var(--b) 35%,var(--line));border-left:3px solid var(--b);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow);margin:18px 0 14px}
+.promo.stale{border-left-color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 40%,var(--line))}
+.phead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.pkicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:var(--bg);background:var(--b);border-radius:4px;padding:2px 7px;margin-bottom:6px}
+.promo.stale .pkicker{background:var(--accent2)}
+.promo h3{margin:0;font-size:17px;letter-spacing:-.02em}
+.promo h3 strong{color:var(--b);font-size:20px;font-family:var(--mono)}
+.pcheck{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.pdate{font-family:var(--mono);font-size:11px;color:var(--ink2)}
+.pago{font-size:10.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.pago.warn{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 45%,transparent)}
+.psum{margin:10px 0 0;font-size:13px;line-height:1.6}
+.pdl{margin:11px 0 0;display:grid;gap:6px}
+.pdl > div{display:flex;gap:10px;font-size:12px}
+.pdl dt{min-width:62px;color:var(--ink2);font-size:11.5px;margin:0}
+.pdl dd{margin:0;line-height:1.5}
+.pcaveat{color:var(--accent2)}
+.plinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:13px}
+.plink{font-size:11.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;text-decoration:none}
+.plink:hover{color:var(--ink);border-color:var(--ink2)}
+.plink.dead{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 40%,transparent);text-decoration:line-through}
+.pnote,.pstale{margin:11px 0 0;font-size:11.5px;color:var(--ink2)}
+.pstale{color:var(--accent2)}
 .decided{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);margin:18px 0 16px}
 .dtop{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
 .dkicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--bg);background:var(--accent);border-radius:4px;padding:2px 7px;margin-bottom:6px}
@@ -740,6 +795,7 @@ ${variants.map((v) => `<button type="button" class="tab" role="tab" aria-selecte
   </button>`).join('\n')}
 </div>
 
+${analysis.promos ? promoPanel(analysis.promos) : ''}
 ${analysis.itinerary ? itineraryPanel(analysis.itinerary) : ''}
 
 ${variants.map((v, i) => {

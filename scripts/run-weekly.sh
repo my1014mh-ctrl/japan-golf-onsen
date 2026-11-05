@@ -18,6 +18,10 @@ LOG="logs/weekly-$STAMP.log"
   PREV="out/analysis.json"
   if [ -f "$PREV" ]; then cp "$PREV" "out/history/analysis-prev.json"; fi
 
+  # 카드사 × OTA 할인 프로모션 재확인
+  echo "--- 할인 프로모션 확인 ---"
+  node scripts/check-promos.mjs 2>&1 | tail -6 || echo "프로모션 확인 생략(네트워크)"
+
   # 예약사이트 링크 유효성 점검 (실패해도 빌드는 계속)
   if [ "${SKIP_ENRICH:-0}" != "1" ]; then
     echo "--- 예약링크 검증 ---"

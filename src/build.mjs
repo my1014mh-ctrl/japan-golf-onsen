@@ -1,7 +1,7 @@
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { loadAirports, loadTrip, loadCourses, loadItinerary, analyze } from './analyze.mjs';
+import { loadAirports, loadTrip, loadCourses, loadItinerary, loadPromos, analyze } from './analyze.mjs';
 import { loadBaseline } from './sources/baseline.mjs';
 import { fetchIcnSchedules, fetchIcnArrivals } from './sources/icnOpenApi.mjs';
 import { renderHtml } from './render.mjs';
@@ -36,6 +36,7 @@ async function main() {
   const trip = await loadTrip();
   const courseData = await loadCourses();
   const itinerary = await loadItinerary();
+  const promos = await loadPromos();
   const DOW = { 1: '월', 2: '화', 3: '수', 4: '목', 5: '금', 6: '토', 7: '일' };
   for (const v of trip.variants ?? []) {
     v.departDowName = DOW[v.departDow];
@@ -91,6 +92,7 @@ async function main() {
     variants,
     multiVariant: variants.length > 1,
     itinerary,
+    promos,
   };
   analysis.warnings = warnings;
 
@@ -101,6 +103,13 @@ async function main() {
   await writeFile(jsonPath, JSON.stringify(analysis, null, 2));
   await writeFile(htmlPath, renderHtml(analysis, { tripLabel: args.trip ?? '2027년 3월' }));
 
+  if (promos?.headline) {
+    const h = promos.headline;
+    const days = Math.floor((Date.now() - new Date(promos.meta.checkedAt)) / 86400000);
+    console.log('');
+    console.log(`[프로모션] ${h.card} × ${h.ota} — 일본 적용 ${h.japanRate} (확인 ${promos.meta.checkedAt.slice(0, 10)}, ${days}일 전)`);
+    for (const s2 of promos.sources) console.log(`   ${s2.ok ? '✓' : '✗'} ${s2.label} HTTP ${s2.status}`);
+  }
   if (itinerary?.decided) {
     const dd = itinerary.decided;
     console.log('');

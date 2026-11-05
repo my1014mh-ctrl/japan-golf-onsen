@@ -109,6 +109,29 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .tab.on .tlabel{color:var(--accent)}
 .tab:hover:not(.on){color:var(--ink)}
 .vpanel{display:none}
+.promo{background:var(--panel);border:1px solid color-mix(in srgb,var(--b) 35%,var(--line));border-left:3px solid var(--b);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow);margin:18px 0 14px}
+.promo.stale{border-left-color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 40%,var(--line))}
+.phead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.pkicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:var(--bg);background:var(--b);border-radius:4px;padding:2px 7px;margin-bottom:6px}
+.promo.stale .pkicker{background:var(--accent2)}
+.promo h3{margin:0;font-size:17px;letter-spacing:-.02em}
+.promo h3 strong{color:var(--b);font-size:20px;font-family:var(--mono)}
+.pcheck{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.pdate{font-family:var(--mono);font-size:11px;color:var(--ink2)}
+.pago{font-size:10.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.pago.warn{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 45%,transparent)}
+.psum{margin:10px 0 0;font-size:13px;line-height:1.6}
+.pdl{margin:11px 0 0;display:grid;gap:6px}
+.pdl > div{display:flex;gap:10px;font-size:12px}
+.pdl dt{min-width:62px;color:var(--ink2);font-size:11.5px;margin:0}
+.pdl dd{margin:0;line-height:1.5}
+.pcaveat{color:var(--accent2)}
+.plinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:13px}
+.plink{font-size:11.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;text-decoration:none}
+.plink:hover{color:var(--ink);border-color:var(--ink2)}
+.plink.dead{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 40%,transparent);text-decoration:line-through}
+.pnote,.pstale{margin:11px 0 0;font-size:11.5px;color:var(--ink2)}
+.pstale{color:var(--accent2)}
 .decided{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);margin:18px 0 16px}
 .dtop{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
 .dkicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--bg);background:var(--accent);border-radius:4px;padding:2px 7px;margin-bottom:6px}
@@ -375,7 +398,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>인천 출발 3박 4일 · 토요일은 온천·쇼핑</strong>으로 비우고 나머지 3일을 라운딩에 씁니다. 두 일정(<strong>목~일</strong> / <strong>금~월</strong>)을 탭으로 비교하세요. 범위는 <strong>규슈 전역 + 히로시마</strong>이며, 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸습니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 11. 3. 오전 11:07</span>
+    <span>갱신 2026. 11. 5. 오전 10:05</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>후보 9개 공항</span>
@@ -399,6 +422,29 @@ footer ul{padding-left:18px}
   </button>
 </div>
 
+<section class="promo">
+  <div class="phead">
+    <div>
+      <span class="pkicker">숙소 결제 할인</span>
+      <h3>KB국민카드 × 아고다 — 일본 <strong>7%</strong></h3>
+    </div>
+    <div class="pcheck">
+      <span class="pdate">확인 2026-11-05</span>
+      <span class="pago">오늘</span>
+    </div>
+  </div>
+  <p class="psum">KB국민카드 전용 페이지에서 선결제하면 태국·미국·말레이시아 호텔은 10%, 그 외 지역은 7% 할인이 적용됩니다. 결제 페이지에서 카드번호 입력 시 자동 적용됩니다.</p>
+  <dl class="pdl">
+    <div><dt>적용 방법</dt><dd>KB국민카드 전용 페이지에서 호텔을 검색해 선결제. 결제 단계에서 카드번호 입력 시 자동 적용 — 별도 할인코드 없음</dd></div>
+    <div><dt>주의</dt><dd class="pcaveat">일본은 지정 지역(태국·미국·말레이시아)이 아니라 「그 외 지역」 요율이 적용된다. 선결제 조건이며 결제 직전 화면에서 할인액 표시를 반드시 확인할 것</dd></div>
+    <div><dt>공식 안내</dt><dd>2026-10-02 기준 · 예약기간 2026-10-01~</dd></div>
+  </dl>
+  <div class="plinks">
+    <a class="cta" href="https://www.agoda.com/ko-kr/kbcard" target="_blank" rel="noopener">아고다 KB 전용 페이지 열기 →</a>
+    <a class="plink" href="https://card.kbcard.com/CRD/DVIEW/HCAMCXEVNA0001" target="_blank" rel="noopener">KB국민카드 이벤트</a><a class="plink" href="https://www.agodaprice.com/cards/kb" target="_blank" rel="noopener">아고다 KB 할인 정리 (제3자)</a>
+  </div>
+  <p class="pnote">주간 배치가 월요일마다 재확인합니다. 예약 직전에는 전용 페이지에서 할인액 표시를 직접 확인하세요.</p>
+</section>
 <section class="vpanel on" id="v-ITIN" data-vid="ITIN">
   <div class="decided">
     <div class="dtop">
