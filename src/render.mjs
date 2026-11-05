@@ -231,34 +231,65 @@ const KIND = {
 };
 
 function promoPanel(promos) {
-  if (!promos?.headline) return '';
-  const h = promos.headline;
+  if (!promos?.promos?.length) return '';
   const checked = promos.meta.checkedAt;
   const days = Math.floor((Date.now() - new Date(checked)) / 86400000);
   const stale = days > (promos.meta.staleAfterDays ?? 30);
+  const country = promos.meta.targetCountry ?? '일본';
+
+  const card = (p) => {
+    const active = p.status === 'active';
+    const badge = active ? '진행 중' : p.status === 'ended' ? '현재 종료' : '확인 필요';
+    return `<div class="pcard${active ? ' on' : ' off'}">
+      <div class="pctop">
+        <strong>${esc(p.card)}</strong>
+        <span class="pcbadge${active ? ' on' : ''}">${esc(badge)}</span>
+      </div>
+      <div class="pcrate">
+        <span class="pcnum">${esc(p.countryRate ?? '—')}</span>
+        <span class="pclab">${esc(country)} 적용${active ? '' : ' (재개 시)'}</span>
+      </div>
+      ${p.codes?.length
+        ? `<div class="pccode"><span class="k">할인코드</span>${p.codes.map((c) => `<code>${esc(c)}</code>`).join('')}</div>`
+        : p.historicalCodes?.length
+          ? `<div class="pccode"><span class="k">지난 코드</span>${p.historicalCodes.map((c) => `<code class="past">${esc(c.code)}</code>`).join('')}<span class="muted">${esc(p.historicalNote ?? '')}</span></div>`
+          : '<div class="pccode"><span class="k">할인코드</span><span class="muted">없음 — 카드번호로 자동 적용</span></div>'}
+      ${p.maxCapUsd ? `<div class="pcline"><span class="k">건당 상한</span>$${esc(p.maxCapUsd)}</div>` : ''}
+      ${p.officialConfirmedAt ? `<div class="pcline"><span class="k">공식 안내</span>${esc(p.officialConfirmedAt)} 기준${p.bookFrom ? ` · 예약 ${esc(p.bookFrom)}~` : ''}</div>` : ''}
+      <p class="pchow">${esc(p.howTo ?? '')}</p>
+      ${p.summary ? `<p class="pcsum">${esc(p.summary)}</p>` : ''}
+      ${p.kbEvent?.expired ? `<p class="pcwarn">⚠ KB카드에 올라와 있는 이 이벤트 페이지는 <strong>만료 행사</strong>입니다 — 예약 ${esc(p.kbEvent.period ?? '')}. 페이지가 남아 있어도 적용되지 않습니다.</p>` : ''}
+      <div class="pclinks">
+        ${active ? `<a class="cta" href="${esc(p.applyUrl)}" target="_blank" rel="noopener">아고다에서 적용하기 →</a>` : ''}
+        ${(p.sources ?? []).map((x) => `<a class="plink${x.ok ? '' : ' dead'}" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}${x.ok ? '' : ` (HTTP ${x.status})`}</a>`).join('')}
+      </div>
+    </div>`;
+  };
+
+  const rank = (promos.cardRanking ?? []).slice(0, 5);
+  const best = rank[0];
+  const mine = new Set(promos.promos.map((p) => p.card));
+
   return `<section class="promo${stale ? ' stale' : ''}">
   <div class="phead">
     <div>
       <span class="pkicker">숙소 결제 할인</span>
-      <h3>${esc(h.card)} × ${esc(h.ota)} — 일본 <strong>${esc(h.japanRate ?? '—')}</strong></h3>
+      <h3>아고다 카드 프로모션 — ${esc(country)} 기준</h3>
     </div>
     <div class="pcheck">
       <span class="pdate">확인 ${esc(checked.slice(0, 10))}</span>
       <span class="pago${stale ? ' warn' : ''}">${days === 0 ? '오늘' : `${days}일 전`}</span>
     </div>
   </div>
-  <p class="psum">${esc(h.summary ?? '')}</p>
-  <dl class="pdl">
-    <div><dt>적용 방법</dt><dd>${esc(h.howTo ?? '')}</dd></div>
-    <div><dt>주의</dt><dd class="pcaveat">${esc(h.caveat ?? '')}</dd></div>
-    ${h.officialConfirmedAt ? `<div><dt>공식 안내</dt><dd>${esc(h.officialConfirmedAt)} 기준${h.bookFrom ? ` · 예약기간 ${esc(h.bookFrom)}~` : ''}</dd></div>` : ''}
-  </dl>
-  <div class="plinks">
-    <a class="cta" href="${esc(h.applyUrl)}" target="_blank" rel="noopener">아고다 KB 전용 페이지 열기 →</a>
-    ${(promos.sources ?? []).filter((x) => x.id !== 'agoda-kb-official').map((x) => `<a class="plink${x.ok ? '' : ' dead'}" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}${x.ok ? '' : ` (HTTP ${x.status})`}</a>`).join('')}
+  <div class="pgrid">${promos.promos.map(card).join('')}</div>
+  ${rank.length ? `<div class="prank">
+    <span class="k">현재 진행 중 최고 요율</span>
+    ${rank.map((c) => `<span class="rchip${c === best ? ' top' : ''}${mine.has(c.card) ? ' mine' : ''}">${esc(c.card)} ${c.maxRate}%</span>`).join('')}
+    <a class="plink" href="${esc(promos.rankingUrl)}" target="_blank" rel="noopener">전체 비교 →</a>
   </div>
-  ${stale ? `<p class="pstale">⚠ 확인한 지 ${days}일 지났습니다. 프로모션은 분기 단위로 갱신되니 예약 전 전용 페이지에서 직접 확인하세요.</p>`
-    : `<p class="pnote">주간 배치가 월요일마다 재확인합니다. 예약 직전에는 전용 페이지에서 할인액 표시를 직접 확인하세요.</p>`}
+  ${best && !mine.has(best.card) ? `<p class="pcwarn">보유 카드에 <strong>${esc(best.card)}</strong>가 있으면 최대 ${best.maxRate}%로 더 유리합니다 — 요율은 숙소 국가별로 갈리니 ${esc(country)} 적용률을 확인하세요.</p>` : ''}` : ''}
+  ${stale ? `<p class="pstale">⚠ 확인한 지 ${days}일 지났습니다. 예약 전 직접 확인하세요.</p>`
+    : `<p class="pnote">${esc(promos.meta.note ?? '')} 주간 배치가 월요일마다 재확인합니다.</p>`}
 </section>`;
 }
 
@@ -497,6 +528,31 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .pdate{font-family:var(--mono);font-size:11px;color:var(--ink2)}
 .pago{font-size:10.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
 .pago.warn{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 45%,transparent)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:13px}
+.pcard{border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.pcard.on{border-color:color-mix(in srgb,var(--b) 45%,transparent);background:color-mix(in srgb,var(--b) 5%,transparent)}
+.pcard.off{opacity:.72}
+.pctop{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pctop strong{font-size:14px}
+.pcbadge{font-size:10px;font-weight:700;border-radius:4px;padding:2px 6px;color:var(--ink2);border:1px solid var(--line);white-space:nowrap}
+.pcbadge.on{color:var(--bg);background:var(--b);border-color:var(--b)}
+.pcrate{display:flex;align-items:baseline;gap:7px;margin:9px 0 10px}
+.pcnum{font-family:var(--mono);font-size:26px;font-weight:650;letter-spacing:-.03em;color:var(--ink2)}
+.pcard.on .pcnum{color:var(--b)}
+.pclab{font-size:11px;color:var(--ink2)}
+.pccode,.pcline{display:flex;gap:7px;align-items:baseline;font-size:11.5px;margin-bottom:4px;flex-wrap:wrap}
+.pccode .k,.pcline .k{min-width:58px;color:var(--ink2);font-size:11px}
+.pccode code.past{background:transparent;color:var(--ink2);border:1px dashed var(--line);text-decoration:line-through}
+.pccode code{font-family:var(--mono);font-size:11.5px;font-weight:650;color:var(--bg);background:var(--accent2);border-radius:4px;padding:1px 6px}
+.pchow{margin:8px 0 0;font-size:11.5px;color:var(--ink2);line-height:1.5}
+.pcsum{margin:6px 0 0;font-size:11px;color:var(--ink2);line-height:1.5;opacity:.85}
+.pcwarn{margin:8px 0 0;font-size:11.5px;color:var(--accent2);line-height:1.5}
+.pclinks{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.prank{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
+.prank .k{font-size:11px;color:var(--ink2);margin-right:2px}
+.rchip{font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-variant-numeric:tabular-nums}
+.rchip.top{color:var(--bg);background:var(--accent2);border-color:var(--accent2);font-weight:650}
+.rchip.mine{border-color:color-mix(in srgb,var(--b) 45%,transparent)}
 .psum{margin:10px 0 0;font-size:13px;line-height:1.6}
 .pdl{margin:11px 0 0;display:grid;gap:6px}
 .pdl > div{display:flex;gap:10px;font-size:12px}

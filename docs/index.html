@@ -120,6 +120,31 @@ h2.sec{font-size:15px;letter-spacing:.02em;text-transform:none;color:var(--ink2)
 .pdate{font-family:var(--mono);font-size:11px;color:var(--ink2)}
 .pago{font-size:10.5px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
 .pago.warn{color:var(--accent2);border-color:color-mix(in srgb,var(--accent2) 45%,transparent)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:13px}
+.pcard{border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.pcard.on{border-color:color-mix(in srgb,var(--b) 45%,transparent);background:color-mix(in srgb,var(--b) 5%,transparent)}
+.pcard.off{opacity:.72}
+.pctop{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pctop strong{font-size:14px}
+.pcbadge{font-size:10px;font-weight:700;border-radius:4px;padding:2px 6px;color:var(--ink2);border:1px solid var(--line);white-space:nowrap}
+.pcbadge.on{color:var(--bg);background:var(--b);border-color:var(--b)}
+.pcrate{display:flex;align-items:baseline;gap:7px;margin:9px 0 10px}
+.pcnum{font-family:var(--mono);font-size:26px;font-weight:650;letter-spacing:-.03em;color:var(--ink2)}
+.pcard.on .pcnum{color:var(--b)}
+.pclab{font-size:11px;color:var(--ink2)}
+.pccode,.pcline{display:flex;gap:7px;align-items:baseline;font-size:11.5px;margin-bottom:4px;flex-wrap:wrap}
+.pccode .k,.pcline .k{min-width:58px;color:var(--ink2);font-size:11px}
+.pccode code.past{background:transparent;color:var(--ink2);border:1px dashed var(--line);text-decoration:line-through}
+.pccode code{font-family:var(--mono);font-size:11.5px;font-weight:650;color:var(--bg);background:var(--accent2);border-radius:4px;padding:1px 6px}
+.pchow{margin:8px 0 0;font-size:11.5px;color:var(--ink2);line-height:1.5}
+.pcsum{margin:6px 0 0;font-size:11px;color:var(--ink2);line-height:1.5;opacity:.85}
+.pcwarn{margin:8px 0 0;font-size:11.5px;color:var(--accent2);line-height:1.5}
+.pclinks{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.prank{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
+.prank .k{font-size:11px;color:var(--ink2);margin-right:2px}
+.rchip{font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-variant-numeric:tabular-nums}
+.rchip.top{color:var(--bg);background:var(--accent2);border-color:var(--accent2);font-weight:650}
+.rchip.mine{border-color:color-mix(in srgb,var(--b) 45%,transparent)}
 .psum{margin:10px 0 0;font-size:13px;line-height:1.6}
 .pdl{margin:11px 0 0;display:grid;gap:6px}
 .pdl > div{display:flex;gap:10px;font-size:12px}
@@ -398,7 +423,7 @@ footer ul{padding-left:18px}
   <h1>2027년 3월 일본 골프·온천 — 오전 도착 가능 공항</h1>
   <p class="lede"><strong>인천 출발 3박 4일 · 토요일은 온천·쇼핑</strong>으로 비우고 나머지 3일을 라운딩에 씁니다. 두 일정(<strong>목~일</strong> / <strong>금~월</strong>)을 탭으로 비교하세요. 범위는 <strong>규슈 전역 + 히로시마</strong>이며, 골프장은 <strong>공항 반경 50km 이내 + 공항↔도시 축선</strong>의 코스만 추렸습니다.</p>
   <div class="metaline">
-    <span>갱신 2026. 11. 5. 오전 10:05</span>
+    <span>갱신 2026. 11. 5. 오후 3:56</span>
     <span>데이터: 추정 베이스라인 (data/routes-baseline.json)</span>
     <span>커트오프 12:00</span>
     <span>후보 9개 공항</span>
@@ -426,24 +451,59 @@ footer ul{padding-left:18px}
   <div class="phead">
     <div>
       <span class="pkicker">숙소 결제 할인</span>
-      <h3>KB국민카드 × 아고다 — 일본 <strong>7%</strong></h3>
+      <h3>아고다 카드 프로모션 — 일본 기준</h3>
     </div>
     <div class="pcheck">
       <span class="pdate">확인 2026-11-05</span>
       <span class="pago">오늘</span>
     </div>
   </div>
-  <p class="psum">KB국민카드 전용 페이지에서 선결제하면 태국·미국·말레이시아 호텔은 10%, 그 외 지역은 7% 할인이 적용됩니다. 결제 페이지에서 카드번호 입력 시 자동 적용됩니다.</p>
-  <dl class="pdl">
-    <div><dt>적용 방법</dt><dd>KB국민카드 전용 페이지에서 호텔을 검색해 선결제. 결제 단계에서 카드번호 입력 시 자동 적용 — 별도 할인코드 없음</dd></div>
-    <div><dt>주의</dt><dd class="pcaveat">일본은 지정 지역(태국·미국·말레이시아)이 아니라 「그 외 지역」 요율이 적용된다. 선결제 조건이며 결제 직전 화면에서 할인액 표시를 반드시 확인할 것</dd></div>
-    <div><dt>공식 안내</dt><dd>2026-10-02 기준 · 예약기간 2026-10-01~</dd></div>
-  </dl>
-  <div class="plinks">
-    <a class="cta" href="https://www.agoda.com/ko-kr/kbcard" target="_blank" rel="noopener">아고다 KB 전용 페이지 열기 →</a>
-    <a class="plink" href="https://card.kbcard.com/CRD/DVIEW/HCAMCXEVNA0001" target="_blank" rel="noopener">KB국민카드 이벤트</a><a class="plink" href="https://www.agodaprice.com/cards/kb" target="_blank" rel="noopener">아고다 KB 할인 정리 (제3자)</a>
+  <div class="pgrid"><div class="pcard on">
+      <div class="pctop">
+        <strong>KB국민카드</strong>
+        <span class="pcbadge on">진행 중</span>
+      </div>
+      <div class="pcrate">
+        <span class="pcnum">7%</span>
+        <span class="pclab">일본 적용</span>
+      </div>
+      <div class="pccode"><span class="k">할인코드</span><span class="muted">없음 — 카드번호로 자동 적용</span></div>
+      
+      <div class="pcline"><span class="k">공식 안내</span>2026-10-02 기준 · 예약 2026-10-01~</div>
+      <p class="pchow">KB국민카드 전용 페이지에서 검색해 선결제. 결제 단계에서 카드번호 입력 시 자동 적용 — 별도 코드 없음</p>
+      <p class="pcsum">KB국민카드 전용 페이지에서 선결제하면 태국·미국·말레이시아 호텔은 10%, 그 외 지역은 7% 할인이 적용됩니다. 결제 페이지에서 카드번호 입력 시 자동 적용됩니다.</p>
+      
+      <div class="pclinks">
+        <a class="cta" href="https://www.agoda.com/ko-kr/kbcard" target="_blank" rel="noopener">아고다에서 적용하기 →</a>
+        <a class="plink" href="https://www.agoda.com/ko-kr/kbcard" target="_blank" rel="noopener">아고다 KB 전용 페이지</a><a class="plink" href="https://www.agodaprice.com/cards/kb" target="_blank" rel="noopener">아고다 KB 할인 정리 (제3자)</a>
+      </div>
+    </div><div class="pcard off">
+      <div class="pctop">
+        <strong>유니온페이</strong>
+        <span class="pcbadge">현재 종료</span>
+      </div>
+      <div class="pcrate">
+        <span class="pcnum">15%</span>
+        <span class="pclab">일본 적용 (재개 시)</span>
+      </div>
+      <div class="pccode"><span class="k">지난 코드</span><code class="past">UPI15</code><code class="past">UPI12</code><span class="muted">지난 회차에 쓰인 코드. 재개 시 코드가 바뀔 수 있으므로 그대로 입력하지 말고 재확인할 것</span></div>
+      <div class="pcline"><span class="k">건당 상한</span>$100</div>
+      
+      <p class="pchow">결제 통화를 USD로 바꾸고 결제수단을 UnionPay로 선택한 뒤 할인코드를 직접 입력. 무이자 할부 선택 시 할인 미적용, 카드당 사용 횟수 제한</p>
+      <p class="pcsum">유니온페이 신용·체크카드로 USD 결제 시 할인이 적용되며, 숙소 국가에 따라 갈립니다. 중국·베트남·일본·홍콩·대만 호텔은 15%(카드당 2회), 그 외 국가는 12%(카드당 1회)이고 예약 건당 최대 할인 금액은 $100입니다. 할인코드를 결제 페이지에 직접 입력해야 적용되며, 코드 없이 카드만 넣으면 할인되지 않습니다.</p>
+      <p class="pcwarn">⚠ KB카드에 올라와 있는 이 이벤트 페이지는 <strong>만료 행사</strong>입니다 — 예약 22.06.01(수) ~ 22.09.30(금) 숙박 22.06.01. 페이지가 남아 있어도 적용되지 않습니다.</p>
+      <div class="pclinks">
+        
+        <a class="plink" href="https://www.agodaprice.com/cards/unionpay" target="_blank" rel="noopener">아고다 유니온페이 할인 정리 (제3자)</a><a class="plink" href="https://m.kbcard.com/BON/DVIEW/MBBMCXHIABNC0026?evntSerno=277983&amp;evntMain=Y" target="_blank" rel="noopener">KB카드 유니온페이 아고다 이벤트</a>
+      </div>
+    </div></div>
+  <div class="prank">
+    <span class="k">현재 진행 중 최고 요율</span>
+    <span class="rchip top">마스터카드 16%</span><span class="rchip">현대카드 10%</span><span class="rchip mine">KB국민카드 10%</span><span class="rchip">신한카드 10%</span><span class="rchip">우리카드 10%</span>
+    <a class="plink" href="https://www.agodaprice.com/cards/" target="_blank" rel="noopener">전체 비교 →</a>
   </div>
-  <p class="pnote">주간 배치가 월요일마다 재확인합니다. 예약 직전에는 전용 페이지에서 할인액 표시를 직접 확인하세요.</p>
+  <p class="pcwarn">보유 카드에 <strong>마스터카드</strong>가 있으면 최대 16%로 더 유리합니다 — 요율은 숙소 국가별로 갈리니 일본 적용률을 확인하세요.</p>
+  <p class="pnote">아고다는 결제수단 프로모션을 주기적으로 여닫는다. status=ended 여도 재개될 수 있어 주간 배치가 계속 확인한다. 주간 배치가 월요일마다 재확인합니다.</p>
 </section>
 <section class="vpanel on" id="v-ITIN" data-vid="ITIN">
   <div class="decided">

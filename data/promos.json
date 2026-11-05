@@ -1,62 +1,135 @@
 {
   "meta": {
-    "checkedAt": "2026-11-05T01:05:07.178Z",
-    "description": "KB국민카드 × 아고다 할인 상태. 페이지 런타임에서는 외부 조회가 불가하므로 빌드/배치 시점에 확인해 구워 넣는다.",
-    "staleAfterDays": 30
+    "checkedAt": "2026-11-05T06:56:29.800Z",
+    "targetCountry": "일본",
+    "staleAfterDays": 30,
+    "description": "KB국민카드·유니온페이 × 아고다 할인 상태. 페이지 런타임에서는 외부 조회가 불가하므로 빌드·배치 시점에 확인해 구워 넣는다.",
+    "note": "아고다는 결제수단 프로모션을 주기적으로 여닫는다. status=ended 여도 재개될 수 있어 주간 배치가 계속 확인한다."
   },
-  "headline": {
-    "card": "KB국민카드",
-    "ota": "아고다",
-    "japanRate": "7%",
-    "summary": "KB국민카드 전용 페이지에서 선결제하면 태국·미국·말레이시아 호텔은 10%, 그 외 지역은 7% 할인이 적용됩니다. 결제 페이지에서 카드번호 입력 시 자동 적용됩니다.",
-    "rates": [
-      "10%",
-      "7%"
-    ],
-    "officialConfirmedAt": "2026-10-02",
-    "bookFrom": "2026-10-01",
-    "applyUrl": "https://www.agoda.com/ko-kr/kbcard",
-    "howTo": "KB국민카드 전용 페이지에서 호텔을 검색해 선결제. 결제 단계에서 카드번호 입력 시 자동 적용 — 별도 할인코드 없음",
-    "caveat": "일본은 지정 지역(태국·미국·말레이시아)이 아니라 「그 외 지역」 요율이 적용된다. 선결제 조건이며 결제 직전 화면에서 할인액 표시를 반드시 확인할 것"
-  },
-  "sources": [
+  "promos": [
     {
-      "id": "agoda-kb-official",
-      "label": "아고다 KB국민카드 전용 페이지",
-      "url": "https://www.agoda.com/ko-kr/kbcard",
-      "kind": "landing",
-      "status": 200,
-      "ok": true,
-      "note": "SPA라 본문 추출 불가 — 접근 가능 여부만 확인한다. 실제 할인은 이 페이지에서 검색·선결제해야 적용된다"
+      "id": "kb",
+      "card": "KB국민카드",
+      "ota": "아고다",
+      "status": "active",
+      "countryRate": "7%",
+      "rates": [
+        "10%",
+        "7%"
+      ],
+      "codes": [],
+      "maxCapUsd": null,
+      "summary": "KB국민카드 전용 페이지에서 선결제하면 태국·미국·말레이시아 호텔은 10%, 그 외 지역은 7% 할인이 적용됩니다. 결제 페이지에서 카드번호 입력 시 자동 적용됩니다.",
+      "officialConfirmedAt": "2026-10-02",
+      "bookFrom": "2026-10-01",
+      "applyUrl": "https://www.agoda.com/ko-kr/kbcard",
+      "howTo": "KB국민카드 전용 페이지에서 검색해 선결제. 결제 단계에서 카드번호 입력 시 자동 적용 — 별도 코드 없음",
+      "historicalCodes": null,
+      "historicalNote": null,
+      "kbEvent": null,
+      "sources": [
+        {
+          "id": "kb-landing",
+          "label": "아고다 KB 전용 페이지",
+          "url": "https://www.agoda.com/ko-kr/kbcard",
+          "kind": "landing",
+          "note": "SPA라 본문 추출 불가 — 접근 가능 여부만 확인",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "id": "kb-parse",
+          "label": "아고다 KB 할인 정리 (제3자)",
+          "url": "https://www.agodaprice.com/cards/kb",
+          "kind": "parse",
+          "status": 200,
+          "ok": true
+        }
+      ]
     },
     {
-      "id": "kbcard-events",
-      "label": "KB국민카드 이벤트",
-      "url": "https://card.kbcard.com/CRD/DVIEW/HCAMCXEVNA0001",
-      "kind": "landing",
-      "status": 200,
-      "ok": true,
-      "note": "이벤트 목록이 동적 로드라 본문 추출 불가 — 접근 가능 여부만 확인"
-    },
-    {
-      "id": "agodaprice-kb",
-      "label": "아고다 KB 할인 정리 (제3자)",
-      "url": "https://www.agodaprice.com/cards/kb",
-      "kind": "parse",
-      "status": 200,
-      "ok": true,
-      "note": null,
-      "data": {
-        "title": "아고다 KB국민카드 최대 10% 할인 | 11월 적용법",
-        "summary": "KB국민카드 전용 페이지에서 선결제하면 태국·미국·말레이시아 호텔은 10%, 그 외 지역은 7% 할인이 적용됩니다. 결제 페이지에서 카드번호 입력 시 자동 적용됩니다.",
+      "id": "unionpay",
+      "card": "유니온페이",
+      "ota": "아고다",
+      "status": "ended",
+      "countryRate": "15%",
+      "rates": [
+        "15%",
+        "12%"
+      ],
+      "codes": [],
+      "maxCapUsd": "100",
+      "summary": "유니온페이 신용·체크카드로 USD 결제 시 할인이 적용되며, 숙소 국가에 따라 갈립니다. 중국·베트남·일본·홍콩·대만 호텔은 15%(카드당 2회), 그 외 국가는 12%(카드당 1회)이고 예약 건당 최대 할인 금액은 $100입니다. 할인코드를 결제 페이지에 직접 입력해야 적용되며, 코드 없이 카드만 넣으면 할인되지 않습니다.",
+      "officialConfirmedAt": null,
+      "bookFrom": null,
+      "applyUrl": "https://www.agoda.com/ko-kr/",
+      "howTo": "결제 통화를 USD로 바꾸고 결제수단을 UnionPay로 선택한 뒤 할인코드를 직접 입력. 무이자 할부 선택 시 할인 미적용, 카드당 사용 횟수 제한",
+      "historicalCodes": [
+        {
+          "code": "UPI15",
+          "note": "일본·중국·베트남·홍콩·대만 15%, 카드당 2회"
+        },
+        {
+          "code": "UPI12",
+          "note": "그 외 국가 12%, 카드당 1회"
+        }
+      ],
+      "historicalNote": "지난 회차에 쓰인 코드. 재개 시 코드가 바뀔 수 있으므로 그대로 입력하지 말고 재확인할 것",
+      "kbEvent": {
+        "title": "[유니온페이] 아고다 전 세계 호텔 최대 15&#37; 할인! | KB 국민카드",
+        "period": "22.06.01(수) ~ 22.09.30(금) 숙박 22.06.01",
+        "stay": "22.06.01(수) ~ 22.12.31(토)",
         "rates": [
-          "10%",
-          "7%"
+          "15%"
         ],
-        "japanRate": "7%",
-        "confirmedAt": "2026-10-02",
-        "bookFrom": "2026-10-01"
-      }
+        "endYear": 2022,
+        "expired": true
+      },
+      "sources": [
+        {
+          "id": "up-parse",
+          "label": "아고다 유니온페이 할인 정리 (제3자)",
+          "url": "https://www.agodaprice.com/cards/unionpay",
+          "kind": "parse",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "id": "kb-up-event",
+          "label": "KB카드 유니온페이 아고다 이벤트",
+          "url": "https://m.kbcard.com/BON/DVIEW/MBBMCXHIABNC0026?evntSerno=277983&evntMain=Y",
+          "kind": "parse-kb-event",
+          "status": 200,
+          "ok": true
+        }
+      ]
     }
-  ]
+  ],
+  "cardRanking": [
+    {
+      "card": "마스터카드",
+      "maxRate": 16
+    },
+    {
+      "card": "현대카드",
+      "maxRate": 10
+    },
+    {
+      "card": "KB국민카드",
+      "maxRate": 10
+    },
+    {
+      "card": "신한카드",
+      "maxRate": 10
+    },
+    {
+      "card": "우리카드",
+      "maxRate": 10
+    },
+    {
+      "card": "하나카드",
+      "maxRate": 10
+    }
+  ],
+  "rankingUrl": "https://www.agodaprice.com/cards/"
 }
